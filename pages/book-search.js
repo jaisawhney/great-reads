@@ -2,6 +2,18 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 export default function BookSearch() {
+    function onSubmit(e) {
+        e.preventDefault();
+
+        const bookTitle = e.target.elements.bookName.value;
+        fetch(`http://openlibrary.org/search.json?q=intitle:"${bookTitle}"&fields=title,author_name,isbn,cover_i&limit=15&page=1`)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res?.docs);
+                return res;
+            });
+    }
+
     return (
         <div className={styles.container}>
             <Head>
@@ -10,7 +22,7 @@ export default function BookSearch() {
             </Head>
 
             <main className={styles.main}>
-                <form className="border">
+                <form onSubmit={onSubmit} className="border rounded shadow-sm">
                     <input className="p-2" name="bookName" type="text" placeholder="Book title" required/>
                     <input className="px-2" type="submit"/>
                 </form>
