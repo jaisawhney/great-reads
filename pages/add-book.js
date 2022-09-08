@@ -11,7 +11,7 @@ export default function AddBook() {
         const bookTitle = e.target.elements.bookName?.value;
         if(!bookTitle) return;
 
-        fetch(`http://openlibrary.org/search.json?q=${bookTitle}&fields=title,author_name,cover_i&limit=15&page=1`)
+        fetch(`/api/search?q=${bookTitle}`)
             .then(res => res.json())
             .then(res => {
                 return setSearchResults(res.docs);
