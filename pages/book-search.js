@@ -1,16 +1,20 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import {useState} from "react";
 
 export default function BookSearch() {
+    const [searchResults, setSearchResults] = useState([]);
+
     function onSubmit(e) {
         e.preventDefault();
 
-        const bookTitle = e.target.elements.bookName.value;
-        fetch(`http://openlibrary.org/search.json?q=intitle:"${bookTitle}"&fields=title,author_name,isbn,cover_i&limit=15&page=1`)
+        const bookTitle = e.target.elements.bookName?.value;
+        if(!bookTitle) return;
+
+        fetch(`http://openlibrary.org/search.json?q=${bookTitle}&fields=title,author_name,cover_i&limit=15&page=1`)
             .then(res => res.json())
             .then(res => {
-                console.log(res?.docs);
-                return res;
+                return setSearchResults(res.docs);
             });
     }
 
@@ -27,15 +31,22 @@ export default function BookSearch() {
                     <input className="px-2" type="submit"/>
                 </form>
                 <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
-                    <div className="row-auto flex flex-row items-center shadow-md rounded">
-                        <img src="https://via.placeholder.com/150x200.png?text=Book+Cover"
-                             alt="Book thumbnail"
-                             className="fill-current w-full rounded-t h-auto md:rounded-l md:w-auto"/>
-                        <div className="flex flex-col justify-between leading-normal p-3">
-                            <p className="font-bold text-md md:text-xl">Placeholder Title</p>
-                            <p className="text-base text-gray-700">Placeholder Author</p>
-                        </div>
-                    </div>
+                    {searchResults.length > 0 &&
+                    searchResults
+                        .filter(({title, author_name}) => title && author_name)
+                        .map((result, i) => {
+                            const {title, author_name} = result;
+
+                            return (
+                                <div className="row-auto flex flex-row items-center shadow-md rounded" key={i}>
+                                    <div className="flex flex-col justify-between leading-normal p-3">
+                                        <p className="font-bold text-md md:text-xl">{title}</p>
+                                        <p className="text-base text-gray-700">{author_name.join(", ")}</p>
+                                        <a className="no-underline hover:underline" href="#">Add to Shelf</a>
+                                    </div>
+                                </div>
+                            )
+                        })}
                 </div>
             </main>
         </div>
