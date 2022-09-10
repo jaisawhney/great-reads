@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "database_development",
+    "database": "great_reads",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
