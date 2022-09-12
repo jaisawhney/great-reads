@@ -3,15 +3,15 @@ import prisma from '../../../lib/prisma';
 export default async function handler(req, res) {
   if (req.method=='GET'){
     console.log(req.query);
-    const { bookId } = req.query
+    const { userId } = req.query
 
-    const book = await prisma.book.findUnique({
+    const user = await prisma.user.findUnique({
       'where': {
-        id: parseInt(bookId)
+        id: parseInt(userId)
       }
     });
 
-    res.status(200).json(book)
+    res.status(200).json(user)
   } else {
     // Update or Delete
   }
