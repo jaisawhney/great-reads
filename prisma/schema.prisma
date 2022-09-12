@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:@localhost:3306/great_reads"
+}
+
+model Book {
+  id          Int        @id @default(autoincrement())
+  title       String     @db.VarChar(255)
+  isbn        String?    @db.VarChar(255)
+  description String     @db.VarChar(255)
+  author      String     @db.VarChar(255)
+  createdAt   DateTime   @default(now()) @db.DateTime(0)
+  updatedAt   DateTime   @default(now()) @db.DateTime(0)
+  bookList    BookList[]
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  username  String     @db.VarChar(255)
+  email     String     @db.VarChar(255)
+  password  String     @db.VarChar(255)
+  createdAt DateTime   @default(now()) @db.DateTime(0)
+  updatedAt DateTime   @default(now()) @db.DateTime(0)
+  bookList  BookList[]
+}
+
+model BookList {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  description String   @db.VarChar(255)
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  book        Book     @relation(fields: [bookId], references: [id])
+  bookId      Int
+  updatedAt   DateTime @default(now()) @db.DateTime(0)
+}
