@@ -1,18 +1,23 @@
 import prisma from '../../../lib/prisma';
 
 export default async function handler(req, res) {
-  if (req.method=='GET'){
-    console.log(req.query);
-    const { userId } = req.query
+  const userId = parseInt(req.query.userId)
 
+  if (req.method=='GET'){
     const user = await prisma.user.findUnique({
       'where': {
-        id: parseInt(userId)
+        id: userId
       }
     });
 
     res.status(200).json(user)
   } else {
-    // Update or Delete
+    const deletedUser = await prisma.user.delete({
+      'where': {
+        id: userId
+      }
+    });
+
+    res.status(200).json(deletedUser)
   }
 }

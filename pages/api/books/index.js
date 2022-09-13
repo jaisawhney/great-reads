@@ -1,7 +1,7 @@
 // Nextjs.org/docs/api-routes/response-helpers
 import prisma from '../../../lib/prisma';
 
-const red_book = {'title': 'Red Book', 'description': 'some desc', 'isbn': 'lmfsdf', 'author': 'klsndflksdf'}
+const sampleBook = {title: 'Catching Fire', description: 'A short description', isbn: '0439023491', author: 'Suzanne Collins'}
 
 export default async function handler(req, res) {
   if (req.method=='GET'){
@@ -11,16 +11,8 @@ export default async function handler(req, res) {
 
     res.status(200).json(allBooks)
   } else {
-    console.log('post')
-    const r = req.body;
-
     const book = await prisma.book.create({
-      data: {
-        title: red_book['title'],
-        isbn: red_book['isbn'],
-        description: red_book['description'],
-        author: red_book['author'],
-      },
+      data: sampleBook,
     });
 
     res.status(200).json(book)

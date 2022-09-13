@@ -8,24 +8,28 @@ datasource db {
 }
 
 model Book {
-  id          Int        @id @default(autoincrement())
-  title       String     @db.VarChar(255)
-  isbn        String?    @db.VarChar(255)
-  description String     @db.VarChar(255)
-  author      String     @db.VarChar(255)
-  createdAt   DateTime   @default(now()) @db.DateTime(0)
-  updatedAt   DateTime   @default(now()) @db.DateTime(0)
-  bookList    BookList[]
+  id           Int            @id @default(autoincrement())
+  title        String         @db.VarChar(255)
+  isbn         String?        @db.VarChar(255)
+  description  String         @db.VarChar(255)
+  author       String         @db.VarChar(255)
+  createdAt    DateTime       @default(now()) @db.DateTime(0)
+  updatedAt    DateTime       @default(now()) @db.DateTime(0)
+  bookList     BookList[]
+  Review       Review[]
+  BookProgress BookProgress[]
 }
 
 model User {
-  id        Int        @id @default(autoincrement())
-  username  String     @db.VarChar(255)
-  email     String     @db.VarChar(255)
-  password  String     @db.VarChar(255)
-  createdAt DateTime   @default(now()) @db.DateTime(0)
-  updatedAt DateTime   @default(now()) @db.DateTime(0)
-  bookList  BookList[]
+  id           Int            @id @default(autoincrement())
+  username     String         @db.VarChar(255)
+  email        String         @db.VarChar(255)
+  password     String         @db.VarChar(255)
+  createdAt    DateTime       @default(now()) @db.DateTime(0)
+  updatedAt    DateTime       @default(now()) @db.DateTime(0)
+  bookList     BookList[]
+  Review       Review[]
+  BookProgress BookProgress[]
 }
 
 model BookList {
@@ -37,4 +41,28 @@ model BookList {
   book        Book     @relation(fields: [bookId], references: [id])
   bookId      Int
   updatedAt   DateTime @default(now()) @db.DateTime(0)
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  content   String   @db.VarChar(255)
+  rating    Int      @db.Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  book      Book     @relation(fields: [bookId], references: [id])
+  bookId    Int
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @default(now()) @db.DateTime(0)
+}
+
+model BookProgress {
+  id        Int      @id @default(autoincrement())
+  lastPage  Int      @db.Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  book      Book     @relation(fields: [bookId], references: [id])
+  bookId    Int
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @default(now()) @db.DateTime(0)
 }
