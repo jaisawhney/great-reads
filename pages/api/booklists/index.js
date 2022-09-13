@@ -1,16 +1,11 @@
-// Nextjs.org/docs/api-routes/response-helpers
 import prisma from '../../../lib/prisma';
 
-const sampleBookId = 2;  // Book being saved to list
-const sampleUserId = 2;  // User creating list
+const sampleBookId = 2;
+const sampleUserId = 2;
 
 export default async function handler(req, res) {
   if (req.method=='GET'){
-    const allLists = await prisma.BookList.findMany({
-      'where': {
-        userId: 2
-      }
-    }); // TODO: Add pagination
+    const allLists = await prisma.BookList.findMany();
 
     res.status(200).json(allLists)
   } else {

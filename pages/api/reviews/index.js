@@ -1,9 +1,7 @@
-// Nextjs.org/docs/api-routes/response-helpers
 import prisma from '../../../lib/prisma';
 
-// const review = {title: 'A piece of art', content: 'A short description', rating: 1}
-const sampleBookId = 2;  // Book being saved to list
-const sampleUserId = 2;  // User creating list
+const sampleBookId = 2;
+const sampleUserId = 2;
 
 export default async function handler(req, res) {
   if (req.method=='GET'){

@@ -1,4 +1,3 @@
-// Nextjs.org/docs/api-routes/response-helpers
 import prisma from '../../../lib/prisma';
 
 const user1 = {username: 'john doe', email: 'a@a.a', password: 'lmfsdf'}

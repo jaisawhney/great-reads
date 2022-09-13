@@ -1,4 +1,3 @@
-// Nextjs.org/docs/api-routes/response-helpers
 import prisma from '../../../lib/prisma';
 
 const sampleBook = {title: 'Catching Fire', description: 'A short description', isbn: '0439023491', author: 'Suzanne Collins'}
