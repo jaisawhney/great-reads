@@ -14,6 +14,9 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
+          {/* api routes for auth0 */}
+          <a href="/api/auth/login">Login</a>
+          <a href="/api/auth/logout">Logout</a>
         </h1>
 
         <p className={styles.description}>
