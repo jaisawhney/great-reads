@@ -5,16 +5,14 @@ const user1 = {username: 'john doe', email: 'a@a.a', password: 'lmfsdf'}
 
 export default async function handler(req, res) {
   if (req.method=='GET'){
-
-    // TODO: Add pagination
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany(); // TODO: Add pagination
 
     res.status(200).json(users)
   } else {
-    const user = await prisma.user.create({
+    const newUser = await prisma.user.create({
       data: user1,
     });
 
-    res.status(200).json(user)
+    res.status(200).json(newUser)
   }
 }

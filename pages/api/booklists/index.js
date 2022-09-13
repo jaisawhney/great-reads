@@ -6,11 +6,15 @@ const sampleUserId = 2;  // User creating list
 
 export default async function handler(req, res) {
   if (req.method=='GET'){
-    const allLists = await prisma.BookList.findMany(); // TODO: Add pagination
+    const allLists = await prisma.BookList.findMany({
+      'where': {
+        userId: 2
+      }
+    }); // TODO: Add pagination
 
     res.status(200).json(allLists)
   } else {
-    const bookList = await prisma.BookList.create({
+    const newBookList = await prisma.BookList.create({
       data: {
         title: 'Good books to read for summer 2023',
         description: 'Book list description',
@@ -26,6 +30,6 @@ export default async function handler(req, res) {
         },
       },
     });
-    res.status(200).json(bookList)
+    res.status(200).json(newBookList)
   }
 }

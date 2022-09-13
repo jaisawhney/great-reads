@@ -1,20 +1,34 @@
 // Nextjs.org/docs/api-routes/response-helpers
 import prisma from '../../../lib/prisma';
 
-const review = {title: 'A piece of art', content: 'A short description', rating: 1}
+// const review = {title: 'A piece of art', content: 'A short description', rating: 1}
+const sampleBookId = 2;  // Book being saved to list
+const sampleUserId = 2;  // User creating list
 
 export default async function handler(req, res) {
   if (req.method=='GET'){
-
-    // TODO: Add pagination
-    const allReviews = await prisma.reviews.findMany();
+    const allReviews = await prisma.review.findMany(); // TODO: Add pagination
 
     res.status(200).json(allReviews)
   } else {
-    const book = await prisma.book.create({
-      data: review,
+    const newReview = await prisma.review.create({
+      data: {
+        title: 'A piece of art',
+        content: 'A short description',
+        rating: 1,
+        user: {
+          connect: {
+            id: sampleUserId
+          }
+        },
+        book: {
+          connect: {
+            id: sampleBookId
+          }
+        }
+      },
     });
 
-    res.status(200).json(book)
+    res.status(200).json(newReview)
   }
 }
