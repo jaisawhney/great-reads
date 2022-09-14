@@ -7,10 +7,12 @@ body {
 }
 
 main {
-  @apply flex flex-col pt-[80px] my-3;
-  @apply min-h-[100vh];
-
-  /* medium */
+  @apply flex flex-col justify-center;
+  /* @apply pt-[80px]; */
+  
+  /* header offset */
+  @apply mt-[80px] sm:mt-[52px] md:mt-[52px];
+  
 }
 
 

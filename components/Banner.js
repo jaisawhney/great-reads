@@ -4,8 +4,8 @@ import Link from "next/link";
 export default function Banner() {
   return (
     <div
-      className={classNames("bg-[url('/images/guy-reading.jpg')] bg-right bg-cover -mt-3 py-5",
-        "md:relative md:bg-right md:h-[500px] md:py-0 md:-mt-10"
+      className={classNames("bg-[url('/images/guy-reading.jpg')] bg-right bg-cover py-5",
+        "md:relative md:bg-right md:h-fit md:py-0"
       )}
     >
       <div
