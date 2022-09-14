@@ -8,15 +8,18 @@ datasource db {
 }
 
 model Book {
-  id           Int            @id @default(autoincrement())
-  title        String?        @db.VarChar(255)
-  isbn         String?        @db.VarChar(255)
-  key          String?        @db.VarChar(255)
-  createdAt    DateTime       @default(now()) @db.DateTime(0)
-  updatedAt    DateTime       @default(now()) @db.DateTime(0)
-  bookList     BookList[]
-  Review       Review[]
-  BookProgress BookProgress[]
+  id            Int            @id @default(autoincrement())
+  title         String?        @db.VarChar(255)
+  OLID          String         @db.VarChar(255)
+  pageCount     String?
+  publishedDate String?
+  imagePath     String?
+  createdAt     DateTime       @default(now()) @db.DateTime(0)
+  updatedAt     DateTime       @default(now()) @db.DateTime(0)
+  bookList      BookList[]
+  Review        Review[]
+  BookProgress  BookProgress[]
+  BooklistBook  BooklistBook[]
 }
 
 model User {
@@ -30,15 +33,26 @@ model User {
 }
 
 model BookList {
-  id          Int      @id @default(autoincrement())
-  title       String   @db.VarChar(255)
-  description String   @db.VarChar(255)
-  user        User     @relation(fields: [userId], references: [id])
-  userId      Int
-  book        Book     @relation(fields: [bookId], references: [id])
-  bookId      Int
-  createdAt   DateTime @default(now()) @db.DateTime(0)
-  updatedAt   DateTime @default(now()) @db.DateTime(0)
+  id           Int            @id @default(autoincrement())
+  title        String         @db.VarChar(255)
+  description  String         @db.VarChar(255)
+  userId       Int            @db.Int
+  createdAt    DateTime       @default(now()) @db.DateTime(0)
+  updatedAt    DateTime       @default(now()) @db.DateTime(0)
+  Book         Book?          @relation(fields: [bookId], references: [id])
+  bookId       Int?
+  User         User           @relation(fields: [userId], references: [id])
+  BooklistBook BooklistBook[]
+}
+
+model BooklistBook {
+  id         Int      @id @default(autoincrement())
+  bookList   BookList @relation(fields: [bookListId], references: [id])
+  bookListId Int
+  book       Book     @relation(fields: [bookId], references: [id])
+  bookId     Int
+  createdAt  DateTime @default(now()) @db.DateTime(0)
+  updatedAt  DateTime @default(now()) @db.DateTime(0)
 }
 
 model Review {
