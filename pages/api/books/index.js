@@ -1,6 +1,6 @@
 import prisma from '../../../lib/prisma';
 
-const sampleBook = {title: 'Catching Fire', description: 'A short description', isbn: '0439023491', author: 'Suzanne Collins'}
+const sampleBook = {title: 'Catching Fire', isbn: '0439023491', key: '203943422'}
 
 export default async function handler(req, res) {
   if (req.method=='GET'){

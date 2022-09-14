@@ -9,10 +9,9 @@ datasource db {
 
 model Book {
   id           Int            @id @default(autoincrement())
-  title        String         @db.VarChar(255)
+  title        String?        @db.VarChar(255)
   isbn         String?        @db.VarChar(255)
-  description  String         @db.VarChar(255)
-  author       String         @db.VarChar(255)
+  key          String?        @db.VarChar(255)
   createdAt    DateTime       @default(now()) @db.DateTime(0)
   updatedAt    DateTime       @default(now()) @db.DateTime(0)
   bookList     BookList[]
@@ -22,9 +21,7 @@ model Book {
 
 model User {
   id           Int            @id @default(autoincrement())
-  username     String         @db.VarChar(255)
   email        String         @db.VarChar(255)
-  password     String         @db.VarChar(255)
   createdAt    DateTime       @default(now()) @db.DateTime(0)
   updatedAt    DateTime       @default(now()) @db.DateTime(0)
   bookList     BookList[]
@@ -40,6 +37,7 @@ model BookList {
   userId      Int
   book        Book     @relation(fields: [bookId], references: [id])
   bookId      Int
+  createdAt   DateTime @default(now()) @db.DateTime(0)
   updatedAt   DateTime @default(now()) @db.DateTime(0)
 }
 

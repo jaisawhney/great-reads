@@ -1,7 +1,7 @@
 import prisma from '../../../lib/prisma';
 
-const sampleBookId = 2;
-const sampleUserId = 2;
+const sampleBookId = 1;
+const sampleUserId = 1;
 
 export default async function handler(req, res) {
   if (req.method=='GET'){
