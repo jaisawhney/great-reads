@@ -24,7 +24,6 @@ export default function FriendTile(props) {
       <TinyBook label="Currently Reading" />
       <TinyBook label="Recently Reviewed" />
       <TinyBook label="Latest Recommended" />
-
       </div>
     </div>
   );
