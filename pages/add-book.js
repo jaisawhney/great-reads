@@ -19,6 +19,19 @@ export default function AddBook() {
             });
     }
 
+    function addToShelf(olID) {
+      fetch(`/api/books`, {
+        method:"POST",
+        body: JSON.stringify({
+          olID: olID
+        })
+      })
+        .then(res => res.json())
+        .then(res => {
+          //console.log(res);
+        });
+    }
+
     return (
         <div className={styles.container}>
             <Head>
@@ -32,7 +45,7 @@ export default function AddBook() {
                     <input className="px-2" type="submit"/>
                 </form>
                 <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
-                  <BookList books={searchResults} />
+                  <BookList books={searchResults} addToShelf={addToShelf} />
                 </div>
             </main>
         </div>
