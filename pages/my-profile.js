@@ -22,6 +22,9 @@ function MyProfile(){
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">My Profile Page</a>
         </h1>
+        <h1 className={styles.title}>
+          {user.email}
+        </h1>
       </main>
 
       <footer className={styles.footer}>
