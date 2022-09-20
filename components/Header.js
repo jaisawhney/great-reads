@@ -34,7 +34,7 @@ export default function Header() {
             <Link href="/add-book">Add Book</Link>
           </li>
           <li>
-            <Link href="/add-friends">Add Friend</Link>
+            <Link href="/add-friend">Add Friend</Link>
           </li>
         </ul>
       </div>
