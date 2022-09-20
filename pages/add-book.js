@@ -3,7 +3,9 @@ import styles from "../styles/Home.module.css";
 import {useState} from "react";
 import BookList from "../components/BookList";
 
-export default function AddBook() {
+export default withPageAuthRequired(AddBook)
+
+function AddBook() {
     const [searchResults, setSearchResults] = useState([]);
 
     function onSubmit(e) {
