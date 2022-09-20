@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import FriendTile from "../components/FriendTile";
 import classNames from "classnames";
+import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 export default withPageAuthRequired(MyFriends())
 

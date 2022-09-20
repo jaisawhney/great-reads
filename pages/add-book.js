@@ -2,6 +2,8 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import {useState} from "react";
 import BookList from "../components/BookList";
+import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
+
 
 export default withPageAuthRequired(AddBook)
 
