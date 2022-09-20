@@ -6,7 +6,9 @@ import Footer from "../components/Footer";
 import FriendTile from "../components/FriendTile";
 import classNames from "classnames";
 
-export default function MyFriends() {
+export default withPageAuthRequired(MyFriends())
+
+function MyFriends() {
   return (
       <main className="flex flex-col text-white md:mx-10">
         <h1 className={classNames("text-md ml-4 pt-3 pb-3", " md:pb-0 md:pt-8")}>Your Friends</h1>

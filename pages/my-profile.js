@@ -1,8 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-export default function MyProfile() {
+// Function below requires auth
+export default withPageAuthRequired(MyProfile);
+
+function MyProfile(){
+  // user object from Auth0
+  const { user, isLoading } = useUser();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,6 +21,9 @@ export default function MyProfile() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">My Profile Page</a>
+        </h1>
+        <h1 className={styles.title}>
+          {user.email}
         </h1>
       </main>
 

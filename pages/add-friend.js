@@ -2,7 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
-export default function AddFriend() {
+export default withPageAuthRequired(AddFriend)
+function AddFriend() {
   return (
     <div className={styles.container}>
       <Head>

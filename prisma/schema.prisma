@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:@localhost:3306/great_reads"
+}
+
+model Book {
+  id            Int            @id @default(autoincrement())
+  OLID          String         @unique @db.VarChar(255)
+  title         String?        @db.VarChar(255)
+  pageCount     String?
+  publishedDate String?
+  imagePath     String?
+  createdAt     DateTime       @default(now()) @db.DateTime(0)
+  updatedAt     DateTime       @default(now()) @db.DateTime(0)
+  Review        Review[]
+  BookProgress  BookProgress[]
+  bookLists     BookListBook[]
+}
+
+model User {
+  id           Int            @id @default(autoincrement())
+  email        String         @db.VarChar(255)
+  createdAt    DateTime       @default(now()) @db.DateTime(0)
+  updatedAt    DateTime       @default(now()) @db.DateTime(0)
+  bookList     BookList[]
+  Review       Review[]
+  BookProgress BookProgress[]
+}
+
+model BookList {
+  id           Int            @id @default(autoincrement())
+  title        String         @db.VarChar(255)
+  description  String         @db.VarChar(255)
+  userId       Int            @db.Int
+  createdAt    DateTime       @default(now()) @db.DateTime(0)
+  updatedAt    DateTime       @default(now()) @db.DateTime(0)
+  User         User           @relation(fields: [userId], references: [id])
+  books        BookListBook[]
+}
+
+model BookListBook {
+  id         Int      @id @default(autoincrement())
+  bookList   BookList @relation(fields: [bookListId], references: [id])
+  bookListId Int
+  book       Book     @relation(fields: [bookId], references: [id])
+  bookId     Int
+  createdAt  DateTime @default(now()) @db.DateTime(0)
+  updatedAt  DateTime @default(now()) @db.DateTime(0)
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  content   String   @db.VarChar(255)
+  rating    Int      @db.Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  book      Book     @relation(fields: [bookId], references: [id])
+  bookId    Int
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @default(now()) @db.DateTime(0)
+}
+
+model BookProgress {
+  id        Int      @id @default(autoincrement())
+  lastPage  Int      @db.Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  book      Book     @relation(fields: [bookId], references: [id])
+  bookId    Int
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @default(now()) @db.DateTime(0)
+}

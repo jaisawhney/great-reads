@@ -3,7 +3,8 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import SearchResult from "../components/SearchResult"
 
-export default function MyBooks() {
+export default withPageAuthRequired(MyBooks)
+function MyBooks() {
   return (
     <main>
       <SearchResult />
