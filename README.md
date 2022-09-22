@@ -15,7 +15,9 @@ Great Reads is a one stop shop for everything reading related:
 ## Getting Started 
 *Live deployment coming soon, but for now:*
 
-First, install dependencies:
+**After cloning the repo:**
+
+Install dependencies:
 
 ```bash
 npm install
