@@ -11,7 +11,7 @@ export default function FriendTile(props) {
   };
 
   return (
-    <div className={classNames("bg-gradient-to-b from-slate-300/20 to-zinc-900 text-white rounded mx-2 p-3 flex flex-col space-y-4", "md:h-[300px] md:w-[400px] md:my-4")}>
+    <div className={classNames("bg-gradient-to-b from-slate-300/20 to-zinc-900 text-white rounded-t-sm p-3 flex flex-col space-y-4", "md:h-[300px] md:w-[400px] md:my-4")}>
 
       {/* profile info row*/}
       <div className="flex flex-row items-end space-x-2 px-2">
@@ -20,7 +20,7 @@ export default function FriendTile(props) {
       </div>
 
       {/* relevant books row */}
-      <div className={classNames("flex flex-col space-y-3 justify-evenly pt-4 border-t-2 mr-auto border-zinc-200/40 w-full px-2", "md:flex-row md:items-end md:space-x-5 md:space-y-0")}>
+      <div className={classNames("flex flex-col space-y-3 justify-evenly pt-4 border-t-2 mr-auto divider w-full px-2", "md:flex-row md:items-end md:space-x-5 md:space-y-0")}>
       <TinyBook label="Currently Reading" />
       <TinyBook label="Recently Reviewed" />
       <TinyBook label="Latest Recommended" />
