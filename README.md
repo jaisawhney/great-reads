@@ -12,8 +12,19 @@ Great Reads is a one stop shop for everything reading related:
 
 ---
 
-## Getting Started 
 *Live deployment coming soon, but for now:*
+
+## Project timeline
+
+- October - release product with limited features
+
+- Add new features in the months following: November and December
+
+
+---
+
+## Getting Started 
+
 
 **After cloning the repo:**
 
