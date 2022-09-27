@@ -23,7 +23,7 @@ export default function SearchResult(props) {
         <div>
           <img
             src={search["img"]}
-            className={classNames("w-20", "md:w-28")}
+            className={classNames("w-12", "md:w-28")}
           />
         </div>
 
