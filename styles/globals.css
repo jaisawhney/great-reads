@@ -4,15 +4,23 @@
 
 body {
   @apply bg-neutral-900;
+  @apply text-white;
 }
 
 main {
-  @apply flex flex-col justify-center;
+  @apply flex flex-col justify-center px-3 py-2 md:mx-8 md:py-9 text-white;
   /* @apply pt-[80px]; */
-  
+
   /* header offset */
   @apply mt-[80px] sm:mt-[52px] md:mt-[52px];
   
 }
 
+.divider {
+  @apply border-zinc-200/20;
+}
+
+.smooth {
+  @apply transition-all duration-500;
+}
 

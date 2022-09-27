@@ -46,20 +46,21 @@ function AddBook() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className={styles.main}>
-                <form onSubmit={onSubmit} className="border rounded shadow-sm">
+            <main>
+              {/* search bar */}
+                <form onSubmit={onSubmit} className="border rounded shadow-sm w-fit">
                     <input
-                        className="p-2"
+                        className="p-2 w-64"
                         name="bookName"
                         type="text"
-                        placeholder="Book title"
+                        placeholder="Book Title"
                         required
                     />
-                    <input className="px-2" type="submit" />
+                    <input className="px-2 w-fit" type="submit" />
                 </form>
-                <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
-                    <BookList books={searchResults} addToShelf={addToShelf} />
-                </div>
+
+
+                <BookList books={searchResults} addToShelf={addToShelf} />
             </main>
         </div>
     );
