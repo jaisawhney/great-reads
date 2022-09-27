@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import prisma from '/lib/prisma';
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 // Function below requires auth
@@ -10,6 +11,28 @@ function MyProfile(){
   // user object from Auth0
   const { user, isLoading } = useUser();
 
+  // add current user when next-session is working
+  if(user){
+    const getUser = prisma.User.findUnique({
+      where: {
+        id: user.email,
+      }
+    })
+    //check if user is in db, if not add it
+    if(getUser != null){
+      let currentUser = getUser
+      //save user to session when working
+    }
+    else{
+      const newUser = prisma.User.create({
+        data: {
+          email: user.email
+        }
+       })
+       //save user to session when working
+       let currentUser = newUser
+    }
+  }
   return (
     <div className={styles.container}>
       <Head>
