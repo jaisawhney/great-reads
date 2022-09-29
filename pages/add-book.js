@@ -105,7 +105,10 @@ function AddBook() {
                 <br />
                 <div className="flex justify-center space-x-3">
                     {[...Array(pageCount)].map((option, index) => (
-                        <p key={index} onClick={() => setPage(index + 1)}>
+                        <p
+                            className={page === index + 1 ? "underline" : null}
+                            key={index}
+                            onClick={() => setPage(index + 1)}>
                             {index + 1}
                         </p>
                     ))}
