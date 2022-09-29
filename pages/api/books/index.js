@@ -1,23 +1,21 @@
 import prisma from "../../../lib/prisma";
 
-const bookListId = 1; // Sample book list ID
-
 export default async function handler(req, res) {
     if (req.method === "GET") {
         const allBooks = await prisma.book.findMany(); // TODO: Add pagination
 
         res.status(200).json(allBooks);
     } else {
+        const body = JSON.parse(req.body);
+
         // The /search route provides more information than the /works route
-        const result = await fetch(
-            `http://openlibrary.org/search.json?q=key:${JSON.parse(req.body).olID}&limit=1`
-        );
+        const result = await fetch(`http://openlibrary.org/search.json?q=key:${body.olID}&limit=1`);
         const bookObj = (await result.json())?.docs[0];
 
         // Check if the book already exists in the shelf
         const existingBook = await prisma.BookListBook.findFirst({
             where: {
-                bookListId: bookListId,
+                bookListId: body.shelfID,
                 OLID: bookObj.key,
             },
         });
@@ -30,7 +28,7 @@ export default async function handler(req, res) {
             data: {
                 bookList: {
                     connect: {
-                        id: bookListId,
+                        id: body.shelfID,
                     },
                 },
                 book: {
