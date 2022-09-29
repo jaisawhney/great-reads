@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
@@ -8,8 +8,18 @@ export default withPageAuthRequired(AddBook);
 
 function AddBook() {
     const [searchResults, setSearchResults] = useState([]);
+    const [userShelves, setUserShelves] = useState([]);
 
-    function onSubmit(e) {
+    async function getShelves() {
+        const shelves = await fetch(`/api/users/1/booklists`).then((res) => res.json());
+        setUserShelves(shelves);
+    }
+
+    useEffect(() => {
+        getShelves();
+    }, []);
+
+    function searchSubmit(e) {
         e.preventDefault();
 
         const bookTitle = e.target.elements.bookName?.value;
@@ -22,15 +32,21 @@ function AddBook() {
             });
     }
 
-    function addToShelf(olID) {
+    function addToShelf(e) {
+        const olID = e.target.dataset.olid;
+        const shelfID = e.target.value;
+        e.target.selectedIndex = 0;
+
         fetch(`/api/books`, {
             method: "POST",
             body: JSON.stringify({
                 olID: olID,
+                shelfID: parseInt(shelfID),
             }),
         }).then((res) => {
             // TODO: Replace the lines below
-            console.log(res.status);
+            if (!res.ok) return alert("Error while adding book!");
+
             if (res.status === 200) {
                 alert("Book already in shelf!");
             } else {
@@ -47,8 +63,8 @@ function AddBook() {
             </Head>
 
             <main>
-              {/* search bar */}
-                <form onSubmit={onSubmit} className="border rounded shadow-sm w-fit">
+                {/* search bar */}
+                <form onSubmit={searchSubmit} className="border rounded shadow-sm w-fit">
                     <input
                         className="p-2 w-64"
                         name="bookName"
@@ -58,9 +74,7 @@ function AddBook() {
                     />
                     <input className="px-2 w-fit" type="submit" />
                 </form>
-
-
-                <BookList books={searchResults} addToShelf={addToShelf} />
+                <BookList books={searchResults} shelves={userShelves} addToShelf={addToShelf} />
             </main>
         </div>
     );
