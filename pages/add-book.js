@@ -55,6 +55,13 @@ function AddBook() {
         });
     }
 
+    //Generating current page as well as all page options
+    const [page, setPage] = useState(1);
+    const [pageCount, setPageCount] = useState(0);
+    useEffect(() => {
+        setPageCount(Math.ceil(searchResults.length / 9));
+    }, [searchResults]);
+
     return (
         <div className={styles.container}>
             <Head>
@@ -75,6 +82,11 @@ function AddBook() {
                     <input className="px-2 w-fit" type="submit" />
                 </form>
                 <BookList books={searchResults} shelves={userShelves} addToShelf={addToShelf} />
+                <div className="text-center">
+                    {[...Array(pageCount)].map((option, index) => (
+                        <p>{index + 1}</p>
+                    ))}
+                </div>
             </main>
         </div>
     );
