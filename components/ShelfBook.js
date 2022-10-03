@@ -2,12 +2,12 @@ import classNames from "classnames";
 import Link from "next/link";
 import Star from "../public/icons/Star";
 
-export default function SearchResult(props) {
+export default function ShelfBook(props) {
 
   // not sure how api requests work
   // this sample search object doesnt even make sense
   // ignore
-  const search = {
+  const book = {
     text: "gatsby",
     book: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
@@ -17,12 +17,12 @@ export default function SearchResult(props) {
 
   return (
     <Link href="">
-      <div className="flex flex-row w-full bg-zinc-700 py-4 text-white rounded-sm border-t-4 border-zinc-200/40 max-w-[800px] px-3 md:px-6"> 
+      <div className="flex flex-row w-full bg-zinc-700/60 py-4 text-white rounded-sm border-t-2 border-zinc-200/20 max-w-[800px] px-3 md:px-6"> 
 
         {/* book cover */}
         <div>
           <img
-            src={search["img"]}
+            src={book["img"]}
             className={classNames("w-12", "md:w-28")}
           />
         </div>
@@ -31,21 +31,10 @@ export default function SearchResult(props) {
 
           {/* title and author */}
           <div className={classNames("flex flex-col text-left max-w-48")}>
-            <h1 className="">{search["book"]}</h1>
-            <h2 className="text-xs text-white/70">By {search["author"]}</h2>
+            <h1 className="">{book["book"]}</h1>
+            <h2 className="text-xs text-white/70">By {book["author"]}</h2>
           </div>
 
-          {/* FUTURE SOMEONE */}
-          {/* create dropdown menu for add to shelf, showing shelves */}
-
-          {/* add to shelf */}
-          <Link href="">
-            <div className="">
-              <p className="bg-teal-600 w-fit my-2 py-1 px-6 text-sm rounded-sm hover:bg-teal-700 hover:shadow-lg">
-                Add to Shelf
-              </p>
-            </div>
-          </Link>
         </div>
 
         {/* stars */}
@@ -62,7 +51,7 @@ export default function SearchResult(props) {
             <Star fill="full" />
             <Star />
           </div>
-          <p className="text-xs text-white/50">{search["ratings"]} ratings</p>
+          <p className="text-xs text-white/50">{book["ratings"]} ratings</p>
         </div>
 
       </div>
