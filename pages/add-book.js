@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
@@ -8,10 +8,20 @@ export default withPageAuthRequired(AddBook);
 
 function AddBook() {
     const [searchResults, setSearchResults] = useState([]);
+    const [userShelves, setUserShelves] = useState([]);
 
-    function onSubmit(e) {
+    async function getShelves() {
+        const shelves = await fetch(`/api/users/1/booklists`).then((res) => res.json());
+        setUserShelves(shelves);
+    }
+
+    useEffect(() => {
+        getShelves();
+    }, []);
+
+    function searchSubmit(e) {
         e.preventDefault();
-
+        console.log("Searching");
         const bookTitle = e.target.elements.bookName?.value;
         if (!bookTitle) return;
 
@@ -22,15 +32,21 @@ function AddBook() {
             });
     }
 
-    function addToShelf(olID) {
+    function addToShelf(e) {
+        const olID = e.target.dataset.olid;
+        const shelfID = e.target.value;
+        e.target.selectedIndex = 0;
+
         fetch(`/api/books`, {
             method: "POST",
             body: JSON.stringify({
                 olID: olID,
+                shelfID: parseInt(shelfID),
             }),
         }).then((res) => {
             // TODO: Replace the lines below
-            console.log(res.status);
+            if (!res.ok) return alert("Error while adding book!");
+
             if (res.status === 200) {
                 alert("Book already in shelf!");
             } else {
@@ -38,6 +54,33 @@ function AddBook() {
             }
         });
     }
+
+    //Generating current page as well as all page options
+    const [page, setPage] = useState(1);
+    const [pageResults, setPageResults] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
+
+    //Results page page
+    const resultsPerPage = 9;
+    useEffect(() => {
+        setPageCount(Math.ceil(searchResults.length / resultsPerPage));
+        setPage(1);
+    }, [searchResults]);
+
+    //Set page results
+    useEffect(() => {
+        if (searchResults.length > 0) {
+            //Manually creating a subset
+            var newPageResults = [];
+            for (var i = 0; i < searchResults.length; i++) {
+                if (i >= page * resultsPerPage - resultsPerPage && i < page * resultsPerPage) {
+                    newPageResults.push(searchResults[i]);
+                }
+            }
+
+            setPageResults(newPageResults);
+        }
+    }, [page, searchResults]);
 
     return (
         <div className={styles.container}>
@@ -47,8 +90,8 @@ function AddBook() {
             </Head>
 
             <main>
-              {/* search bar */}
-                <form onSubmit={onSubmit} className="border rounded shadow-sm w-fit">
+                {/* search bar */}
+                <form onSubmit={searchSubmit} className="border rounded shadow-sm w-fit">
                     <input
                         className="p-2 w-64"
                         name="bookName"
@@ -58,9 +101,18 @@ function AddBook() {
                     />
                     <input className="px-2 w-fit" type="submit" />
                 </form>
-
-
-                <BookList books={searchResults} addToShelf={addToShelf} />
+                <BookList books={pageResults} shelves={userShelves} addToShelf={addToShelf} />
+                <br />
+                <div className="flex justify-center space-x-3">
+                    {[...Array(pageCount)].map((option, index) => (
+                        <p
+                            className={page === index + 1 ? "underline" : null}
+                            key={index}
+                            onClick={() => setPage(index + 1)}>
+                            {index + 1}
+                        </p>
+                    ))}
+                </div>
             </main>
         </div>
     );
