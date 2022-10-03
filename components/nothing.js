@@ -1,46 +1,46 @@
 import classNames from "classnames";
-import ShelfListItem from "./ShelfListItem";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import Star from "../public/icons/Star";
 
-// LISSA EXPERIMENTING WITH TAB NAVGIATION
-
-export default function ProfileTabs(props) {
-  const [tab, setTab] = useState(getWaterTab);
-
-  const navTextStyle = "text-sm w-fit text-white rounded-t-sm py-2";
-  const tabStyle = "flex flex-col w-full border-t-2 divider hidden";
-
-  function getJuiceTab() {
-    console.log("JUICE")
-    return (
-      <div className={classNames("p-5 bg-green","")} id="juiceTab">
-        <p>yummy juice!!</p>
-      </div>
-    );
-  }
-
-  function getWaterTab() {
-    console.log("WATER")
-    return (
-      <div className={classNames("p-5 bg-green","")} id="waterTab">
-        <p>yummy WATER!!</p>
-      </div>
-    );
-  }
+export default function SearchResult(props) {
+  const { key, title, author_name, cover_i } = props.book;
+  const cover = `https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`;
 
   return (
-    <div className={classNames("flex flex-col items-start w-full rounded-sm","md:max-w-[500px]")}>
+    <Link href="">
+      <div className="flex flex-row w-full bg-gradient-to-b from-zinc-700/40 h-40 items-start py-4 text-white rounded-sm px-3 md:px-6">
+        {/* book cover, column 1 */}
+        <div className={classNames("flex h-full items-center w-24 bg-white mr-1 ")}>
+          <img src={cover} className={classNames("", "")} />
+        </div>
 
-      {/* NAV */}
-      <div className={classNames("flex flex-row space-x-10 px-4 w-full bg-black rounded-t-sm justify-center","")}>
-        <p className={navTextStyle} onClick={() => setTab(getWaterTab)}>water</p>
-        <p className={navTextStyle} onClick={() => setTab(getJuiceTab)}>juice</p>
+        {/* book title author and button, column 2 */}
+        <div className={classNames("flex flex-col pl-2 w-[230px]", "md:mx-4")}>
+          {/* title and author */}
+          <div className={classNames("flex flex-col text-left")}>
+            <h1 className="text-md text-ellipsis overflow-hidden">{title}</h1>
+            <h2 className="text-sm text-slate-400 text-ellipsis overflow-hidden">
+              {author_name.join(", ")}
+            </h2>
+          </div>
+
+          {/* add to shelf button */}
+          <select
+            className="bg-teal-600 w-fit my-2 py-1 px-2 text-xs rounded-sm hover:bg-teal-700 hover:shadow-lg"
+            onChange={props.addToShelf}
+            data-olid={key}
+            defaultValue={""}>
+            <option value="" disabled unselectable="true">
+              Add to Shelf
+            </option>
+            {props.shelves.map((shelf) => (
+              <option key={shelf.id} value={shelf.id}>
+                {shelf.title}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-
-    {tab}
-
-
-  </div>
-  )
+    </Link>
+  );
 }
