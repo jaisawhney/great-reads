@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 import classNames from "classnames";
 import ShelfListItem from "../components/ShelfListItem";
-import ShelfList from "../components/ShelfList";
+import ProfileTabs from "../components/ProfileTabs";
 import TinyBook from "../components/TinyBook";
 
 // Function below requires auth
@@ -15,47 +15,46 @@ function MyProfile(){
   const { user, isLoading } = useUser();
   const following = 43;
   const followers = 34;
+  console.log(user.picture);
 
 
   return (
     <main className={classNames("flex flex-col space-y-6","")}>
 
-      {/* basic profile info */}
-      <div className={classNames("flex flex-col items-start space-y-2 w-full","")}>
+      {/* profile row */}
+      <div className={classNames("flex flex-row items-end w-full space-x-3","md:space-x-6")}>
 
-        {/* first row */}
-        <div className={classNames("flex flex-row space-x-4 items-center"," md:w-full")}>
+        {/* profile picture */}
+        {/* TROUBLE LOADING CONSISTENTLY */}
+        <img src={user.picture} className={classNames("rounded-sm w-16 shadow-2xl", "w-24")}></img>
 
-          {/* profile picture */}
-          <img src={user.picture} className={classNames("rounded-sm w-16 shadow-2xl", "w-24")}></img>
+
+        {/* profile info */}
+        <div className={classNames("flex flex-col space-y-1","md:space-y-2")}>
+
+          {/* name */}
+          <h1 className={classNames("text-xl","md:text-3xl")}>{user.name}</h1>
 
           {/* profile numbers */}
           <div className={classNames("flex flex-row space-x-4","")}>
 
             {/* follower count */}
-            <div className={classNames("flex flex-col items-center text-white/70","")}>
-              <h3 className={classNames("text-xs","")}>Followers</h3>
-              <p className={classNames("text-xs","")}>{followers}</p>
+            <div className={classNames("flex flex-row items-center text-white/70","")}>
+              <h3 className={classNames("text-sm","")}>{followers} Followers</h3>
             </div>
 
             {/* following count */}
             <div className={classNames("flex flex-col items-center text-white/70","")}>
-              <h3 className={classNames("text-xs","")}>Following</h3>
-              <p className={classNames("text-xs","")}>{following}</p>
+              <h3 className={classNames("text-sm","")}>{following} Following</h3>
             </div>
           </div>
 
         </div>
 
-        {/* second row*/}
-        <div className={classNames("flex flex-row","")}>
-          {/* name */}
-          <h1 className={classNames("text-2xl","")}>{user.name}</h1>
-        </div>
       </div>
 
-      {/* shelves */}
-      <ShelfList />
+      {/* THESE TABS ARE IN PROGRESS */}
+      <ProfileTabs />
 
     </main>
   );
