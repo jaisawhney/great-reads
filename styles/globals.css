@@ -3,18 +3,23 @@
 @tailwind utilities;
 
 body {
-  @apply bg-neutral-900/80;
+  @apply bg-black/90;
   @apply text-white;
 }
 
 main {
-  @apply flex flex-col justify-center px-4 pt-4 bg-teal-300/20 text-white pb-[500px];
+  @apply flex flex-col justify-center px-4 pt-4 bg-zinc-700/30 text-white;
 
   /* md padding */
-  @apply lg:mx-28 md:mx-10 sm:mx-0;
+  @apply lg:mx-16 md:mx-10 sm:mx-0;
 
   /* header offset */
   /* @apply mt-[60px] sm:mt-[52px]; */
+}
+
+.button {
+  @apply bg-teal-600 w-fit my-2 py-1 px-4 rounded-sm;
+  @apply hover:bg-teal-700 hover:shadow-lg;
 }
 
 .divider {

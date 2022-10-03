@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <div
       className={classnames(
-        "bg-teal-900/90 w-full text-white/90 top-0 px-5 py-3 lg:px-28 md:px-14 sm:px-0 flex flex-row justify-between items-center"
+        "bg-teal-900/90 w-full text-white/90 top-0 py-3 px-4 lg:px-20 md:px-16 flex flex-row justify-between items-center"
       )}>
       {/* TITLE */}
       <div>

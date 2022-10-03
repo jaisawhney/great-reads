@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </UserProvider>{" "}
       {/* footer currently empty, removing for demo */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

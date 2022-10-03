@@ -8,10 +8,10 @@ export default function SearchResult(props) {
 
   return (
     <Link href="">
-      <div className="flex flex-row w-full bg-zinc-700/40 rounded-sm my-[4px] h-fit items-start py-4 text-white rounded-sm px-3 md:px-6 md:h-64">
+      <div className="flex flex-row w-full bg-zinc-700/40 rounded-sm my-[4px] h-fit items-start py-4 text-white rounded-sm px-3 md:px-6">
         {/* book cover, column 1 */}
-        <div className={classNames("flex items-start h-full mr-1 w-36")}>
-          <img src={cover} className={classNames("object-cover", "")} />
+        <div className={classNames("flex items-start mr-1 w-36")}>
+          <img src={cover} className={classNames("", "")} />
         </div>
 
         {/* book title author and button, column 2 */}
@@ -26,7 +26,7 @@ export default function SearchResult(props) {
 
           {/* add to shelf button */}
           <select
-            className="bg-teal-600 w-fit my-2 py-1 px-2 text-xs rounded-sm hover:bg-teal-700 hover:shadow-lg"
+            className="button text-xs"
             onChange={props.addToShelf}
             data-olid={key}
             defaultValue={""}>
