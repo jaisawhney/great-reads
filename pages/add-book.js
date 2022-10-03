@@ -21,7 +21,7 @@ function AddBook() {
 
     function searchSubmit(e) {
         e.preventDefault();
-
+        console.log("Searching");
         const bookTitle = e.target.elements.bookName?.value;
         if (!bookTitle) return;
 
@@ -55,6 +55,33 @@ function AddBook() {
         });
     }
 
+    //Generating current page as well as all page options
+    const [page, setPage] = useState(1);
+    const [pageResults, setPageResults] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
+
+    //Results page page
+    const resultsPerPage = 9;
+    useEffect(() => {
+        setPageCount(Math.ceil(searchResults.length / resultsPerPage));
+        setPage(1);
+    }, [searchResults]);
+
+    //Set page results
+    useEffect(() => {
+        if (searchResults.length > 0) {
+            //Manually creating a subset
+            var newPageResults = [];
+            for (var i = 0; i < searchResults.length; i++) {
+                if (i >= page * resultsPerPage - resultsPerPage && i < page * resultsPerPage) {
+                    newPageResults.push(searchResults[i]);
+                }
+            }
+
+            setPageResults(newPageResults);
+        }
+    }, [page, searchResults]);
+
     return (
         <div className={styles.container}>
             <Head>
@@ -74,7 +101,18 @@ function AddBook() {
                     />
                     <input className="px-2 w-fit" type="submit" />
                 </form>
-                <BookList books={searchResults} shelves={userShelves} addToShelf={addToShelf} />
+                <BookList books={pageResults} shelves={userShelves} addToShelf={addToShelf} />
+                <br />
+                <div className="flex justify-center space-x-3">
+                    {[...Array(pageCount)].map((option, index) => (
+                        <p
+                            className={page === index + 1 ? "underline" : null}
+                            key={index}
+                            onClick={() => setPage(index + 1)}>
+                            {index + 1}
+                        </p>
+                    ))}
+                </div>
             </main>
         </div>
     );
