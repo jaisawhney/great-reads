@@ -2,32 +2,10 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
-import prisma from '../../../lib/prisma';
-// Function below requires auth
 
-function currentUser(auth0User){
-  if(auth0User){
-    const getUser = prisma.User.findUnique({
-      where: {
-        email: auth0User.email,
-      }})
-      //check if user is in db, if not add it
-    if(getUser != null){
-        let currentUser = getUser
-            console.log(currentUser)
-            
-    }
-    else{
-      const newUser = prisma.User.create({
-        data: {
-          email: auth0User.email
-        }})
-    //save user to session when working
-      let currentUser = newUser
-      console.log(currentUser)
-      }
-        }
-      }
+
+
+
 
 
 
@@ -37,14 +15,12 @@ export default withPageAuthRequired(MyProfile);
 function MyProfile(){
   // user object from Auth0
   const { user, isLoading } = useUser();
-  currentUser(user)
-  // const currentUser = async (user) => {
-  //   fetch('http://localhost:3000/api/auth/currentUser',{
-  //     body: JSON.stringify(user),
-  //     method: 'POST',
-  //   })
-  // }
-  
+  const currentUser = async (user) => {
+    fetch('http://localhost:3000/api/users/index.js',{
+      body: JSON.stringify(user),
+      method: 'POST',
+    })
+  }
   return (
     <div className={styles.container}>
       <Head>

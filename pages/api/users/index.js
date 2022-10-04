@@ -1,17 +1,21 @@
 import prisma from '../../../lib/prisma';
 
-const user1 = {email: 'john@doe.com'}
+const auth0User = {email: 'john@doe.com'}
 
 export default async function handler(req, res) {
   if (req.method=='GET'){
-    const users = await prisma.user.findMany(); // TODO: Add pagination
-
+    const getUser = prisma.User.findUnique({
+      where: {
+        email: req.body.email,
+      }})
+      console.log(newUser)
     res.status(200).json(users)
   } else {
-    const newUser = await prisma.user.create({
-      data: user1,
-    });
-
+    const newUser = prisma.User.create({
+      data: {
+        email: req.body.email
+      }})
+      console.log(newUser)
     res.status(200).json(newUser)
   }
 }
