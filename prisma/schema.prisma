@@ -2,9 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Set an environment variable for the database url
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:@localhost:3306/great_reads"
+  url      = env("DATABASE_URL")
 }
 
 model Book {
@@ -23,6 +24,7 @@ model Book {
 
 model User {
   id           Int            @id @default(autoincrement())
+  auth0Id      String         @unique
   email        String         @db.VarChar(255)
   createdAt    DateTime       @default(now()) @db.DateTime(0)
   updatedAt    DateTime       @default(now()) @db.DateTime(0)
