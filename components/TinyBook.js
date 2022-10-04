@@ -32,7 +32,7 @@ export default function TinyBook(props) {
       <div
         className={classNames(
           "flex flex-row h-full items-start text-right space-x-4 group",
-          "md:flex-col-reverse md:items-start md:space-x-0 hover:bg-zinc-900 hover:p-3"
+          "md:flex-col-reverse md:items-start md:space-x-0 hover:bg-zinc-900 hover:p-3 smooth"
         )}
       >
         
@@ -42,14 +42,14 @@ export default function TinyBook(props) {
           <img
             className={classNames(
               "w-14",
-              "md:w-20 group-hover:w-24 transition-all"
+              "md:w-20 group-hover:w-24 smooth"
             )}
             src={book["img"]}
           />
 
           {/* book info DESKTOP */}
           <div
-            className={classNames("hidden text-center", "md:group-hover:block")}
+            className={classNames("hidden text-center", "md:group-hover:block smooth")}
           >
             <h3>{book["title"]}</h3>
             <p className="text-xs text-white/70">{book["author"]}</p>
@@ -61,7 +61,7 @@ export default function TinyBook(props) {
           <p
             className={classNames(
               "text-xs text-white/60",
-              "md:mb-1 md:w-24 md:text-left group-hover:text-white/90 group-hover:mb-2 group-hover:hidden transition-all"
+              "md:mb-1 md:w-24 md:text-left group-hover:text-white/90 group-hover:mb-2 group-hover:hidden smooth"
             )}
           >
             {label}

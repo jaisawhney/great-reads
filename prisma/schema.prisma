@@ -46,8 +46,8 @@ model BookListBook {
   id         Int      @id @default(autoincrement())
   bookList   BookList @relation(fields: [bookListId], references: [id])
   bookListId Int
-  book       Book     @relation(fields: [bookId], references: [id])
-  bookId     Int
+  book       Book     @relation(fields: [OLID], references: [OLID])
+  OLID       String   @db.VarChar(255)
   createdAt  DateTime @default(now()) @db.DateTime(0)
   updatedAt  DateTime @default(now()) @db.DateTime(0)
 }
