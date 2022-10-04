@@ -6,7 +6,6 @@ import Header from "../components/Header";
 // import styles from "../styles/Home.module.css";
 
 export default function Home() {
- 
   return (
     <div>
       <Head>
@@ -15,10 +14,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="p-0">
+      <main className="pt-0 px-0">
         <Banner />
       </main>
-
     </div>
   );
 }
