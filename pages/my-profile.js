@@ -7,7 +7,6 @@ import ShelfListItem from "../components/ShelfListItem";
 import ProfileTabs from "../components/ProfileTabs";
 import TinyBook from "../components/TinyBook";
 
-// Function below requires auth
 export default withPageAuthRequired(MyProfile);
 
 function MyProfile(){
@@ -16,8 +15,18 @@ function MyProfile(){
   const following = 43;
   const followers = 34;
   console.log(user.picture);
-
-
+  
+  console.log(user.email)
+  fetch(`/api/users`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: user.email
+      })
+  }).then(res => res.json())
+      .then(res => {
+        console.log('currentUser:', res);
+      });
+  
   return (
     <main className={classNames("flex flex-col space-y-6","")}>
 
