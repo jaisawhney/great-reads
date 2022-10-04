@@ -10,11 +10,13 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 export default withPageAuthRequired(AddBook);
 
 function AddBook() {
+  const { user } = useUser();
+
   const [searchResults, setSearchResults] = useState([]);
   const [userShelves, setUserShelves] = useState([]);
 
   async function getShelves() {
-    const shelves = await fetch(`/api/users/1/booklists`).then((res) => res.json());
+    const shelves = await fetch(`/api/users/${user.sub}/booklists`).then((res) => res.json());
     setUserShelves(shelves);
   }
 
