@@ -11,7 +11,6 @@ export default async function handler(req, res) {
   } else {
     const getUser = await prisma.User.findUnique({
       where: {
-        //email: req.body.email,
         auth0Id: req.body.userId,
       },
     });
@@ -25,7 +24,7 @@ export default async function handler(req, res) {
           create: [
             { title: "Reading", description: "Books you are reading" },
             { title: "Past Reads", description: "Books you've read" },
-            { title: "To-Do", description: "Books you plan to read" },
+            { title: "To-Read", description: "Books you plan to read" },
             { title: "Recommended", description: "Recommended books" },
           ],
         },
