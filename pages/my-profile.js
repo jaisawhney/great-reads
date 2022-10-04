@@ -3,24 +3,24 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-
-
-
-
-
-
-
 export default withPageAuthRequired(MyProfile);
 
 function MyProfile(){
   // user object from Auth0
+
   const { user, isLoading } = useUser();
-  const currentUser = async (user) => {
-    fetch('http://localhost:3000/api/users/index.js',{
-      body: JSON.stringify(user),
+  
+  console.log(user.email)
+  fetch(`/api/users`, {
       method: 'POST',
-    })
-  }
+      body: JSON.stringify({
+        email: user.email
+      })
+  }).then(res => res.json())
+      .then(res => {
+        console.log('currentUser:', res);
+      });
+  
   return (
     <div className={styles.container}>
       <Head>

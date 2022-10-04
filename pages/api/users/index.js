@@ -6,16 +6,20 @@ export default async function handler(req, res) {
   if (req.method=='GET'){
     const getUser = prisma.User.findUnique({
       where: {
-        email: req.body.email,
+        email: JSON.parse(req.body).email,
       }})
-      console.log(newUser)
-    res.status(200).json(users)
+    res.status(200).json(getUser)
   } else {
-    const newUser = prisma.User.create({
-      data: {
-        email: req.body.email
+    const getUser = prisma.User.findUnique({
+      where: {
+        email: JSON.parse(req.body).email,
       }})
-      console.log(newUser)
-    res.status(200).json(newUser)
+    if(!getUser){
+      const newUser = await prisma.User.create({
+        data: {
+          email: JSON.parse(req.body).email
+        }
+      })}
+      res.status(200).json(req.body)
   }
 }
