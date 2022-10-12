@@ -1,20 +1,5 @@
-import classNames from "classnames";
 import ShelfListItem from "./ShelfListItem";
 
-export default function ShelvesTab() {
-    return (
-        <div>
-            {/* example shelf */}
-            {/* will need to be mapped, passed props and such */}
-            <ShelfListItem />
-            <ShelfListItem />
-            <ShelfListItem />
-            <ShelfListItem />
-            <ShelfListItem />
-            <ShelfListItem />
-            <ShelfListItem />
-            <ShelfListItem />
-            <ShelfListItem />
-        </div>
-    );
+export default function ShelvesTab(props) {
+  return props.shelves.map((shelf) => <ShelfListItem shelf={shelf} key={shelf.id} />);
 }
