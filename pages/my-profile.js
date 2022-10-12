@@ -22,7 +22,7 @@ function MyProfile() {
 
   useEffect(() => {
     getShelves();
-  }, [user]);
+  }, []);
 
   const following = 43;
   const followers = 34;
