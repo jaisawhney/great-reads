@@ -11,7 +11,14 @@ export default async function handler(req, res) {
           auth0Id: userId,
         },
       },
-      include: { User: true },
+      include: {
+        _count: {
+          select: {
+            books: true,
+          },
+        },
+        User: true,
+      },
     });
 
     res.status(200).json(userShelves);
