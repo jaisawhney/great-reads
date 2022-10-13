@@ -1,0 +1,9 @@
+-- DropForeignKey
+ALTER TABLE `BookListBook` DROP FOREIGN KEY `BookListBook_OLID_fkey`;
+
+-- AlterTable
+ALTER TABLE `Book` ADD COLUMN `author` VARCHAR(191) NULL,
+    ADD COLUMN `coverId` VARCHAR(191) NULL;
+
+-- AddForeignKey
+ALTER TABLE `BookListBook` ADD CONSTRAINT `BookListBook_OLID_fkey` FOREIGN KEY (`OLID`) REFERENCES `Book`(`OLID`) ON DELETE CASCADE ON UPDATE CASCADE;
