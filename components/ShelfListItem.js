@@ -11,7 +11,7 @@ export default function ShelfListItem(props) {
       <Link href="">
         <div className={classNames("flex flex-row justify-between items-center px-2", "")}>
           <h4>{props.shelf.title}</h4>
-          <p className="text-xs text-white/50">{props.shelf._count.books} books</p>
+          <p className="text-xs text-white/50">{props.shelf._count?.books || 0} books</p>
         </div>
       </Link>
     </div>

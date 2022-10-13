@@ -13,15 +13,15 @@ export default withPageAuthRequired(MyProfile);
 function MyProfile() {
   // user object from Auth0
   const { user, isLoading } = useUser();
-  const [userShelves, setUserShelves] = useState([]);
+  const [shelves, setShelves] = useState([]);
 
-  async function getShelves() {
+  async function updateShelves() {
     const shelves = await fetch(`/api/users/${user.sub}/booklists`).then((res) => res.json());
-    setUserShelves(shelves);
+    setShelves(shelves);
   }
 
   useEffect(() => {
-    getShelves();
+    updateShelves();
   }, []);
 
   const following = 43;
@@ -55,7 +55,7 @@ function MyProfile() {
       </div>
 
       {/* THESE TABS ARE IN PROGRESS */}
-      <ProfileTabs shelves={userShelves} />
+      <ProfileTabs shelves={shelves} setShelves={setShelves} />
     </main>
   );
 }

@@ -14,10 +14,15 @@ export default function ShelvesTab(props) {
         title: title,
         description: description,
       }),
-    }).then((res) => {
+    }).then(async (res) => {
+      const createdShelf = await res.json();
       /*TODO: Do something*/
-      console.log(res.status);
+      if (!res.ok) return alert("bad");
+
+      // Update the state
+      props.setShelves([...props.shelves, createdShelf]);
     });
+    e.target.reset();
   }
 
   /* Temporary form, limited styling */
