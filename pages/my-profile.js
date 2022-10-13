@@ -6,23 +6,12 @@ import classNames from "classnames";
 import ShelfListItem from "../components/ShelfListItem";
 import ProfileTabs from "../components/ProfileTabs";
 import TinyBook from "../components/TinyBook";
-import { useEffect, useState } from "react";
 
 export default withPageAuthRequired(MyProfile);
 
 function MyProfile() {
   // user object from Auth0
   const { user, isLoading } = useUser();
-  const [shelves, setShelves] = useState([]);
-
-  async function updateShelves() {
-    const shelves = await fetch(`/api/users/${user.sub}/booklists`).then((res) => res.json());
-    setShelves(shelves);
-  }
-
-  useEffect(() => {
-    updateShelves();
-  }, []);
 
   const following = 43;
   const followers = 34;
@@ -55,7 +44,7 @@ function MyProfile() {
       </div>
 
       {/* THESE TABS ARE IN PROGRESS */}
-      <ProfileTabs shelves={shelves} setShelves={setShelves} />
+      <ProfileTabs user={user} />
     </main>
   );
 }

@@ -1,7 +1,20 @@
 import classNames from "classnames";
 import ShelfListItem from "./ShelfListItem";
+import { useEffect, useState } from "react";
 
 export default function ShelvesTab(props) {
+  const [shelves, setShelves] = useState([]);
+
+  // Get the existing shelves
+  async function getShelves() {
+    const shelves = await fetch(`/api/users/${props.user.sub}/booklists`).then((res) => res.json());
+    setShelves(shelves);
+  }
+
+  useEffect(() => {
+    getShelves();
+  }, []);
+
   function createShelf(e) {
     e.preventDefault();
     const title = e.target.elements.shelfTitle?.value;
@@ -20,7 +33,7 @@ export default function ShelvesTab(props) {
       if (!res.ok) return alert("bad");
 
       // Update the state
-      props.setShelves([...props.shelves, createdShelf]);
+      setShelves([...shelves, createdShelf]);
     });
     e.target.reset();
   }
@@ -51,7 +64,7 @@ export default function ShelvesTab(props) {
           Submit
         </button>
       </form>
-      {props.shelves.map((shelf) => (
+      {shelves.map((shelf) => (
         <ShelfListItem shelf={shelf} key={shelf.id} />
       ))}
     </div>

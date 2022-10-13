@@ -24,6 +24,9 @@ export default function Experimenting(props) {
         <Tabs.Trigger className={tabStyle} value="shelves">
           Shelves
         </Tabs.Trigger>
+        <Tabs.Trigger className={tabStyle} value="books">
+          Books
+        </Tabs.Trigger>
         <Tabs.Trigger className={tabStyle} value="reviews">
           Reviews
         </Tabs.Trigger>
@@ -38,7 +41,10 @@ export default function Experimenting(props) {
           <FeedTab />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="shelves">
-          <ShelvesTab shelves={props.shelves} setShelves={props.setShelves} />
+          <ShelvesTab user={props.user} />
+        </Tabs.Content>
+        <Tabs.Content className={tabContentStyle} value="books">
+          <ShelvesTab user={props.user} />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="reviews">
           <ReviewsTab />
