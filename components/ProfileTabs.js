@@ -4,6 +4,7 @@ import ShelvesTab from "./ShelvesTab";
 import FeedTab from "./FeedTab";
 import ReviewsTab from "./ReviewsTab";
 import AboutTab from "./AboutTab";
+import BooksTab from "./BooksTab";
 
 export default function Experimenting(props) {
   const tabStyle =
@@ -44,7 +45,7 @@ export default function Experimenting(props) {
           <ShelvesTab user={props.user} />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="books">
-          <ShelvesTab user={props.user} />
+          <BooksTab user={props.user} />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="reviews">
           <ReviewsTab />
