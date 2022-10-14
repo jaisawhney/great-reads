@@ -35,11 +35,11 @@ model User {
   following    Follows[]      @relation("follower")
 }
 
-modal Follows {
+model Follows {
   follower     User           @relation("follower", fields : [followerId], references : [id])
-  followerId   String
+  followerId   Int
   following    User           @relation("following", fields : [followingId], references : [id])
-  followingId  String
+  followingId  Int
   @@id([followerId, followingId])
 }
 model BookList {
