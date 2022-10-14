@@ -22,6 +22,7 @@ model Book {
   reviews       Review[]
   BookProgress  BookProgress[]
   bookLists     BookListBook[]
+  comments      Comment[]
 }
 
 model User {
@@ -33,6 +34,20 @@ model User {
   bookList     BookList[]
   Review       Review[]
   BookProgress BookProgress[]
+  Comments     Comment[]
+}
+
+model Comment {
+  id           Int           @id @default(autoincrement())
+  user         User          @relation(fields: [userId], references: [id])
+  userId       Int
+  book         Book          @relation(fields: [bookId], references: [id])
+  bookId       Int
+  message      String        @db.VarChar(255)
+  parentId     Int?          @unique
+  parent       Comment?      @relation("CommentReplies", fields: [parentId], references: [id])
+  replies      Comment[]     @relation("CommentReplies")
+  createdAt    DateTime      @default(now()) @db.DateTime(0)
 }
 
 model BookList {
