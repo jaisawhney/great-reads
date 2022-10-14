@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
     const all = prisma.Follows.findMany({
       where: {
-        followingId: userId,
+        followerId: userId,
       },
     });
 
