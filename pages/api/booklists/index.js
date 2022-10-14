@@ -1,30 +1,28 @@
-import prisma from '../../../lib/prisma';
+import prisma from "../../../lib/prisma";
+import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 
-const sampleBookId = 1;
-const sampleUserId = 1;
+// TODO: Protect the other API routes
+export default withApiAuthRequired(async (req, res) => {
+  const { user } = getSession(req, res);
 
-export default async function handler(req, res) {
-  if (req.method=='GET'){
+  if (req.method === "GET") {
     const allLists = await prisma.BookList.findMany();
 
-    res.status(200).json(allLists)
+    res.status(200).json(allLists);
   } else {
+    const body = JSON.parse(req.body);
+
     const newBookList = await prisma.BookList.create({
       data: {
-        title: 'Good books to read for summer 2023',
-        description: 'Book list description',
-        user: {
+        title: body.title,
+        description: body.description,
+        User: {
           connect: {
-            id: sampleUserId
-          }
-        },
-        book: {
-          connect: {
-            id: sampleBookId
-          }
+            auth0Id: user.sub,
+          },
         },
       },
     });
-    res.status(200).json(newBookList)
+    res.status(201).json(newBookList);
   }
-}
+});

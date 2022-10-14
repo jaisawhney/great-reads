@@ -2,9 +2,6 @@ import Link from "next/link";
 import classNames from "classnames";
 
 export default function ShelfListItem(props) {
-  const shelfTitle = "To Read";
-  const shelfCount = 44;
-
   return (
     <div
       className={classNames(
@@ -13,8 +10,8 @@ export default function ShelfListItem(props) {
       )}>
       <Link href="">
         <div className={classNames("flex flex-row justify-between items-center px-2", "")}>
-          <h4>{shelfTitle}</h4>
-          <p className="text-xs text-white/50">{shelfCount} books</p>
+          <h4>{props.shelf.title}</h4>
+          <p className="text-xs text-white/50">{props.shelf._count?.books || 0} books</p>
         </div>
       </Link>
     </div>

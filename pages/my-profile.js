@@ -12,9 +12,9 @@ export default withPageAuthRequired(MyProfile);
 function MyProfile() {
   // user object from Auth0
   const { user, isLoading } = useUser();
+
   const following = 43;
   const followers = 34;
-
   return (
     <main className={classNames("flex flex-col space-y-6", "")}>
       {/* profile row */}
@@ -44,7 +44,7 @@ function MyProfile() {
       </div>
 
       {/* THESE TABS ARE IN PROGRESS */}
-      <ProfileTabs />
+      <ProfileTabs user={user} />
     </main>
   );
 }
