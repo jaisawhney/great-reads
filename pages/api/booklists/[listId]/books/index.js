@@ -1,18 +1,15 @@
 import prisma from "../../../../../lib/prisma";
 
-export default async function handler(req, res) {
-  const userId = req.query.userId;
+//TODO: Protect resource
+export default async function async(req, res) {
+  const shelfID = req.query.listId;
 
   if (req.method === "GET") {
-    // Get the books from the user's shelves, ignoring duplicates
+    // Get the books, ignoring duplicates
     const booksListBooks = await prisma.BookListBook.findMany({
       distinct: ["OLID"],
       where: {
-        bookList: {
-          User: {
-            auth0Id: userId,
-          },
-        },
+        bookListId: parseInt(shelfID),
       },
       select: {
         book: {
