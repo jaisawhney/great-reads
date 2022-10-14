@@ -1,9 +1,9 @@
-import prisma from "../../../lib/prisma";
+import prisma from "../../../../lib/prisma";
 
 export default async function handler(req, res) {
   const listId = parseInt(req.query.listId);
 
-  if (req.method == "GET") {
+  if (req.method === "GET") {
     const bookList = await prisma.BookList.findUnique({
       where: {
         id: listId,

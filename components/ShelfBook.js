@@ -3,12 +3,12 @@ import Link from "next/link";
 import BookStars from "./BookStars";
 
 export default function ShelfBook(props) {
-  const { title, author, coverId, rating } = props.book;
+  const { title, author, coverId, rating, id } = props.book;
   const cover = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
 
   return (
-    <Link href="">
-      <div className="flex flex-row w-full bg-zinc-700/60 py-4 text-white rounded-sm border-t-2 border-zinc-200/20 max-w-[800px] px-3 md:px-6">
+    <Link href={`/books/${id}`}>
+      <div className="flex flex-row w-full bg-zinc-700/60 py-4 text-white rounded-sm border-t-2 border-zinc-200/20 max-w-[800px] px-3 md:px-6 cursor-pointer my-[4px]">
         {/* book cover */}
         <div>
           <img src={cover} className={classNames("w-12", "md:w-28")} />

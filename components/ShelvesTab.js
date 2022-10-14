@@ -54,7 +54,7 @@ export default function ShelvesTab(props) {
           required
         />
         <input
-          className="w-full px-2 py-1"
+          className="w-full px-2 py-1 border"
           name="shelfDescription"
           type="text"
           placeholder="Book Description"

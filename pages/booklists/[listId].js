@@ -7,27 +7,32 @@ import { useRouter } from "next/router";
 export default withPageAuthRequired(ListId);
 
 function ListId() {
-  const { user } = useUser();
-
   const router = useRouter();
   const listId = router.query.listId;
 
+  const [shelf, setShelf] = useState([]);
   const [books, setBooks] = useState([]);
 
-  async function setUserBooks() {
-    const books = await fetch(`/api/booklists/${listId}/books`).then((res) => res.json());
-    setBooks(books);
+  async function getShelf() {
+    const Shelf = await fetch(`/api/booklists/${listId}`).then((res) => res.json());
+    setShelf(Shelf);
+  }
+
+  async function getShelfBooks() {
+    const shelfBooks = await fetch(`/api/booklists/${listId}/books`).then((res) => res.json());
+    setBooks(shelfBooks);
   }
 
   useEffect(() => {
-    setUserBooks();
+    getShelf();
+    getShelfBooks();
   }, []);
 
   return (
     <main className="">
       {/* shelf title */}
-      <h1 className={classNames("text-lg ml-4 pt-3 pb-3", "md:mb-4 md:pb-0 md:pt-8")}>{}</h1>
-      <p className={classNames("text-lg ml-4 pt-3 pb-3", "md:mb-4 md:pb-0 md:pt-8")}>{}</p>
+      <h1 className={classNames("text-lg ml-4 pt-3", "md:pb-0 md:pt-8")}>{shelf.title}</h1>
+      <p className={classNames("text-sm ml-4 pb-3", "md:mb-4 md:pb-0")}>{shelf.description}</p>
 
       <div className={classNames("flex flex-col flex-wrap", "md:flex-row md:justify-start")}>
         <main>
