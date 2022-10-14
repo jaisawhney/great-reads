@@ -27,6 +27,12 @@ export default function Experimenting() {
         <Tabs.Trigger className={tabStyle} value="reviews">
           Reviews
         </Tabs.Trigger>
+        <Tabs.Trigger className={tabStyle} value="follows">
+          Follows Me
+        </Tabs.Trigger>
+        <Tabs.Trigger className={tabStyle} value="following">
+          Following
+        </Tabs.Trigger>
         <Tabs.Trigger className={tabStyle} value="about">
           About
         </Tabs.Trigger>
@@ -39,6 +45,12 @@ export default function Experimenting() {
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="shelves">
           <ShelvesTab />
+        </Tabs.Content>
+        <Tabs.Content className={tabContentStyle} value="follows">
+          <h1>Follows me</h1>
+        </Tabs.Content>
+        <Tabs.Content className={tabContentStyle} value="following">
+          <h1>I am following</h1>
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="reviews">
           <ReviewsTab />
