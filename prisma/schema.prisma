@@ -44,7 +44,7 @@ model Comment {
   book         Book          @relation(fields: [bookId], references: [id])
   bookId       Int
   message      String        @db.VarChar(255)
-  parentId     Int?          @unique
+  parentId     Int?
   parent       Comment?      @relation("CommentReplies", fields: [parentId], references: [id])
   replies      Comment[]     @relation("CommentReplies")
   createdAt    DateTime      @default(now()) @db.DateTime(0)
