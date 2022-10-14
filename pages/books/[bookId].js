@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 import classNames from "classnames";
+import Comment from "../../components/Comment";
 
 export default withPageAuthRequired(Book);
 
-function Book(props) {
+function Book() {
   const router = useRouter();
   const bookId = router.query.bookId;
 
@@ -22,11 +23,34 @@ function Book(props) {
     getBook();
   }, []);
 
-  // redo the styling
+  // redo the styling & add ratings
   return (
     <main>
-      <img src={cover} className={classNames("w-12", "md:w-28")} />
-      <h1>{book.title}</h1>
+      {/* Book Info */}
+      <div className={classNames("flex flex-row w-full text-white py-4 px-3", "md:px-6")}>
+        <div>
+          <img src={cover} className={classNames("w-20")} />
+        </div>
+
+        <div className={classNames("flex flex-col mx-2", "md:mx-4")}>
+          <div className={classNames("flex flex-col text-left max-w-48")}>
+            <h1 className="">{book.title}</h1>
+            <h2 className="text-xs text-white/70">By {book.author}</h2>
+          </div>
+        </div>
+      </div>
+
+      {/* Comments */}
+      <div className={classNames("flex flex-col w-full text-white py-4 px-3", "md:px-6")}>
+        <div className={classNames("border-b")}>
+          <h1>Comments</h1>
+        </div>
+        <div>
+          {book.comments?.map((comment, i) => {
+            return <Comment comment={comment} key={i} />;
+          })}
+        </div>
+      </div>
     </main>
   );
 }
