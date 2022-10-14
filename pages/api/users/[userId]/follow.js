@@ -7,13 +7,12 @@ async function FollowSomeone(req, res) {
   const { user } = getSession(req, res);
   console.log(user);
 
-  const userToFollow = req.query.userId;
+  const userToFollow = parseInt(req.query.userId);
 
   //Check if user we wish to follow exists
-
   const existUser = await prisma.User.findFirst({
     where: {
-      followingId: parseInt(userToFollow),
+      id: parseInt(userToFollow),
     },
   });
   //Return user not found
