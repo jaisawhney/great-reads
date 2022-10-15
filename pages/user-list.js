@@ -20,7 +20,7 @@ function userList(props) {
           <>
             <div className="flex flex-row justify-between bg-slate-600 p-2 items-center rounded-md">
               <p>{user.email}</p>
-              <button className="bg-sky-600 rounded-lg p-2">Follow</button>
+              <button className="bg-sky-600 hover:bg-sky-700 rounded-lg p-2">Follow</button>
             </div>
           </>
         ))}
