@@ -7,12 +7,26 @@ export default async function handler(req, res) {
   if (req.query.userId) {
     var userId = parseInt(req.query.userId);
 
-    const all = prisma.Follows.findMany({
+    const all = await prisma.Follows.findMany({
       where: {
         followingId: userId,
       },
     });
 
-    res.status(200).json(all);
+    var allUsers = [];
+
+    for (var i = 0; i < all.length; i++) {
+      allUsers.push(all[i].followerId);
+    }
+
+    const followsUsers = await prisma.user.findMany({
+      where: {
+        id: {
+          in: allUsers,
+        },
+      },
+    });
+
+    res.status(200).json(followsUsers);
   }
 }
