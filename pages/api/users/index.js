@@ -2,11 +2,7 @@ import prisma from "../../../lib/prisma";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const getUser = prisma.User.findUnique({
-      where: {
-        email: req.body.email,
-      },
-    });
+    const getUser = await prisma.User.findMany({});
     res.status(200).json(getUser);
   } else {
     const getUser = await prisma.User.findUnique({
