@@ -42,6 +42,7 @@ function MyProfile() {
     runGet();
   }, []);
 
+
   return (
     <main className={classNames("flex flex-col space-y-6", "")}>
       {/* profile row */}
@@ -71,7 +72,9 @@ function MyProfile() {
       </div>
 
       {/* THESE TABS ARE IN PROGRESS */}
+
       <ProfileTabs followers={followers} following={following} />
+
     </main>
   );
 }

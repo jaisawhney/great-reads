@@ -46,7 +46,7 @@ export default function Experimenting(props) {
           <FeedTab />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="shelves">
-          <ShelvesTab />
+          <ShelvesTab user={props.user} />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="follows">
           <Followers followers={props.followers} />

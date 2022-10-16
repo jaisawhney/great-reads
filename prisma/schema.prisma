@@ -12,14 +12,17 @@ model Book {
   id            Int            @id @default(autoincrement())
   OLID          String         @unique @db.VarChar(255)
   title         String?        @db.VarChar(255)
+  author        String?
+  coverId       String?
   pageCount     String?
   publishedDate String?
   imagePath     String?
   createdAt     DateTime       @default(now()) @db.DateTime(0)
   updatedAt     DateTime       @default(now()) @db.DateTime(0)
-  Review        Review[]
+  reviews       Review[]
   BookProgress  BookProgress[]
   bookLists     BookListBook[]
+  comments      Comment[]
 }
 
 model User {
@@ -31,8 +34,24 @@ model User {
   bookList     BookList[]
   Review       Review[]
   BookProgress BookProgress[]
+
   followers    Follows[]      @relation("following")
   following    Follows[]      @relation("follower")
+
+  Comments     Comment[]
+}
+
+model Comment {
+  id           Int           @id @default(autoincrement())
+  user         User          @relation(fields: [userId], references: [id])
+  userId       Int
+  book         Book          @relation(fields: [bookId], references: [id])
+  bookId       Int
+  message      String        @db.VarChar(255)
+  parentId     Int?
+  parent       Comment?      @relation("CommentReplies", fields: [parentId], references: [id])
+  replies      Comment[]     @relation("CommentReplies")
+  createdAt    DateTime      @default(now()) @db.DateTime(0)
 }
 
 model Follows {
@@ -57,7 +76,7 @@ model BookListBook {
   id         Int      @id @default(autoincrement())
   bookList   BookList @relation(fields: [bookListId], references: [id])
   bookListId Int
-  book       Book     @relation(fields: [OLID], references: [OLID])
+  book       Book     @relation(fields: [OLID], references: [OLID], onDelete: Cascade, onUpdate: Cascade)
   OLID       String   @db.VarChar(255)
   createdAt  DateTime @default(now()) @db.DateTime(0)
   updatedAt  DateTime @default(now()) @db.DateTime(0)
@@ -68,9 +87,9 @@ model Review {
   title     String   @db.VarChar(255)
   content   String   @db.VarChar(255)
   rating    Int      @db.Int
-  user      User     @relation(fields: [userId], references: [id])
+  users     User     @relation(fields: [userId], references: [id])
   userId    Int
-  book      Book     @relation(fields: [bookId], references: [id])
+  books     Book     @relation(fields: [bookId], references: [id])
   bookId    Int
   createdAt DateTime @default(now()) @db.DateTime(0)
   updatedAt DateTime @default(now()) @db.DateTime(0)
