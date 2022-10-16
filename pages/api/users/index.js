@@ -5,13 +5,14 @@ export default async function handler(req, res) {
     const getUser = await prisma.User.findMany({});
     res.status(200).json(getUser);
   } else {
-    const getUser = await prisma.User.findUnique({
+    console.log(req.body);
+    const getUser = await prisma.User.findFirst({
       where: {
         auth0Id: req.body.userId,
       },
     });
 
-    if (getUser) return res.status(200).end();
+    if (getUser) return res.status(200).json(getUser);
     await prisma.User.create({
       data: {
         auth0Id: req.body.userId,

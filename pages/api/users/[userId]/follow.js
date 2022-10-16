@@ -5,7 +5,6 @@ export default withApiAuthRequired(FollowSomeone);
 
 async function FollowSomeone(req, res) {
   const { user } = getSession(req, res);
-  console.log(user);
 
   const userToFollow = parseInt(req.query.userId);
 
@@ -13,7 +12,6 @@ async function FollowSomeone(req, res) {
   const thisUser = await prisma.User.findUnique({
     where: { auth0Id: user.sub },
   });
-  console.log(thisUser);
   //Check if user we wish to follow exists
   const existUser = await prisma.User.findFirst({
     where: {
@@ -50,5 +48,5 @@ async function FollowSomeone(req, res) {
   });
 
   // Follow added added (201)
-  return res.status(201).end();
+  return res.status(201).json(newFollow);
 }
