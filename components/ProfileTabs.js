@@ -4,6 +4,8 @@ import ShelvesTab from "./ShelvesTab";
 import FeedTab from "./FeedTab";
 import ReviewsTab from "./ReviewsTab";
 import AboutTab from "./AboutTab";
+import Followers from "./Followers";
+import Following from "./Following";
 
 export default function Experimenting(props) {
   const tabStyle =
@@ -27,6 +29,12 @@ export default function Experimenting(props) {
         <Tabs.Trigger className={tabStyle} value="reviews">
           Reviews
         </Tabs.Trigger>
+        <Tabs.Trigger className={tabStyle} value="follows">
+          Followers
+        </Tabs.Trigger>
+        <Tabs.Trigger className={tabStyle} value="following">
+          Following
+        </Tabs.Trigger>
         <Tabs.Trigger className={tabStyle} value="about">
           About
         </Tabs.Trigger>
@@ -39,6 +47,12 @@ export default function Experimenting(props) {
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="shelves">
           <ShelvesTab user={props.user} />
+        </Tabs.Content>
+        <Tabs.Content className={tabContentStyle} value="follows">
+          <Followers followers={props.followers} />
+        </Tabs.Content>
+        <Tabs.Content className={tabContentStyle} value="following">
+          <Following following={props.following} />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="reviews">
           <ReviewsTab />

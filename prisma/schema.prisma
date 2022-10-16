@@ -34,6 +34,10 @@ model User {
   bookList     BookList[]
   Review       Review[]
   BookProgress BookProgress[]
+
+  followers    Follows[]      @relation("following")
+  following    Follows[]      @relation("follower")
+
   Comments     Comment[]
 }
 
@@ -50,6 +54,13 @@ model Comment {
   createdAt    DateTime      @default(now()) @db.DateTime(0)
 }
 
+model Follows {
+  follower     User           @relation("follower", fields : [followerId], references : [id])
+  followerId   Int
+  following    User           @relation("following", fields : [followingId], references : [id])
+  followingId  Int
+  @@id([followerId, followingId])
+}
 model BookList {
   id           Int            @id @default(autoincrement())
   title        String         @db.VarChar(255)
