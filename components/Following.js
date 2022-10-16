@@ -6,7 +6,7 @@ export default function Following(props) {
   const [pageCount, setPageCount] = useState(0);
 
   //Results page page
-  const resultsPerPage = 1;
+  const resultsPerPage = 5;
   useEffect(() => {
     setPageCount(Math.ceil(props.following.length / resultsPerPage));
     setPage(1);
