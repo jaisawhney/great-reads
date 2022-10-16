@@ -29,12 +29,12 @@ function MyProfile() {
       }).then((response) => response.json());
       //Now that we have this users ID, we can get follower following
 
-      const followersResponse = await fetch("/api/users/" + getThisUser.id + "/following").then(
+      const followersResponse = await fetch("/api/users/" + getThisUser.id + "/follows").then(
         (response) => response.json()
       );
       setFollowers(followersResponse);
 
-      const followingResponse = await fetch("/api/users/" + getThisUser.id + "/follows").then(
+      const followingResponse = await fetch("/api/users/" + getThisUser.id + "/following").then(
         (response) => response.json()
       );
       setFollowing(followingResponse);
