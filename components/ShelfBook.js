@@ -1,59 +1,34 @@
 import classNames from "classnames";
 import Link from "next/link";
-import Star from "../public/icons/Star";
+import BookStars from "./BookStars";
 
 export default function ShelfBook(props) {
-
-  // not sure how api requests work
-  // this sample search object doesnt even make sense
-  // ignore
-  const book = {
-    text: "gatsby",
-    book: "The Great Gatsby",
-    author: "F. Scott Fitzgerald",
-    img: "/images/sample-cover.jpeg",
-    ratings: 2456,
-  };
+  const { title, author, coverId, rating, id } = props.book;
+  const cover = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
 
   return (
-    <Link href="">
-      <div className="flex flex-row w-full bg-zinc-700/60 py-4 text-white rounded-sm border-t-2 border-zinc-200/20 max-w-[800px] px-3 md:px-6"> 
-
+    <Link href={`/books/${id}`}>
+      <div className="flex flex-row w-full bg-zinc-700/60 py-4 text-white rounded-sm border-t-2 border-zinc-200/20 max-w-[800px] px-3 md:px-6 cursor-pointer my-[4px]">
         {/* book cover */}
         <div>
-          <img
-            src={book["img"]}
-            className={classNames("w-12", "md:w-28")}
-          />
+          <img src={cover} className={classNames("w-12", "md:w-28")} />
         </div>
 
-        <div className={classNames("flex flex-col mx-2","md:mx-4")}>
-
+        <div className={classNames("flex flex-col mx-2", "md:mx-4")}>
           {/* title and author */}
           <div className={classNames("flex flex-col text-left max-w-48")}>
-            <h1 className="">{book["book"]}</h1>
-            <h2 className="text-xs text-white/70">By {book["author"]}</h2>
+            <h1 className="">{title}</h1>
+            <h2 className="text-xs text-white/70">By {author}</h2>
           </div>
-
         </div>
 
         {/* stars */}
-        <div
-          className={classNames(
-            "flex flex-col items-end ml-auto",
-            ""
-          )}
-        >
+        <div className={classNames("flex flex-col items-end ml-auto", "")}>
           <div className={classNames("flex flex-row w-24", "")}>
-            <Star fill="full" />
-            <Star fill="full" />
-            <Star fill="full" />
-            <Star fill="full" />
-            <Star />
+            <BookStars averageRating={rating.average} />
           </div>
-          <p className="text-xs text-white/50">{book["ratings"]} ratings</p>
+          <p className="text-xs text-white/50">{rating.count} ratings</p>
         </div>
-
       </div>
     </Link>
   );
