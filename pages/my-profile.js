@@ -71,7 +71,7 @@ function MyProfile() {
       </div>
 
       {/* THESE TABS ARE IN PROGRESS */}
-      <ProfileTabs />
+      <ProfileTabs followers={followers} following={following} />
     </main>
   );
 }

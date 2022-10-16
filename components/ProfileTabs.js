@@ -4,8 +4,10 @@ import ShelvesTab from "./ShelvesTab";
 import FeedTab from "./FeedTab";
 import ReviewsTab from "./ReviewsTab";
 import AboutTab from "./AboutTab";
+import Followers from "./Followers";
+import Following from "./Following";
 
-export default function Experimenting() {
+export default function Experimenting(props) {
   const tabStyle =
     "radix-state-active:border-teal-100/40 radix-state-active:border-b-4 b-bottom-transparent py-2 px-4 mb-3 text-slate-200 w-full md:px-12";
   // radix-state-active:border-white/40 border-b-2 border-transparent
@@ -28,7 +30,7 @@ export default function Experimenting() {
           Reviews
         </Tabs.Trigger>
         <Tabs.Trigger className={tabStyle} value="follows">
-          Follows Me
+          Followers
         </Tabs.Trigger>
         <Tabs.Trigger className={tabStyle} value="following">
           Following
@@ -47,10 +49,10 @@ export default function Experimenting() {
           <ShelvesTab />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="follows">
-          <h1>Follows me</h1>
+          <Followers followers={props.followers} />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="following">
-          <h1>I am following</h1>
+          <Following following={props.following} />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="reviews">
           <ReviewsTab />
