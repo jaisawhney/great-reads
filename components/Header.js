@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import ProfileIcon from "../public/icons/ProfileIcon";
 import classNames from "classnames";
 import SearchIcon from "../public/icons/SearchIcon";
+import LogoutButton from "./LogoutButton";
 
 export default function Header() {
   const navItem = "";
@@ -48,7 +49,14 @@ export default function Header() {
               <ProfileIcon />
             </div>
           </Link>
-
+          <Link href="/user-list" className={classNames("")}>
+            <div>
+              <p>Users</p>
+            </div>
+          </Link>
+          <div>
+            <LogoutButton />
+          </div>
           {/* <li>
             <Link href="/add-friend">Add Friend</Link>
           </li> */}
