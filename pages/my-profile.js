@@ -18,15 +18,19 @@ function MyProfile() {
 
   useEffect(() => {
     async function runGet() {
+      console.log("THIS USER 1", user);
       const getThisUser = await fetch("/api/users/", {
         method: "POST",
         header: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          email: user.email,
           userId: user.sub,
         }),
       }).then((response) => response.json());
+
+      console.log("THIS USER", getThisUser);
       //Now that we have this users ID, we can get follower following
 
       const followersResponse = await fetch("/api/users/" + getThisUser.id + "/follows").then(
@@ -39,9 +43,10 @@ function MyProfile() {
       );
       setFollowing(followingResponse);
     }
-    runGet();
-  }, []);
-
+    if (user.sub) {
+      runGet();
+    }
+  }, [user]);
 
   return (
     <main className={classNames("flex flex-col space-y-6", "")}>
@@ -73,8 +78,7 @@ function MyProfile() {
 
       {/* THESE TABS ARE IN PROGRESS */}
 
-      <ProfileTabs followers={followers} following={following} />
-
+      <ProfileTabs user={user} followers={followers} following={following} />
     </main>
   );
 }

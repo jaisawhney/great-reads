@@ -14,6 +14,7 @@ export default function CommentForm(props) {
       }),
     }).then(async (res) => {
       if (!res.ok) console.log("Problem");
+      alert("Comment added!");
     });
     e.target.reset();
   }
@@ -24,7 +25,7 @@ export default function CommentForm(props) {
         Leave a comment
       </label>
       <input className={classNames("text-sm text-black p-1 block")} type="text" name="comment" />
-      <button className={classNames("button")} type="button">
+      <button className={classNames("button")} type="submit">
         Submit
       </button>
     </form>

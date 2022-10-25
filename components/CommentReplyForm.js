@@ -15,6 +15,7 @@ export default function CommentReplyForm(props) {
       }),
     }).then(async (res) => {
       if (!res.ok) console.log("Problem");
+      alert("Comment added!");
     });
     e.target.reset();
   }
@@ -27,7 +28,7 @@ export default function CommentReplyForm(props) {
         name="comment"
         placeholder="Your reply..."
       />
-      <button className={classNames("button")} type="button">
+      <button className={classNames("button")} type="submit">
         Submit
       </button>
     </form>
