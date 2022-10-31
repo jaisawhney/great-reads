@@ -5,16 +5,22 @@ export default withPageAuthRequired(userList);
 
 function userList(props) {
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [filter, setFilter] = useState();
 
   useEffect(() => {
     async function runGet() {
       const response = await fetch("/api/users").then((response) => response.json());
       setUsers(response);
+      setFilteredUsers(response);
     }
 
     runGet().catch(console.error);
   }, []);
+
+  useEffect(() => {
+    setFilteredUsers(users.filter((user) => user.email.search(filter) !== -1));
+  }, [filter]);
 
   function updateFilter(e) {
     e.preventDefault();
@@ -32,7 +38,7 @@ function userList(props) {
           placeholder="Filter by user"
           onChange={updateFilter}
         />
-        {users.map((user) => (
+        {filteredUsers.map((user) => (
           <div className="flex flex-row justify-between bg-slate-600 p-2 items-center rounded-md">
             <p>{user.email}</p>
             <button
