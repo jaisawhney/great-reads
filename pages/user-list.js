@@ -24,7 +24,10 @@ function userList(props) {
 
   function updateFilter(e) {
     e.preventDefault();
-    setFilter(e.target.value);
+
+    // Escape string before .search
+    const escapedString = e.target.value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    setFilter(escapedString);
   }
 
   return (
