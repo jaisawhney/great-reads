@@ -5,6 +5,7 @@ export default withPageAuthRequired(userList);
 
 function userList(props) {
   const [users, setUsers] = useState([]);
+  const [filter, setFilter] = useState();
 
   useEffect(() => {
     async function runGet() {
@@ -15,10 +16,22 @@ function userList(props) {
     runGet().catch(console.error);
   }, []);
 
+  function updateFilter(e) {
+    e.preventDefault();
+    setFilter(e.target.value);
+  }
+
   return (
     <main>
       <div className="flex flex-col p-2 space-y-2">
         <p className="text-3xl">All users</p>
+
+        <input
+          className="w-full px-2 py-1 border bg-slate-100 text-black"
+          type="text"
+          placeholder="Filter by user"
+          onChange={updateFilter}
+        />
         {users.map((user) => (
           <div className="flex flex-row justify-between bg-slate-600 p-2 items-center rounded-md">
             <p>{user.email}</p>
