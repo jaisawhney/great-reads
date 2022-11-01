@@ -1,5 +1,6 @@
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
+import UserList from "../components/UserList";
 
 export default withPageAuthRequired(userList);
 
@@ -41,19 +42,7 @@ function userList(props) {
           placeholder="Filter by user"
           onChange={updateFilter}
         />
-        {filteredUsers.map((user) => (
-          <div className="flex flex-row justify-between bg-slate-600 p-2 items-center rounded-md">
-            <p>{user.email}</p>
-            <button
-              className="bg-sky-600 hover:bg-sky-700 rounded-lg p-2"
-              onClick={() => {
-                //Follow this user
-                fetch("/api/users/" + user.id + "/follow").then((response) => response.json());
-              }}>
-              Follow
-            </button>
-          </div>
-        ))}
+        <UserList users={filteredUsers} />
       </div>
     </main>
   );
