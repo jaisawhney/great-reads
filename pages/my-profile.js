@@ -49,38 +49,50 @@ function MyProfile() {
   }, [user]);
 
   return (
-    <main className={classNames("flex flex-col space-y-6", "")}>
-      {/* profile row */}
-      <div className={classNames("flex flex-row items-end w-full space-x-3", "md:space-x-6")}>
-        {/* profile picture */}
-        {/* TROUBLE LOADING CONSISTENTLY */}
-        <img src={user.picture} className={classNames("rounded-sm w-16 shadow-2xl", "w-24")}></img>
+    <main className={classNames("flex flex-col space-y-6", "md:my-9")}>
+      <div className={classNames("bg-neutral-900 w-full rounded-lg pt-3", "md:p-7 md:rounded-xl")}>
+        {/* profile row */}
+        <div
+          className={classNames(
+            "flex flex-row items-center w-full space-x-3  px-3 mb-5",
+            "md:space-x-6 md:px-0"
+          )}>
+          {/* profile picture */}
+          {/* TROUBLE LOADING CONSISTENTLY */}
+          <img src={user.picture} className={classNames("rounded-full w-24 shadow-2xl", "")}></img>
 
-        {/* profile info */}
-        <div className={classNames("flex flex-col space-y-1", "md:space-y-2")}>
-          {/* name */}
-          <h1 className={classNames("text-xl", "md:text-3xl")}>{user.name}</h1>
+          {/* profile info */}
+          <div className={classNames("flex flex-col space-y-1", "md:space-y-2")}>
+            {/* name */}
+            <h1 className={classNames("text-xl", "md:text-3xl")}>{user.name}</h1>
 
-          {/* profile numbers */}
-          <div className={classNames("flex flex-row space-x-4", "")}>
-            {/* follower count */}
-            <div className={classNames("flex flex-row items-center text-white/70", "")}>
-              <h3 className={classNames("text-sm", "")}>{followers.length} Followers</h3>
-            </div>
+            {/* profile numbers */}
+            <div className={classNames("flex flex-row space-x-4", "")}>
+              {/* follower count */}
+              <div className={classNames("flex flex-row items-center text-white/70", "")}>
+                <h3 className={classNames("text-sm", "")}>{followers.length} Followers</h3>{" "}
+              </div>
 
-            {/* following count */}
-            <div className={classNames("flex flex-col items-center text-white/70", "")}>
-              <h3 className={classNames("text-sm", "")}>{following.length} Following</h3>
+              {/* following count */}
+              <div className={classNames("flex flex-col items-center text-white/70", "")}>
+                <h3 className={classNames("text-sm", "")}>{following.length} Following</h3>{" "}
+              </div>
             </div>
           </div>
         </div>
+        <ProfileTabs user={user} followers={followers} following={following} />
       </div>
 
       {/* THESE TABS ARE IN PROGRESS */}
-
-      <ProfileTabs user={user} followers={followers} following={following} />
     </main>
   );
 }
 
 // className={classNames("","")}
+
+{
+  /*  */
+}
+{
+  /*  */
+}

@@ -7,18 +7,17 @@ import AboutTab from "./AboutTab";
 import Followers from "./Followers";
 import Following from "./Following";
 
-export default function Experimenting(props) {
+export default function ProfileTabs(props) {
   const tabStyle =
-    "radix-state-active:border-teal-100/40 radix-state-active:border-b-4 b-bottom-transparent py-2 px-4 mb-3 text-slate-200 w-full md:px-12";
-  // radix-state-active:border-white/40 border-b-2 border-transparent
+    "radix-state-active:border-b-neutral-600/60 radix-state-active:border-b-4 border-b-4 border-transparent py-2 px-4 mb-3 text-slate-200 w-full md:px-12";
 
-  const tabContentStyle = " rounded-sm flex flex-col w-full divider";
+  const tabContentStyle = "rounded-sm flex flex-col w-full divider";
 
   return (
     <Tabs.Root classNames={classNames("", "")} defaultValue="shelves" orientation="vertical">
       {/* tab nav labels */}
       <Tabs.List
-        className={classNames("flex flex-row max-w-[580px] justify-between", "")}
+        className={classNames("flex flex-row w-full justify-between flex-wrap", "md:flex-nowrap")}
         aria-label="tabs">
         <Tabs.Trigger className={tabStyle} value="feed">
           Feed

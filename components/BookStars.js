@@ -1,4 +1,4 @@
-import Star from "../public/icons/Star";
+import Star from "./icons/Star";
 
 export default function BookStars(props) {
   // Displays the rating in stars

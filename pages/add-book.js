@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
 import classNames from "classnames";
-import SearchIcon from "/public/icons/SearchIcon";
+import SearchIcon from "../components/icons/SearchIcon";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 // maybe this should be search page?
