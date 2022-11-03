@@ -2,35 +2,39 @@ import classNames from "classnames";
 import Link from "next/link";
 
 export default function Banner() {
+  // bg-[url('/images/guy-reading.jpg')]
+
   return (
     <div
       className={classNames(
-        "bg-[url('/images/guy-reading.jpg')] bg-right bg-cover py-5",
-        "md:relative md:bg-right md:h-[100vh] md:py-0"
+        "flex flex-col-reverse justify-between",
+        "md:flex-row md:items-center md:space-x-4"
       )}>
-      {/* content within image */}
-      <div
-        className={classNames(
-          "flex flex-col justify-start py-12 px-5 backdrop-blur-sm",
-          "md:max-w-[60vw] text-white bg-black/60 md:px-12 md:h-[100vh] md:py-32"
-        )}>
+      <div className={classNames("flex flex-col items-center my-3", "md:items-start")}>
         {/* welcome */}
-        <h1 className={classNames("text-md text-white/80 mb-5", "md:text-lg")}>
-          Welcome to Great Reads!
+        <h1 className={classNames("text-3xl text-center", "md:text-4xl md:mb-3")}>
+          Read anything lately?
         </h1>
 
         {/* message */}
-        <p className={classNames("text-wrap text-4xl pr-8", "md:text-5xl md:pr-4")}>
-          Your all-in-one place to explore books, write reviews, set goals, and track your reading.
+        <p className={classNames("text-wrap text-md my-4 text-stone-400", "md:text-xl md:my-0")}>
+          Meet Great Reads. Your all-in-one place to explore books, write reviews, set goals, and
+          track your reading.
         </p>
 
         {/* get started button */}
-        {/* link where?? search for now */}
-        <Link href="/add-book">
-          <button className={classNames("text-lg mt-4 ml-auto mr-10 button", "")}>
+        <Link href="">
+          <button
+            className={classNames(
+              "bg-teal-700/80 rounded py-1.5 px-8 w-fit my-5 text-lg shadow-lg hover:brightness-75 hover:shadow-xl transition-all duration-200",
+              "md:mt-12 md:mx-0"
+            )}>
             Get Started
           </button>
         </Link>
+      </div>
+      <div>
+        <img src="/images/sweater.jpg" className=" md:max-w-[600px] h-fit" id="banner-image" />
       </div>
     </div>
   );

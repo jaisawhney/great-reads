@@ -1,67 +1,76 @@
 import Link from "next/link";
 import classnames from "classnames";
 import SearchBar from "./SearchBar";
-import ProfileIcon from "../public/icons/ProfileIcon";
+import ProfileIcon from "./icons/ProfileIcon";
 import classNames from "classnames";
-import SearchIcon from "../public/icons/SearchIcon";
+import SearchIcon from "./icons/SearchIcon";
 import LogoutButton from "./LogoutButton";
+import FriendsIcon from "./icons/FriendsIcon";
 
 export default function Header() {
-  const navItem = "";
+  const navItem = "hover:bg-teal-200/50 p-2 rounded-sm transition-all duration-200";
 
   return (
-    <div
-      className={classnames(
-        "bg-teal-900/90 w-full text-white/90 top-0 py-3 px-4 lg:px-20 md:px-16 flex flex-row justify-between items-center"
-      )}>
-      {/* TITLE */}
-      <div>
-        <Link href="/">
-          <h1 className="text-xl">Great Reads</h1>
-        </Link>
-      </div>
-
-      {/* <SearchBar /> */}
-
-      {/* NAV */}
-      <div>
-        <div
-          className={classnames(
-            "text-sm flex flex-row wrap space-x-3 text-center items-center space-x-4"
-          )}>
-          {/* <li>
-            <Link href="/my-books">Books</Link>
-          </li> */}
-
-          <Link className="flex flex-row" href="/add-book">
-            <div className={classNames("flex flex-row items-center space-x-1 whitespace-nowrap")}>
-              <SearchIcon />
-              {/* <p>Find Books</p> */}
-            </div>
-          </Link>
-
-          {/* <li>
-            <Link href="/my-friends">Friends</Link>
-          </li> */}
-
-          <Link href="/my-profile" className={classNames("")}>
-            <div>
-              <ProfileIcon />
-            </div>
-          </Link>
-          <Link href="/user-list" className={classNames("")}>
-            <div>
-              <p>Users</p>
-            </div>
-          </Link>
+    // TOPBAR
+    <div className={classnames("bg-teal-900 w-full text-stone-100 flex justify-center py-2")}>
+      <div className="max-w-[1200px] w-full md:px-6 px-5">
+        <div className="flex flex-row items-center justify-between">
+          {/* TITLE */}
           <div>
-            <LogoutButton />
+            <Link href="/">
+              <a>
+                <h1 className="text-xl hover:brightness-200">Great Reads</h1>
+              </a>
+            </Link>
           </div>
-          {/* <li>
-            <Link href="/add-friend">Add Friend</Link>
-          </li> */}
+
+          {/* NAV */}
+          <div>
+            <ul
+              className={classnames(
+                "text-sm flex flex-row wrap space-x-2 text-center items-center md:space-x-10"
+              )}>
+              {/* <li>
+              <Link href="/my-books">Books</Link>
+            </li> */}
+              <li className={navItem}>
+                <Link href="/add-book">
+                  <a>
+                    <SearchIcon />
+                  </a>
+                </Link>
+              </li>
+              <li className={navItem}>
+                <Link href="/my-friends">
+                  <a>
+                    <FriendsIcon />
+                  </a>
+                </Link>
+              </li>
+              <li className={navItem}>
+                <Link href="/my-profile">
+                  <a>
+                    <ProfileIcon />
+                  </a>
+                </Link>
+              </li>
+              <li className={navItem}>
+                <Link href="/user-list" className={classNames("")}>
+                  <a>
+                    <p>Users</p>
+                  </a>
+                </Link>
+              </li>
+              <li className={navItem}>
+                <LogoutButton />
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   );
+}
+
+{
 }

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Link from "next/link";
-import Star from "../public/icons/Star";
+import Star from "./icons/Star";
 
 export default function SearchResult(props) {
   const { key, title, author_name, cover_i } = props.book;
