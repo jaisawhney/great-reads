@@ -1,12 +1,10 @@
 import Head from "next/head";
-// import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
 import classNames from "classnames";
 import SearchIcon from "/public/icons/SearchIcon";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-// maybe this should be search page?
 export default withPageAuthRequired(AddBook);
 
 function AddBook() {
@@ -24,17 +22,20 @@ function AddBook() {
     getShelves();
   }, []);
 
-  function searchSubmit(e) {
-    e.preventDefault();
-    console.log("Searching");
-    const bookTitle = e.target.elements.bookName?.value;
-    if (!bookTitle) return;
-
+  function fetchBook(bookTitle) {
     fetch(`/api/search?q=${bookTitle}`)
       .then((res) => res.json())
       .then((res) => {
-        return setSearchResults(res.docs);
+        setSearchResults(res.docs);
       });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const bookTitle = e.target.elements.bookName?.value;
+
+    if (!bookTitle) return;
+    fetchBook(bookTitle);
   }
 
   function addToShelf(e) {
@@ -101,7 +102,7 @@ function AddBook() {
 
         {/* search bar */}
         <form
-          onSubmit={searchSubmit}
+          onSubmit={handleSubmit}
           className={classNames(
             "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between",
             "md:mb-6 md:w-[300px]"
