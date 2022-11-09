@@ -4,6 +4,10 @@ import UserList from "../components/UserList";
 
 export default withPageAuthRequired(userList);
 
+// ------- TO DO ---------- //
+// is this meant for users or for us in development
+// how do users find and follow people?
+
 function userList(props) {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);

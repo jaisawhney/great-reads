@@ -9,6 +9,10 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 // maybe this should be search page?
 export default withPageAuthRequired(AddBook);
 
+// ------- TO DO ---------- //
+// a LOT
+// is there no book page that it links to? is it too late to make that?
+
 function AddBook() {
   const { user } = useUser();
 

@@ -10,6 +10,12 @@ import { useState, useEffect } from "react";
 
 export default withPageAuthRequired(MyProfile);
 
+// ------- TO DO ---------- //
+// should followers/following be its own set of tabs based on the count above it?
+// prof pic doesnt load reliable, maybe we need to preload it somehow
+// style the new shelf form? maybe a plus icon and then a popup?
+// do we have our basic crud functions for shelves????
+
 function MyProfile() {
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);

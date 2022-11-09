@@ -6,6 +6,12 @@ import Header from "../components/Header";
 // import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  // ------- TO DO ---------- //
+  // more content?
+  // different banner for logged in users vs not logged in
+  // get started button needs to link somewhere
+  // not totally responsive
+
   return (
     <div>
       <Head>
