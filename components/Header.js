@@ -6,6 +6,7 @@ import classNames from "classnames";
 import SearchIcon from "./icons/SearchIcon";
 import LogoutButton from "./LogoutButton";
 import FriendsIcon from "./icons/FriendsIcon";
+import ProfileDropdown from "./ProfileDropdown";
 
 export default function Header() {
   const navItem = "hover:bg-teal-200/50 p-2 rounded-sm transition-all duration-200";
@@ -26,10 +27,7 @@ export default function Header() {
 
           {/* NAV */}
           <div>
-            <ul
-              className={classnames(
-                "text-sm flex flex-row wrap space-x-2 text-center items-center md:space-x-10"
-              )}>
+            <ul className={classnames("flex flex-row space-x-2 items-center md:space-x-10")}>
               {/* <li>
               <Link href="/my-books">Books</Link>
             </li> */}
@@ -40,30 +38,34 @@ export default function Header() {
                   </a>
                 </Link>
               </li>
-              <li className={navItem}>
+              {/* <li className={navItem}>
                 <Link href="/my-friends">
                   <a>
                     <FriendsIcon />
                   </a>
                 </Link>
-              </li>
-              <li className={navItem}>
-                <Link href="/my-profile">
+              </li> */}
+              {/* <Link href="/my-profile">
                   <a>
                     <ProfileIcon />
                   </a>
-                </Link>
-              </li>
+                </Link> */}
               <li className={navItem}>
+                {/* <Link href="/add-book"> */}
+                {/* <a> */}
+                <ProfileDropdown />
+                {/* </a> */}
+                {/* </Link> */}
+              </li>
+              {/* <li className={navItem}>
                 <Link href="/user-list" className={classNames("")}>
                   <a>
                     <p>Users</p>
                   </a>
                 </Link>
-              </li>
-              <li className={navItem}>
-                <LogoutButton />
-              </li>
+              </li> */}
+              {/* <li className={navItem}>
+              </li> */}
             </ul>
           </div>
         </div>

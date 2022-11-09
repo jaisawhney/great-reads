@@ -2,8 +2,6 @@ import classNames from "classnames";
 import Link from "next/link";
 
 export default function Banner() {
-  // bg-[url('/images/guy-reading.jpg')]
-
   return (
     <div
       className={classNames(
@@ -17,7 +15,7 @@ export default function Banner() {
         </h1>
 
         {/* message */}
-        <p className={classNames("text-wrap text-md my-4 text-stone-400", "md:text-xl md:my-0")}>
+        <p className={classNames("text-wrap text-lg my-4 text-stone-400", "md:text-xl md:my-0")}>
           Meet Great Reads. Your all-in-one place to explore books, write reviews, set goals, and
           track your reading.
         </p>
@@ -34,7 +32,7 @@ export default function Banner() {
         </Link>
       </div>
       <div>
-        <img src="/images/sweater.jpg" className=" md:max-w-[600px] h-fit" id="banner-image" />
+        <img src="/images/sweater.jpg" className=" md:max-w-[600px] h-fit mx-2" id="banner-image" />
       </div>
     </div>
   );

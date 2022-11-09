@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <div className="page-wrapper">
         <div className="">{children}</div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
