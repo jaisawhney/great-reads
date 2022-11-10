@@ -5,7 +5,6 @@ import Head from "next/head";
 import BookList from "../components/BookList";
 import classNames from "classnames";
 import SearchIcon from "../components/icons/SearchIcon";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 export default withPageAuthRequired(AddBook);
 

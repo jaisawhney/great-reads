@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import SearchIcon from "../public/icons/SearchIcon";
+import SearchIcon from "../components/icons/SearchIcon";
 import { useRouter } from "next/router";
 
 export default function SearchBar() {
