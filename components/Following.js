@@ -29,7 +29,9 @@ export default function Following(props) {
   return (
     <>
       {pageResults.map((user) => (
-        <div className="p-2 border-b-2 border-slate-600">{user.email}</div>
+        <div className="p-2 border-b-2 border-slate-600">
+          <a href={"u/" + user.email}>{user.email}</a>
+        </div>
       ))}
       <div className="flex flex-row space-x-3 mb-5 mt-7">
         {[...Array(pageCount)].map((option, index) => (
