@@ -8,23 +8,26 @@ export default function SearchResult(props) {
 
   return (
     <Link href="">
-      <div className="flex flex-row w-full bg-zinc-700/40 rounded-sm my-[4px] h-fit items-start py-4 text-white rounded-sm px-3 md:px-6">
+      <div className="flex flex-col w-fit bg-zinc-700/40 rounded-sm  h-480 items-center py-4 text-white rounded-sm px-3 md:px-3">
         {/* book cover, column 1 */}
-        <div className={classNames("flex items-start mr-1 w-36")}>
+        <div className={classNames("flex flex-col text-left w-72 pb-4 pl-4")}>
+          <h1 className="text-md text-ellipsis overflow-hidden">{title}</h1>
+
+          <h2 className="text-sm text-slate-400 text-ellipsis overflow-hidden pl-3">
+            {author_name.join(", ")}
+          </h2>
+        </div>
+        <div className={classNames("flex items-start mr-1 w-36 pb-3")}>
           <img src={cover} className={classNames("", "")} />
         </div>
 
         {/* book title author and button, column 2 */}
-        <div className={classNames("flex flex-col pl-2 w-[230px]", "md:mx-4")}>
-          {/* title and author */}
-          <div className={classNames("flex flex-col text-left")}>
-            <h1 className="text-md text-ellipsis overflow-hidden">{title}</h1>
-            <h2 className="text-sm text-slate-400 text-ellipsis overflow-hidden">
-              {author_name.join(", ")}
-            </h2>
-          </div>
 
-          {/* add to shelf button */}
+        {/* title and author */}
+
+        {/* add to shelf button */}
+        {/* justify at end so all inputs are in the same spot */}
+        <div className={classNames("")}>
           <select
             className="button text-xs"
             onChange={props.addToShelf}
