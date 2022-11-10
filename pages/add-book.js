@@ -7,7 +7,7 @@ import classNames from "classnames";
 import SearchIcon from "../components/icons/SearchIcon";
 
 export default function AddBook(props) {
-  const { user } = props.session;
+  const { user } = props;
 
   const router = useRouter();
   const queryBookTitle = router.query.title;
@@ -158,7 +158,7 @@ export const getServerSideProps = getServerSidePropsWrapper(async (ctx) => {
   const session = await getSession(ctx.req, ctx.res);
   return {
     props: {
-      session: { ...session },
+      user: session?.user || null,
     },
   };
 });
