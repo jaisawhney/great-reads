@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Link from "next/link";
-import Star from "../public/icons/Star";
+import Star from "./icons/Star";
 
 export default function SearchResult(props) {
   const { key, title, author_name, cover_i } = props.book;
@@ -8,23 +8,26 @@ export default function SearchResult(props) {
 
   return (
     <Link href="">
-      <div className="flex flex-row w-full bg-zinc-700/40 rounded-sm my-[4px] h-fit items-start py-4 text-white rounded-sm px-3 md:px-6">
+      <div className="flex flex-col w-100 bg-zinc-700/40 rounded-sm items-center  text-white rounded-sm">
         {/* book cover, column 1 */}
-        <div className={classNames("flex items-start mr-1 w-36")}>
-          <img src={cover} className={classNames("", "")} />
+        <div className={classNames("flex items-start pb-3")}>
+          <img src={cover} className={classNames("w-100")} />
+        </div>
+        <div className={classNames("flex flex-col text-left w-36 pb-4")}>
+          <h1 className="text-md text-ellipsis overflow-hidden">{title}</h1>
+
+          <h2 className="text-sm text-slate-400 text-ellipsis overflow-hidden pl-1">
+            {author_name.join(", ")}
+          </h2>
         </div>
 
         {/* book title author and button, column 2 */}
-        <div className={classNames("flex flex-col pl-2 w-[230px]", "md:mx-4")}>
-          {/* title and author */}
-          <div className={classNames("flex flex-col text-left")}>
-            <h1 className="text-md text-ellipsis overflow-hidden">{title}</h1>
-            <h2 className="text-sm text-slate-400 text-ellipsis overflow-hidden">
-              {author_name.join(", ")}
-            </h2>
-          </div>
 
-          {/* add to shelf button */}
+        {/* title and author */}
+
+        {/* add to shelf button */}
+        {/* justify and align at basline so all inputs are in the same size in the same spot */}
+        <div className={classNames("")}>
           <select
             className="button text-xs"
             onChange={props.addToShelf}

@@ -1,32 +1,34 @@
-import prisma from '../../../lib/prisma';
+import prisma from "../../../lib/prisma";
 
 const sampleBookId = 1;
 const sampleUserId = 1;
 
-export default async function handler(req, res) {
-  if (req.method=='GET'){
+import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+
+export default withApiAuthRequired(async (req, res) => {
+  if (req.method == "GET") {
     const allReviews = await prisma.review.findMany(); // TODO: Add pagination
 
-    res.status(200).json(allReviews)
+    res.status(200).json(allReviews);
   } else {
     const newReview = await prisma.review.create({
       data: {
-        title: 'A piece of art',
-        content: 'A short description',
+        title: "A piece of art",
+        content: "A short description",
         rating: 1,
         user: {
           connect: {
-            id: sampleUserId
-          }
+            id: sampleUserId,
+          },
         },
         book: {
           connect: {
-            id: sampleBookId
-          }
-        }
+            id: sampleBookId,
+          },
+        },
       },
     });
 
-    res.status(200).json(newReview)
+    res.status(200).json(newReview);
   }
-}
+});

@@ -1,6 +1,8 @@
 import prisma from "../../../lib/prisma";
 
-export default async function handler(req, res) {
+import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+
+export default withApiAuthRequired(async (req, res) => {
   if (req.method === "GET") {
     const getUser = await prisma.User.findMany({});
     res.status(200).json(getUser);
@@ -29,4 +31,4 @@ export default async function handler(req, res) {
     });
     return res.status(201).json(req.body);
   }
-}
+});
