@@ -1,6 +1,7 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
-
+import Link from "next/link";
+import BackArrow from "/public/icons/BackArrow";
 import { useRouter } from "next/router";
 import classNames from "classnames";
 import Comment from "../../components/Comment";
@@ -27,6 +28,12 @@ function Book() {
   return (
     <main>
       {/* Book Info */}
+      {/* should figure out how to pass in id of previous booklist */}
+      <Link href="/my-profile">
+        <div className={classNames("")}>
+          <BackArrow />
+        </div>
+      </Link>
       <div className={classNames("flex flex-row w-full text-white py-4 px-3", "md:px-6")}>
         <div>
           <img src={cover} className={classNames("w-20")} />

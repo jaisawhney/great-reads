@@ -121,7 +121,12 @@ function AddBook() {
 
         {/* search results */}
         <BookList books={pageResults} shelves={userShelves} addToShelf={addToShelf} />
-
+        <div
+          className={classNames(
+            "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3"
+          )}>
+          <BookList books={pageResults} shelves={userShelves} addToShelf={addToShelf} />
+        </div>
         {/* pagination */}
         {/* <p>Results</p> */}
         <div className="flex flex-row space-x-3 mb-5 mt-7">
