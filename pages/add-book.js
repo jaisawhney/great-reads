@@ -120,7 +120,10 @@ function AddBook() {
         </form>
 
         {/* search results */}
-        <div className={classNames("grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3")}>
+        <div
+          className={classNames(
+            "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3"
+          )}>
           <BookList books={pageResults} shelves={userShelves} addToShelf={addToShelf} />
         </div>
         {/* pagination */}
