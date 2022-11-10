@@ -1,18 +1,18 @@
 # Great Reads
 
-Being an avid reader is not just a hobby or an interest - it is a lifestyle. 
+Being an avid reader is not just a hobby or an interest - it is a lifestyle.
 
 Great Reads is a one stop shop for everything reading related:
 
-- Save and track books you’ve read 
-- Share your books with your friends 
+- Save and track books you’ve read
+- Share your books with your friends
 - Leave reviews
-- Set daily reading goals 
+- Set daily reading goals
 - Track progress
 
 ---
 
-*Live deployment coming soon, but for now:*
+_Live deployment coming soon, but for now:_
 
 ## Project timeline
 
@@ -20,11 +20,9 @@ Great Reads is a one stop shop for everything reading related:
 
 - Add new features in the months following: November and December
 
-
 ---
 
-## Getting Started 
-
+## Getting Started
 
 **After cloning the repo:**
 
@@ -32,6 +30,13 @@ Install dependencies:
 
 ```bash
 npm install
+```
+
+Make sure you have MySQL installed and a server running on port 3306!
+Migrate the database schema with:
+
+```bash
+npx prisma migrate dev
 ```
 
 Then, run the development server:
@@ -47,7 +52,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ---
 
 ## Tools Used
-
 
 - Next.js - [Documentation](https://nextjs.org/docs)
 - Tailwind CSS - [Documentation](https://tailwindcss.com/docs/installation)
