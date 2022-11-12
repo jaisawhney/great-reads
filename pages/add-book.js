@@ -1,42 +1,58 @@
-import Head from "next/head";
-// import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { useRouter } from "next/router";
+import Head from "next/head";
 import BookList from "../components/BookList";
 import classNames from "classnames";
 import SearchIcon from "../components/icons/SearchIcon";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-// maybe this should be search page?
 export default withPageAuthRequired(AddBook);
 
 function AddBook() {
   const { user } = useUser();
+  const router = useRouter();
+  const queryBookTitle = router.query.title;
+
+  // Search for a book if a parameter is supplied
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    if (queryBookTitle) fetchBook(queryBookTitle);
+  }, [router.isReady]);
 
   const [searchResults, setSearchResults] = useState([]);
   const [userShelves, setUserShelves] = useState([]);
 
+  // Get the user's shelves
   async function getShelves() {
     const shelves = await fetch(`/api/users/${user.sub}/booklists`).then((res) => res.json());
     setUserShelves(shelves);
   }
 
+  // Get shelves on load
   useEffect(() => {
     getShelves();
   }, []);
 
-  function searchSubmit(e) {
-    e.preventDefault();
-    console.log("Searching");
-    const bookTitle = e.target.elements.bookName?.value;
-    if (!bookTitle) return;
-
+  // Search for the book
+  function fetchBook(bookTitle) {
     fetch(`/api/search?q=${bookTitle}`)
       .then((res) => res.json())
       .then((res) => {
-        return setSearchResults(res.docs);
+        setSearchResults(res.docs);
       });
   }
 
+  // Search on submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const bookTitle = e.target.elements.bookName?.value;
+
+    if (!bookTitle) return;
+    fetchBook(bookTitle);
+  }
+
+  // Add to shelf
   function addToShelf(e) {
     const olID = e.target.dataset.olid;
     const shelfID = e.target.value;
@@ -75,15 +91,11 @@ function AddBook() {
   //Set page results
   useEffect(() => {
     if (searchResults.length > 0) {
-      //Manually creating a subset
-      var newPageResults = [];
-      for (var i = 0; i < searchResults.length; i++) {
-        if (i >= page * resultsPerPage - resultsPerPage && i < page * resultsPerPage) {
-          newPageResults.push(searchResults[i]);
-        }
-      }
-
-      setPageResults(newPageResults);
+      const subset = searchResults.slice(
+        page * resultsPerPage - resultsPerPage,
+        page * resultsPerPage
+      );
+      setPageResults(subset);
     }
   }, [page, searchResults]);
 
@@ -101,7 +113,7 @@ function AddBook() {
 
         {/* search bar */}
         <form
-          onSubmit={searchSubmit}
+          onSubmit={handleSubmit}
           className={classNames(
             "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between",
             "md:mb-6 md:w-[300px]"
@@ -111,6 +123,7 @@ function AddBook() {
             name="bookName"
             type="text"
             placeholder="Book Title"
+            defaultValue={queryBookTitle}
             required
           />
           <button className={classNames("mx-1")} type="submit">
@@ -120,8 +133,12 @@ function AddBook() {
         </form>
 
         {/* search results */}
-        <BookList books={pageResults} shelves={userShelves} addToShelf={addToShelf} />
-
+        <div
+          className={classNames(
+            "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3"
+          )}>
+          <BookList books={pageResults} shelves={userShelves} addToShelf={addToShelf} />
+        </div>
         {/* pagination */}
         {/* <p>Results</p> */}
         <div className="flex flex-row space-x-3 mb-5 mt-7">
