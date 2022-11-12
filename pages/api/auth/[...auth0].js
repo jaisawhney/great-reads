@@ -2,11 +2,11 @@ import { handleAuth, handleCallback } from "@auth0/nextjs-auth0";
 import prisma from "../../../lib/prisma";
 
 // The below runs after the auth callback
-const afterCallback = async (req, res, session, state) => {
+const afterCallback = async (req, res, session) => {
   const user = session.user;
 
   // Create the user if not exist
-  await prisma.User.upsert({
+  const prismaUser = await prisma.User.upsert({
     where: {
       auth0Id: user.sub,
     },
@@ -25,6 +25,7 @@ const afterCallback = async (req, res, session, state) => {
     },
   });
 
+  user.internalId = prismaUser.id;
   return session;
 };
 

@@ -1,14 +1,15 @@
-import Link from "next/link";
 import classnames from "classnames";
-import SearchBar from "./SearchBar";
-import ProfileIcon from "./icons/ProfileIcon";
-import classNames from "classnames";
-import SearchIcon from "./icons/SearchIcon";
-import LogoutButton from "./LogoutButton";
+import { useUser } from "@auth0/nextjs-auth0";
 import FriendsIcon from "./icons/FriendsIcon";
+import Link from "next/link";
+import LogoutButton from "./LogoutButton";
+import ProfileIcon from "./icons/ProfileIcon";
+import SearchBar from "./SearchBar";
+import SearchIcon from "./icons/SearchIcon";
 
 export default function Header() {
   const navItem = "hover:bg-teal-200/50 p-2 rounded-sm transition-all duration-200";
+  const { user, isLoading } = useUser();
 
   return (
     // TOPBAR
@@ -48,16 +49,9 @@ export default function Header() {
                 </Link>
               </li>
               <li className={navItem}>
-                <Link href="/my-profile">
+                <Link href="/users/1">
                   <a>
                     <ProfileIcon />
-                  </a>
-                </Link>
-              </li>
-              <li className={navItem}>
-                <Link href="/user-list" className={classNames("")}>
-                  <a>
-                    <p>Users</p>
                   </a>
                 </Link>
               </li>
