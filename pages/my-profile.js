@@ -56,7 +56,11 @@ function MyProfile() {
 
   return (
     <main className={classNames("flex flex-col space-y-6", "md:my-9")}>
-      <div className={classNames("bg-neutral-900 w-full rounded-lg pt-3", "md:p-7 md:rounded-xl")}>
+      <div
+        className={classNames(
+          "bg-neutral-900 w-full rounded-lg pt-3",
+          "md:p-7 md:rounded-xl md:w-fit"
+        )}>
         {/* profile row */}
         <div
           className={classNames(

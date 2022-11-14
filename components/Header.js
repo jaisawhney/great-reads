@@ -19,7 +19,8 @@ export default function Header() {
           {/* TITLE */}
           <div>
             <Link href="/">
-              <a>
+              <a className="flex flex-row items-center space-x-2">
+                <img className="w-12 h-12" src="/images/book-logo.png"></img>
                 <h1 className="text-xl hover:brightness-200">Great Reads</h1>
               </a>
             </Link>
