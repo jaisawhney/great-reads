@@ -3,6 +3,7 @@ import Image from "next/image";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
 // import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
 
       <main className="pt-0 px-0">
         <Banner />
+        <SearchBar />
       </main>
     </div>
   );

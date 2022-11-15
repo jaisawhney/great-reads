@@ -21,7 +21,7 @@ export default function Banner() {
         </p>
 
         {/* get started button */}
-        <Link href="">
+        <Link href="/api/auth/login">
           <button
             className={classNames(
               "bg-teal-700/80 rounded py-1.5 px-8 w-fit my-5 text-lg shadow-lg hover:brightness-75 hover:shadow-xl transition-all duration-200",
