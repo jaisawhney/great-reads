@@ -1,13 +1,12 @@
-import Link from "next/link";
 import classnames from "classnames";
-import SearchBar from "./SearchBar";
-import ProfileIcon from "./icons/ProfileIcon";
-import classNames from "classnames";
-import SearchIcon from "./icons/SearchIcon";
-import LogoutButton from "./LogoutButton";
 import FriendsIcon from "./icons/FriendsIcon";
+import Link from "next/link";
+import LogoutButton from "./LogoutButton";
+import ProfileIcon from "./icons/ProfileIcon";
+import SearchBar from "./SearchBar";
+import SearchIcon from "./icons/SearchIcon";
 
-export default function Header() {
+export default function Header(props) {
   const navItem = "hover:bg-teal-200/50 p-2 rounded-sm transition-all duration-200";
 
   return (
@@ -30,9 +29,7 @@ export default function Header() {
               className={classnames(
                 "text-sm flex flex-row wrap space-x-2 text-center items-center md:space-x-10"
               )}>
-              {/* <li>
-              <Link href="/my-books">Books</Link>
-            </li> */}
+              {/* <li> <Link href="/my-books">Books</Link> </li> */}
               <li className={navItem}>
                 <Link href="/add-book">
                   <a>
@@ -40,6 +37,7 @@ export default function Header() {
                   </a>
                 </Link>
               </li>
+
               <li className={navItem}>
                 <Link href="/my-friends">
                   <a>
@@ -47,30 +45,26 @@ export default function Header() {
                   </a>
                 </Link>
               </li>
-              <li className={navItem}>
-                <Link href="/my-profile">
-                  <a>
-                    <ProfileIcon />
-                  </a>
-                </Link>
-              </li>
-              <li className={navItem}>
-                <Link href="/user-list" className={classNames("")}>
-                  <a>
-                    <p>Users</p>
-                  </a>
-                </Link>
-              </li>
-              <li className={navItem}>
-                <LogoutButton />
-              </li>
+
+              {props.userId && (
+                <li className={navItem}>
+                  <Link href={"/users/" + props.userId}>
+                    <a>
+                      <ProfileIcon />
+                    </a>
+                  </Link>
+                </li>
+              )}
+
+              {props.userId && (
+                <li className={navItem}>
+                  <LogoutButton />
+                </li>
+              )}
             </ul>
           </div>
         </div>
       </div>
     </div>
   );
-}
-
-{
 }
