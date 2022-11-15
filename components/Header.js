@@ -29,9 +29,7 @@ export default function Header(props) {
               className={classnames(
                 "text-sm flex flex-row wrap space-x-2 text-center items-center md:space-x-10"
               )}>
-              {/* <li>
-              <Link href="/my-books">Books</Link>
-            </li> */}
+              {/* <li> <Link href="/my-books">Books</Link> </li> */}
               <li className={navItem}>
                 <Link href="/add-book">
                   <a>
@@ -39,6 +37,7 @@ export default function Header(props) {
                   </a>
                 </Link>
               </li>
+
               <li className={navItem}>
                 <Link href="/my-friends">
                   <a>
@@ -46,16 +45,22 @@ export default function Header(props) {
                   </a>
                 </Link>
               </li>
-              <li className={navItem}>
-                <Link href={"/users/" + props.userId}>
-                  <a>
-                    <ProfileIcon />
-                  </a>
-                </Link>
-              </li>
-              <li className={navItem}>
-                <LogoutButton />
-              </li>
+
+              {props.userId && (
+                <li className={navItem}>
+                  <Link href={"/users/" + props.userId}>
+                    <a>
+                      <ProfileIcon />
+                    </a>
+                  </Link>
+                </li>
+              )}
+
+              {props.userId && (
+                <li className={navItem}>
+                  <LogoutButton />
+                </li>
+              )}
             </ul>
           </div>
         </div>
