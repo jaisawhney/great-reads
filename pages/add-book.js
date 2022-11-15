@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { getServerSidePropsWrapper, getSession } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import BookList from "../components/BookList";
 import classNames from "classnames";
 import SearchIcon from "../components/icons/SearchIcon";
 
-export default withPageAuthRequired(AddBook);
+export default function AddBook(props) {
+  const { user } = props;
 
-function AddBook() {
-  const { user } = useUser();
   const router = useRouter();
   const queryBookTitle = router.query.title;
 
@@ -17,7 +16,7 @@ function AddBook() {
   useEffect(() => {
     if (!router.isReady) return;
 
-    if (queryBookTitle) fetchBook(queryBookTitle);
+    if (queryBookTitle) fetchBooks(queryBookTitle);
   }, [router.isReady]);
 
   const [searchResults, setSearchResults] = useState([]);
@@ -31,11 +30,11 @@ function AddBook() {
 
   // Get shelves on load
   useEffect(() => {
-    getShelves();
+    if (user) getShelves();
   }, []);
 
   // Search for the book
-  function fetchBook(bookTitle) {
+  function fetchBooks(bookTitle) {
     fetch(`/api/search?q=${bookTitle}`)
       .then((res) => res.json())
       .then((res) => {
@@ -48,8 +47,7 @@ function AddBook() {
     e.preventDefault();
     const bookTitle = e.target.elements.bookName?.value;
 
-    if (!bookTitle) return;
-    fetchBook(bookTitle);
+    if (bookTitle) fetchBooks(bookTitle);
   }
 
   // Add to shelf
@@ -155,3 +153,12 @@ function AddBook() {
     </div>
   );
 }
+
+export const getServerSideProps = getServerSidePropsWrapper(async (ctx) => {
+  const session = await getSession(ctx.req, ctx.res);
+  return {
+    props: {
+      user: session?.user || null,
+    },
+  };
+});
