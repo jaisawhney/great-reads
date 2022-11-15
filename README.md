@@ -12,7 +12,7 @@ Great Reads is a one stop shop for everything reading related:
 
 ---
 
-Enjoy the current iteration of Great Reads [Here](https://great-reads-qacg-lartg.vercel.app/)
+Enjoy the current iteration of Great Reads [Here!](https://great-reads-qacg-lartg.vercel.app/)
 
 ## Project timeline
 
@@ -38,7 +38,12 @@ Make sure you have MySQL installed and a server running on port 3306!
 
 ### Add Environment Variables:
 
+##### in .env
+
 - DATABASE_URL
+
+##### in .env.local
+
 - AUTH0_SECRET
 - AUTH0_BASE_URL
 - AUTH0_ISSUER_BASE_URL
@@ -68,3 +73,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Auth0 - [Documentation](https://auth0.com/docs/)
 - MySQL - [Documentation](https://dev.mysql.com/doc/)
 - Prisma - [Documentation](https://www.prisma.io/docs/)
+- Pagination
+- Google Books
