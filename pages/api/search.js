@@ -1,6 +1,4 @@
-import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
-
-export default withApiAuthRequired(async (req, res) => {
+export default async (req, res) => {
   try {
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
@@ -15,4 +13,4 @@ export default withApiAuthRequired(async (req, res) => {
     res.status(500);
     res.end();
   }
-});
+};
