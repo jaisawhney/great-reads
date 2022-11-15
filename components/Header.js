@@ -5,19 +5,22 @@ import LogoutButton from "./LogoutButton";
 import ProfileIcon from "./icons/ProfileIcon";
 import SearchBar from "./SearchBar";
 import SearchIcon from "./icons/SearchIcon";
+import ProfileDropdown from "./ProfileDropdown";
+import { userAgent } from "next/server";
 
 export default function Header(props) {
   const navItem = "hover:bg-teal-200/50 p-2 rounded-sm transition-all duration-200";
 
   return (
     // TOPBAR
-    <div className={classnames("bg-teal-900 w-full text-stone-100 flex justify-center py-2")}>
+    <div className={classnames("bg-teal-900 w-full text-stone-100 flex justify-center py-1")}>
       <div className="max-w-[1200px] w-full md:px-6 px-5">
         <div className="flex flex-row items-center justify-between">
           {/* TITLE */}
           <div>
             <Link href="/">
-              <a>
+              <a className="flex flex-row items-center space-x-2">
+                <img className="w-12 h-12" src="/images/book-logo.png"></img>
                 <h1 className="text-xl hover:brightness-200">Great Reads</h1>
               </a>
             </Link>
@@ -38,15 +41,15 @@ export default function Header(props) {
                 </Link>
               </li>
 
-              <li className={navItem}>
+              {/* <li className={navItem}>
                 <Link href="/my-friends">
                   <a>
                     <FriendsIcon />
                   </a>
                 </Link>
-              </li>
+              </li> */}
 
-              {props.userId && (
+              {/* {props.userId && (
                 <li className={navItem}>
                   <Link href={"/users/" + props.userId}>
                     <a>
@@ -60,7 +63,9 @@ export default function Header(props) {
                 <li className={navItem}>
                   <LogoutButton />
                 </li>
-              )}
+              )} */}
+
+              <ProfileDropdown userId={props.userId} />
             </ul>
           </div>
         </div>

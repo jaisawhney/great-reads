@@ -19,24 +19,24 @@ export default function ProfileTabs(props) {
       <Tabs.List
         className={classNames("flex flex-row w-full justify-between flex-wrap", "md:flex-nowrap")}
         aria-label="tabs">
-        <Tabs.Trigger className={tabStyle} value="feed">
+        {/* <Tabs.Trigger className={tabStyle} value="feed">
           Feed
-        </Tabs.Trigger>
+        </Tabs.Trigger> */}
         <Tabs.Trigger className={tabStyle} value="shelves">
           Shelves
         </Tabs.Trigger>
-        <Tabs.Trigger className={tabStyle} value="reviews">
+        {/* <Tabs.Trigger className={tabStyle} value="reviews">
           Reviews
-        </Tabs.Trigger>
+        </Tabs.Trigger> */}
         <Tabs.Trigger className={tabStyle} value="follows">
           Followers
         </Tabs.Trigger>
         <Tabs.Trigger className={tabStyle} value="following">
           Following
         </Tabs.Trigger>
-        <Tabs.Trigger className={tabStyle} value="about">
+        {/* <Tabs.Trigger className={tabStyle} value="about">
           About
-        </Tabs.Trigger>
+        </Tabs.Trigger> */}
       </Tabs.List>
 
       {/* tabs */}
