@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import { useUser } from "@auth0/nextjs-auth0";
 import FriendsIcon from "./icons/FriendsIcon";
 import Link from "next/link";
 import LogoutButton from "./LogoutButton";
@@ -7,9 +6,8 @@ import ProfileIcon from "./icons/ProfileIcon";
 import SearchBar from "./SearchBar";
 import SearchIcon from "./icons/SearchIcon";
 
-export default function Header() {
+export default function Header(props) {
   const navItem = "hover:bg-teal-200/50 p-2 rounded-sm transition-all duration-200";
-  const { user, isLoading } = useUser();
 
   return (
     // TOPBAR
@@ -49,7 +47,7 @@ export default function Header() {
                 </Link>
               </li>
               <li className={navItem}>
-                <Link href="/users/1">
+                <Link href={"/users/" + props.userId}>
                   <a>
                     <ProfileIcon />
                   </a>
@@ -64,7 +62,4 @@ export default function Header() {
       </div>
     </div>
   );
-}
-
-{
 }
