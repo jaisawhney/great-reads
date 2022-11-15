@@ -12,13 +12,15 @@ Great Reads is a one stop shop for everything reading related:
 
 ---
 
-_Live deployment coming soon, but for now:_
+Enjoy the current iteration of Great Reads [Here](https://great-reads-qacg-lartg.vercel.app/)
 
 ## Project timeline
 
-- October - release product with limited features
+- September - CRUD resources/environment setup
 
-- Add new features in the months following: November and December
+- October - release product with limited features and styling
+
+- November - Add features, tailor styling
 
 ---
 
@@ -26,25 +28,33 @@ _Live deployment coming soon, but for now:_
 
 **After cloning the repo:**
 
-Install dependencies:
+### Install dependencies:
 
 ```bash
 npm install
 ```
 
 Make sure you have MySQL installed and a server running on port 3306!
-Migrate the database schema with:
+
+### Add Environment Variables:
+
+- DATABASE_URL
+- AUTH0_SECRET
+- AUTH0_BASE_URL
+- AUTH0_ISSUER_BASE_URL
+- AUTH0_CLIENT_ID
+- AUTH0_CLIENT_SECRET
+
+### Migrate the database schema with:
 
 ```bash
 npx prisma migrate dev
 ```
 
-Then, run the development server:
+### Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
