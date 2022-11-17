@@ -15,7 +15,7 @@ export default function CommentReplyForm(props) {
       }),
     }).then(async (res) => {
       if (!res.ok) console.log("Problem");
-      alert("Comment added!");
+      await props.refreshBook();
     });
     e.target.reset();
   }

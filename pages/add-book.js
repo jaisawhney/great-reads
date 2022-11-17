@@ -5,10 +5,21 @@ import Head from "next/head";
 import BookList from "../components/BookList";
 import classNames from "classnames";
 import SearchIcon from "../components/icons/SearchIcon";
+import NotificationBar from "../components/NotificationBar";
 
 export default function AddBook(props) {
   const { user } = props;
 
+  /* Notification bar msg */
+  const [barMsg, setBarMsg] = useState("");
+  const [barVisibility, setBarVisibility] = useState(false);
+
+  function displayBar(msg) {
+    setBarMsg(msg);
+    setBarVisibility(true);
+  }
+
+  /* Pre set search value */
   const router = useRouter();
   const queryBookTitle = router.query.title;
 
@@ -19,10 +30,10 @@ export default function AddBook(props) {
     if (queryBookTitle) fetchBooks(queryBookTitle);
   }, [router.isReady]);
 
+  /* User's book shelves */
   const [searchResults, setSearchResults] = useState([]);
   const [userShelves, setUserShelves] = useState([]);
 
-  // Get the user's shelves
   async function getShelves() {
     const shelves = await fetch(`/api/users/${user.sub}/booklists`).then((res) => res.json());
     setUserShelves(shelves);
@@ -33,7 +44,7 @@ export default function AddBook(props) {
     if (user) getShelves();
   }, []);
 
-  // Search for the book
+  /* Book searching */
   function fetchBooks(bookTitle) {
     fetch(`/api/search?q=${bookTitle}`)
       .then((res) => res.json())
@@ -50,7 +61,7 @@ export default function AddBook(props) {
     if (bookTitle) fetchBooks(bookTitle);
   }
 
-  // Add to shelf
+  /* Add to shelf */
   function addToShelf(e) {
     const olID = e.target.dataset.olid;
     const shelfID = e.target.value;
@@ -63,18 +74,17 @@ export default function AddBook(props) {
         shelfID: parseInt(shelfID),
       }),
     }).then((res) => {
-      // TODO: Replace the lines below
-      if (!res.ok) return alert("Error while adding book!");
+      if (!res.ok) return displayBar("Error while adding book!");
 
       if (res.status === 200) {
-        alert("Book already in shelf!");
+        displayBar("Book already in shelf!");
       } else {
-        alert("Book added!");
+        displayBar("Book added!");
       }
     });
   }
 
-  //Generating current page as well as all page options
+  /* Pagination  */
   const [page, setPage] = useState(1);
   const [pageResults, setPageResults] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -104,8 +114,14 @@ export default function AddBook(props) {
       </Head>
 
       <main className={classNames("items-center")}>
-        {/* if we could make the search bar` into its own component that would be great */}
-        {/* then we can reuse the code and have a search bar in the header */}
+        {/* I don't know how we want to style this div */}
+        <div className={classNames("p-6")}>
+          <NotificationBar
+            visibility={barVisibility}
+            setVisibility={setBarVisibility}
+            message={barMsg}
+          />
+        </div>
 
         <h1 className={classNames("text-2xl w-full text-center mb-5")}>Search the library!</h1>
 
