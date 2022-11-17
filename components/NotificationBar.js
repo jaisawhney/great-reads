@@ -1,9 +1,9 @@
 import classNames from "classnames";
 
-export default function ProfileContent(props) {
+export default function NotificationBar(props) {
   return (
-    <div>
-      <p>i am a banner</p>
+    <div className={classNames(props.isVisible ? "" : "hidden")}>
+      <p>{props.message}</p>
     </div>
   );
 }
