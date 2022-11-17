@@ -10,7 +10,7 @@ import NotificationBar from "../components/NotificationBar";
 export default function AddBook(props) {
   const { user } = props;
 
-  // Notification bar msg
+  /* Notification bar msg */
   const [barMsg, setBarMsg] = useState("");
   const [barVisibility, setBarVisibility] = useState(false);
 
@@ -19,6 +19,7 @@ export default function AddBook(props) {
     setBarVisibility(true);
   }
 
+  /* Pre set search value */
   const router = useRouter();
   const queryBookTitle = router.query.title;
 
@@ -29,10 +30,10 @@ export default function AddBook(props) {
     if (queryBookTitle) fetchBooks(queryBookTitle);
   }, [router.isReady]);
 
+  /* User's book shelves */
   const [searchResults, setSearchResults] = useState([]);
   const [userShelves, setUserShelves] = useState([]);
 
-  // Get the user's shelves
   async function getShelves() {
     const shelves = await fetch(`/api/users/${user.sub}/booklists`).then((res) => res.json());
     setUserShelves(shelves);
@@ -43,7 +44,7 @@ export default function AddBook(props) {
     if (user) getShelves();
   }, []);
 
-  // Search for the book
+  /* Book searching */
   function fetchBooks(bookTitle) {
     fetch(`/api/search?q=${bookTitle}`)
       .then((res) => res.json())
@@ -60,7 +61,7 @@ export default function AddBook(props) {
     if (bookTitle) fetchBooks(bookTitle);
   }
 
-  // Add to shelf
+  /* Add to shelf */
   function addToShelf(e) {
     const olID = e.target.dataset.olid;
     const shelfID = e.target.value;
@@ -73,7 +74,6 @@ export default function AddBook(props) {
         shelfID: parseInt(shelfID),
       }),
     }).then((res) => {
-      // TODO: Replace the lines below
       if (!res.ok) return displayBar("Error while adding book!");
 
       if (res.status === 200) {
@@ -84,7 +84,7 @@ export default function AddBook(props) {
     });
   }
 
-  //Generating current page as well as all page options
+  /* Pagination  */
   const [page, setPage] = useState(1);
   const [pageResults, setPageResults] = useState([]);
   const [pageCount, setPageCount] = useState(0);
