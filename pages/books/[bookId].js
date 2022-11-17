@@ -51,11 +51,11 @@ function Book() {
       <div className={classNames("flex flex-col w-full text-white py-4 px-3", "md:px-6")}>
         <div className={classNames("border-b")}>
           <h1>Comments</h1>
-          <CommentForm book={book} />
+          <CommentForm book={book} refreshBook={getBook} />
         </div>
         <div>
           {book.comments?.map((comment, i) => {
-            return <Comment comment={comment} key={i} />;
+            return <Comment comment={comment} refreshBook={getBook} key={i} />;
           })}
         </div>
       </div>

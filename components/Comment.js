@@ -29,13 +29,13 @@ export default function Comment(props) {
         <button type="button" className={classNames("button")} onClick={toggleReplyForm}>
           Reply
         </button>
-        {isReplying && <CommentReplyForm comment={props.comment} />}
+        {isReplying && <CommentReplyForm comment={props.comment} refreshBook={props.refreshBook} />}
       </div>
 
       {/* Replies */}
       <div>
         {props.comment.replies?.map((comment, i) => {
-          return <Comment comment={comment} key={i} />;
+          return <Comment comment={comment} refreshBook={props.refreshBook} key={i} />;
         })}
       </div>
     </div>
