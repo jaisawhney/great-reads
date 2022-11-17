@@ -5,9 +5,19 @@ import Head from "next/head";
 import BookList from "../components/BookList";
 import classNames from "classnames";
 import SearchIcon from "../components/icons/SearchIcon";
+import NotificationBar from "../components/NotificationBar";
 
 export default function AddBook(props) {
   const { user } = props;
+
+  // Notification bar msg
+  const [barMsg, setBarMsg] = useState("");
+  const [barVisibility, setBarVisibility] = useState(false);
+
+  function displayBar(msg) {
+    setBarMsg(msg);
+    setBarVisibility(true);
+  }
 
   const router = useRouter();
   const queryBookTitle = router.query.title;
@@ -64,12 +74,12 @@ export default function AddBook(props) {
       }),
     }).then((res) => {
       // TODO: Replace the lines below
-      if (!res.ok) return alert("Error while adding book!");
+      if (!res.ok) return displayBar("Error while adding book!");
 
       if (res.status === 200) {
-        alert("Book already in shelf!");
+        displayBar("Book already in shelf!");
       } else {
-        alert("Book added!");
+        displayBar("Book added!");
       }
     });
   }
@@ -104,8 +114,14 @@ export default function AddBook(props) {
       </Head>
 
       <main className={classNames("items-center")}>
-        {/* if we could make the search bar` into its own component that would be great */}
-        {/* then we can reuse the code and have a search bar in the header */}
+        {/* I don't know how we want to style this div */}
+        <div className={classNames("p-6")}>
+          <NotificationBar
+            visibility={barVisibility}
+            setVisibility={setBarVisibility}
+            message={barMsg}
+          />
+        </div>
 
         <h1 className={classNames("text-2xl w-full text-center mb-5")}>Search the library!</h1>
 
