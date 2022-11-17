@@ -4,7 +4,7 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import BackArrow from "/components/icons/BackArrow";
+import BackArrow from "../../components/icons/BackArrow";
 export default withPageAuthRequired(ListId);
 
 function ListId() {

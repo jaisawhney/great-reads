@@ -1,7 +1,7 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import BackArrow from "/public/icons/BackArrow";
+import BackArrow from "..././components/icons/BackArrow";
 import { useRouter } from "next/router";
 import classNames from "classnames";
 import Comment from "../../components/Comment";
