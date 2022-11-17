@@ -73,5 +73,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Auth0 - [Documentation](https://auth0.com/docs/)
 - MySQL - [Documentation](https://dev.mysql.com/doc/)
 - Prisma - [Documentation](https://www.prisma.io/docs/)
-- Google Books
-- Search
