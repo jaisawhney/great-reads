@@ -1,16 +1,14 @@
 import classNames from "classnames";
 import BannerCloseIcon from "./icons/BannerCloseIcon";
-import { useState } from "react";
 
 export default function NotificationBar(props) {
-  const [isVisible, setVisibility] = useState(true);
-
   function hideBanner() {
-    setVisibility(false);
+    props.setVisibility(false);
   }
 
   return (
-    <div className={classNames(isVisible ? "" : "hidden", "bg-teal-800 w-100 mx-auto p-2", "")}>
+    <div
+      className={classNames(props.visibility ? "" : "hidden", "bg-teal-800 w-100 mx-auto p-2", "")}>
       <div className={classNames("flex items-center justify-between")}>
         <div className={classNames("flex flex-shrink-0")}>
           <p>{props.message}</p>
