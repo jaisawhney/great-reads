@@ -39,7 +39,7 @@ export default function ProfileDropdown(props) {
             <Menu.Item className={DropdownStyle}>
               {({ active }) => (
                 <a href="/api/auth/login">
-                  <p>join</p>
+                  <p>Sign In</p>
                 </a>
               )}
             </Menu.Item>

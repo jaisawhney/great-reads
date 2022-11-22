@@ -8,7 +8,7 @@
 
 .page-wrapper {
   @apply px-1 py-3;
-  @apply max-w-[1200px] md:px-6 md:py-0;
+  @apply md:w-[1200px] md:px-6 md:py-0;
 }
 
 .container-fluid {
@@ -37,7 +37,7 @@ body {
 }
 
 .home-section {
-  @apply w-full flex rounded-sm flex-col items-center py-9 bg-neutral-900/80 mb-9 rounded-lg shadow-xl;
+  @apply w-full flex rounded-sm flex-col items-center py-4 bg-neutral-900/80 mb-3 rounded-lg shadow-xl;
   @apply md:flex-row md:px-7;
 }
 

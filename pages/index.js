@@ -26,9 +26,9 @@ export default function Home() {
       <main className="pt-0 px-0">
         {/* -------------- RETURNING USER HOMEPAGE ----------------- */}
 
-        <section className={classNames("home-section", "bg-neutral-600/30 md:mt-5")}>
+        {/* <section className={classNames("home-section", "bg-neutral-600/30 md:mt-5")}>
           <img className={classNames("md:-mx-6")} src="/images/cozy-reading.png" />
-          <div>
+          <div className="flex flex-col items-center">
             <h1 className="text-4xl md:text-5xl md:w-full mb-3 mt-2 text-center">
               Hi again, username!
             </h1>
@@ -37,7 +37,7 @@ export default function Home() {
                 "flex flex-col text-center space-y-2 w-full text-left mt-7 mb-3",
                 "md:mt-12 md:items-start"
               )}>
-              <p className="text-xl">Need Another Book?</p>
+              <p className="text-xl text-neutral-400 mb-2">Need Another Book?</p>
               <SearchBar />
             </div>
           </div>
@@ -57,12 +57,14 @@ export default function Home() {
             </Link>
           </div>
           <img src="/images/bookshelves.png" />
-        </section>
+        </section> */}
 
         {/* -------------- NEW USER HOMEPAGE ----------------- */}
-        {/* <section className={classNames("home-section", "")}>
+        <section className={classNames("home-section", "md:mt-4")}>
           <div className="flex flex-col items-center">
-            <p className="text-2xl md:text-3xl md:w-full text-left">Like books? Us too!</p>
+            <p className="text-2xl md:text-2xl md:w-full text-left text-neutral-400">
+              Like books? Us too!
+            </p>
             <h1 className="text-4xl md:text-5xl md:w-full mb-3 mt-2 text-center">
               Welcome to Great Reads
             </h1>
@@ -85,16 +87,16 @@ export default function Home() {
             <p className="text-3xl md:text-5xl md:w-full text-left font-bold">
               Organize with Shelves
             </p>
-            <p className="text-xl md:w-full text-center px-3">
+            <p className="text-xl md:w-full text-center px-3 text-neutral-400">
               We'll make a few to help you get started.
             </p>
           </div>
         </section>
 
-        <section className={classNames("home-section", "")}>
+        <section className={classNames("home-section ", "")}>
           <div className="flex flex-col items-center space-y-2 md:space-y-7 md:text-left">
             <p className="text-3xl md:text-5xl md:w-full font-bold">Did you like it?</p>
-            <p className="text-xl px-6 text-center md:px-0 md:w-full md:text-left ">
+            <p className="text-xl px-6 text-center md:px-0 md:w-full md:text-left text-neutral-400">
               Comment and share your opinions with other readers.
             </p>
           </div>
@@ -105,7 +107,7 @@ export default function Home() {
           <img src="/images/following.png" />
           <div className="flex flex-col items-center space-y-2 md:space-y-7">
             <p className="text-3xl md:text-5xl md:w-full text-left font-bold">Hey Friend! </p>
-            <p className="text-xl md:w-full text-center px-6">
+            <p className="text-xl md:w-full text-center px-6 text-neutral-400 md:px-0">
               Follow your friends to stay up to date on their reading.
             </p>
           </div>
@@ -116,11 +118,13 @@ export default function Home() {
             <p className="text-3xl md:text-5xl md:w-full text-center px-9 font-bold">
               So what are you waiting for?
             </p>
-            <p className="text-xl md:w-full text-center px-6">Let's get reading! </p>
+            <p className="text-xl md:w-full text-center px-6 text-neutral-400">
+              Let's get reading!
+            </p>
             <SearchBar />
           </div>
           <img src="/images/excited-book.png" className="" />
-        </section> */}
+        </section>
       </main>
     </div>
   );
