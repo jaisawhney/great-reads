@@ -26,8 +26,8 @@ export default function Home() {
       <main className="pt-0 px-0">
         {/* -------------- RETURNING USER HOMEPAGE ----------------- */}
 
-        {/* <section className={classNames("home-section", "bg-neutral-600/30 md:mt-5")}>
-          <img className={classNames("md:-mx-6")} src="/images/cozy-reading.png" />
+        <section className={classNames("home-section mt-2", "bg-neutral-600/30")}>
+          <img className={classNames("md:-mx-6 md:max-w-fit")} src="/images/cozy-reading.png" />
           <div className="flex flex-col items-center">
             <h1 className="text-4xl md:text-5xl md:w-full mb-3 mt-2 text-center">
               Hi again, username!
@@ -57,10 +57,10 @@ export default function Home() {
             </Link>
           </div>
           <img src="/images/bookshelves.png" />
-        </section> */}
+        </section>
 
         {/* -------------- NEW USER HOMEPAGE ----------------- */}
-        <section className={classNames("home-section", "md:mt-4")}>
+        {/* <section className={classNames("home-section", "md:mt-4")}>
           <div className="flex flex-col items-center">
             <p className="text-2xl md:text-2xl md:w-full text-left text-neutral-400">
               Like books? Us too!
@@ -124,7 +124,7 @@ export default function Home() {
             <SearchBar />
           </div>
           <img src="/images/excited-book.png" className="" />
-        </section>
+        </section> */}
       </main>
     </div>
   );
