@@ -18,7 +18,9 @@ export default function ProfileContent(props) {
           {/* profile info */}
           <div className={classNames("flex flex-col space-y-1", "md:space-y-2")}>
             {/* name */}
-            <h1 className={classNames("text-xl", "md:text-3xl")}>{props.currentUser.email}</h1>{" "}
+            <h1 className={classNames("text-xl", "md:text-3xl")}>
+              {props.currentUser.username}
+            </h1>{" "}
             {/* profile numbers */}
             <div className={classNames("flex flex-row space-x-4", "")}>
               {/* follower count */}
