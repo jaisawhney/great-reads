@@ -3,6 +3,12 @@ import Image from "next/image";
 import ProfileTabs from "./ProfileTabs";
 
 export default function ProfileContent(props) {
+  function followerUser() {
+    fetch(`/api/users/${props.user.internalId}/follow`, {
+      method: "POST",
+    });
+  }
+
   return (
     <main className={classNames("flex flex-col space-y-6", "md:my-9")}>
       <div className={classNames("bg-neutral-900 w-full rounded-lg pt-3", "md:p-7 md:rounded-xl")}>
@@ -32,6 +38,14 @@ export default function ProfileContent(props) {
               <div className={classNames("flex flex-col items-center text-white/70", "")}>
                 <h3 className={classNames("text-sm", "")}>{props.following.length} Following</h3>{" "}
               </div>
+
+              {props.user && (
+                <div className={classNames("flex flex-col items-center text-white/70", "")}>
+                  <button type="button" className={classNames("button")} onClick={followerUser}>
+                    Follow
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
