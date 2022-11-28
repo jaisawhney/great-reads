@@ -54,20 +54,14 @@ export default function ProfileContent(props) {
                 <h3 className={classNames("text-sm", "")}>{props.following.length} Following</h3>{" "}
               </div>
 
-              {/* Follow button */}
-              {props.user.internalId != props.currentUser.id && !isFollowing && (
+              {/* Follow/Unfollow Button */}
+              {props.user.internalId != props.currentUser.id && (
                 <div className={classNames("flex flex-col items-center text-white/70", "")}>
-                  <button type="button" onClick={followUser} className={classNames("button")}>
-                    Follow
-                  </button>
-                </div>
-              )}
-
-              {/* Unfollow button */}
-              {props.user.internalId != props.currentUser.id && isFollowing && (
-                <div className={classNames("flex flex-col items-center text-white/70", "")}>
-                  <button type="button" onClick={unfollowUser} className={classNames("button")}>
-                    unfollow
+                  <button
+                    type="button"
+                    onClick={isFollowing ? unfollowUser : followUser}
+                    className={classNames("button")}>
+                    {isFollowing ? "Unfollow" : "Follow"}
                   </button>
                 </div>
               )}
