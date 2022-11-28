@@ -37,8 +37,8 @@ body {
 }
 
 .home-section {
-  @apply w-full flex rounded-sm flex-col items-center py-4 bg-neutral-900/80 mb-3 rounded-lg shadow-xl;
-  @apply lg:flex-row md:px-7;
+  @apply w-full flex rounded-sm flex-col items-center py-4 bg-neutral-900/80  mt-3 rounded-lg shadow-xl justify-evenly;
+  @apply md:flex-row-reverse flex-col md:px-7 md:mb-5;
 }
 
 button {
