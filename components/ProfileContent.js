@@ -6,8 +6,23 @@ export default function ProfileContent(props) {
   function followUser() {
     fetch(`/api/users/${props.currentUser.id}/follow`, {
       method: "POST",
+    }).then(async (res) => {
+      if (!res.ok) console.log("Problem");
+      await props.refreshFollowers();
     });
   }
+
+  function unfollowUser() {
+    fetch(`/api/users/${props.currentUser.id}/unfollow`, {
+      method: "DELETE",
+    }).then(async (res) => {
+      if (!res.ok) console.log("Problem");
+      await props.refreshFollowers();
+    });
+  }
+
+  // Check if user is following this profile
+  const isFollowing = [...props.followers.map((u) => u.id)].includes(props.user.internalId);
 
   return (
     <main className={classNames("flex flex-col space-y-6", "md:my-9")}>
@@ -39,15 +54,23 @@ export default function ProfileContent(props) {
                 <h3 className={classNames("text-sm", "")}>{props.following.length} Following</h3>{" "}
               </div>
 
-              {/* Hide follow button if following */}
-              {props.user.internalId != props.currentUser.id &&
-                ![...props.followers.map((u) => u.id)].includes(props.user.internalId) && (
-                  <div className={classNames("flex flex-col items-center text-white/70", "")}>
-                    <button type="button" onClick={followUser} className={classNames("button")}>
-                      Follow
-                    </button>
-                  </div>
-                )}
+              {/* Follow button */}
+              {props.user.internalId != props.currentUser.id && !isFollowing && (
+                <div className={classNames("flex flex-col items-center text-white/70", "")}>
+                  <button type="button" onClick={followUser} className={classNames("button")}>
+                    Follow
+                  </button>
+                </div>
+              )}
+
+              {/* Unfollow button */}
+              {props.user.internalId != props.currentUser.id && isFollowing && (
+                <div className={classNames("flex flex-col items-center text-white/70", "")}>
+                  <button type="button" onClick={unfollowUser} className={classNames("button")}>
+                    unfollow
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

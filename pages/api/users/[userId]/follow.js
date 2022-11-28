@@ -8,9 +8,6 @@ async function FollowSomeone(req, res) {
   const userToFollowId = parseInt(req.query.userId);
   const userToFollow = await prisma.User.findFirst({ where: { id: userToFollowId } });
 
-  console.log("currentUser signed in:", user.internalId);
-  console.log("tofollow user:", userToFollowId);
-
   if (userToFollow) {
     // Create Connection if does not exist
     const followTransaction = await prisma.follows.upsert({
@@ -32,5 +29,5 @@ async function FollowSomeone(req, res) {
   }
 
   // User not found
-  if (!existUser) return res.status(401).json({ status: 401 });
+  return res.status(401).json({ status: 401 });
 }

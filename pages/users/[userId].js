@@ -46,6 +46,7 @@ function Profile(req, res) {
         user={user}
         followers={followers}
         following={following}
+        refreshFollowers={getFollowers}
       />
     );
   } else {
