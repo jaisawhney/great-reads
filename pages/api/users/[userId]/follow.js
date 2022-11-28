@@ -5,48 +5,32 @@ export default withApiAuthRequired(FollowSomeone);
 
 async function FollowSomeone(req, res) {
   const { user } = getSession(req, res);
+  const userToFollowId = parseInt(req.query.userId);
+  const userToFollow = await prisma.User.findFirst({ where: { id: userToFollowId } });
 
-  const userToFollow = parseInt(req.query.userId);
+  console.log("currentUser signed in:", user.internalId);
+  console.log("tofollow user:", userToFollowId);
 
-  //Get our own user to get our user ID
-  const thisUser = await prisma.User.findUnique({
-    where: { auth0Id: user.sub },
-  });
-  //Check if user we wish to follow exists
-  const existUser = await prisma.User.findFirst({
-    where: {
-      id: parseInt(userToFollow),
-    },
-  });
+  if (userToFollow) {
+    // Create Connection if does not exist
+    const followTransaction = await prisma.follows.upsert({
+      where: {
+        followerId_followingId: {
+          followerId: user.internalId,
+          followingId: userToFollowId,
+        },
+      },
+      update: {},
+      create: {
+        followerId: user.internalId,
+        followingId: userToFollowId,
+      },
+    });
 
-  //check if we are already following this user
-  const existFolowing = await prisma.Follows.findFirst({
-    where: {
-      followerId: thisUser.id,
-      followingId: userToFollow,
-    },
-  });
-  if (existFolowing) return res.status(200).json({ status: 200 });
+    // Return follow transaction
+    return res.status(201).json(followTransaction);
+  }
 
-  //Return user not found
+  // User not found
   if (!existUser) return res.status(401).json({ status: 401 });
-
-  //Add to the follows table
-  const newFollow = await prisma.Follows.create({
-    data: {
-      follower: {
-        connect: {
-          auth0Id: user.sub,
-        },
-      },
-      following: {
-        connect: {
-          id: userToFollow,
-        },
-      },
-    },
-  });
-
-  // Follow added added (201)
-  return res.status(201).json(newFollow);
 }

@@ -28,7 +28,9 @@ function Profile(req, res) {
   }
 
   async function getFollowings() {
-    const followingResponse = await fetch(`/api/users/${userId}/follows`).then((res) => res.json());
+    const followingResponse = await fetch(`/api/users/${userId}/following`).then((res) =>
+      res.json()
+    );
     setFollowing(followingResponse);
   }
 
