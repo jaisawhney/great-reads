@@ -51,7 +51,11 @@ export default function ProfileTabs(props) {
           <Followers followers={props.followers} />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="following">
-          <Following following={props.following} />
+          <Following
+            following={props.following}
+            user={props.user}
+            currentUser={props.currentUser}
+          />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="reviews">
           <ReviewsTab />

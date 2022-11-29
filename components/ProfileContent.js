@@ -72,7 +72,12 @@ export default function ProfileContent(props) {
             </div>
           </div>
         </div>
-        <ProfileTabs user={props.user} followers={props.followers} following={props.following} />
+        <ProfileTabs
+          user={props.user}
+          currentUser={props.currentUser}
+          followers={props.followers}
+          following={props.following}
+        />
         {/* End of profile */}
       </div>
     </main>
