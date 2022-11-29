@@ -166,6 +166,11 @@
   "resolved" "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-12.2.5.tgz"
   "version" "12.2.5"
 
+"@next/swc-darwin-x64@12.2.5":
+  "integrity" "sha512-5o8bTCgAmtYOgauO/Xd27vW52G2/m3i5PX7MUYePquxXAnX73AAtqA3WgPXBRitEB60plSKZgOTkcpqrsh546A=="
+  "resolved" "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-12.2.5.tgz"
+  "version" "12.2.5"
+
 "@nodelib/fs.scandir@2.1.5":
   "integrity" "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="
   "resolved" "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -1377,6 +1382,11 @@
     "is-callable" "^1.1.4"
     "is-date-object" "^1.0.1"
     "is-symbol" "^1.0.2"
+
+"esbuild-darwin-64@0.14.47":
+  "integrity" "sha512-R6oaW0y5/u6Eccti/TS6c/2c1xYTb1izwK3gajJwi4vIfNs1s8B1dQzI1UiC9T61YovOQVuePDcfqHLT3mUZJA=="
+  "resolved" "https://registry.npmjs.org/esbuild-darwin-64/-/esbuild-darwin-64-0.14.47.tgz"
+  "version" "0.14.47"
 
 "esbuild-darwin-arm64@0.14.47":
   "integrity" "sha512-seCmearlQyvdvM/noz1L9+qblC5vcBrhUaOoLEDDoLInF/VQ9IkobGiLlyTPYP5dW1YD4LXhtBgOyevoIHGGnw=="
@@ -3807,6 +3817,11 @@
   "version" "2.0.0"
   dependencies:
     "crypto-random-string" "^2.0.0"
+
+"unique-username-generator@^1.1.3":
+  "integrity" "sha512-TB6YdqPMKMpTSgxAzjZkKWtmpZPHvARoWreCKBpc1UrLFz/0C6Q96/qdjpLr9OXPCHk16sD1LHjTr3JDj7q2JA=="
+  "resolved" "https://registry.npmjs.org/unique-username-generator/-/unique-username-generator-1.1.3.tgz"
+  "version" "1.1.3"
 
 "update-browserslist-db@^1.0.5":
   "integrity" "sha512-iN/XYesmZ2RmmWAiI4Z5rq0YqSiv0brj9Ce9CfhNE4xIW2h+MFxcgkxIzZ+ShkFPUkjU3gQ+3oypadD3RAMtrg=="
