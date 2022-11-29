@@ -14,7 +14,7 @@ export default function ProfileTabs(props) {
   const tabContentStyle = "rounded-sm flex flex-col w-full divider";
 
   return (
-    <Tabs.Root classNames={classNames("", "")} defaultValue="shelves" orientation="vertical">
+    <Tabs.Root defaultValue="shelves" orientation="vertical">
       {/* tab nav labels */}
       <Tabs.List
         className={classNames("flex flex-row w-full justify-between flex-wrap", "md:flex-nowrap")}
