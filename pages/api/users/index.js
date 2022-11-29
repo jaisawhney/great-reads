@@ -1,6 +1,6 @@
 import prisma from "../../../lib/prisma";
-
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import { uniqueUsername } from "../../../lib/internalTools.js";
 
 export default withApiAuthRequired(async (req, res) => {
   if (req.method === "GET") {
@@ -19,6 +19,7 @@ export default withApiAuthRequired(async (req, res) => {
       data: {
         auth0Id: req.body.userId,
         email: req.body.email,
+        username: await uniqueUsername(),
         bookList: {
           create: [
             { title: "Reading", description: "Books you are reading" },

@@ -29,6 +29,7 @@ model User {
   id           Int            @id @default(autoincrement())
   auth0Id      String         @unique
   email        String         @db.VarChar(255)
+  username     String         @unique @db.VarChar(20)
   createdAt    DateTime       @default(now()) @db.DateTime(0)
   updatedAt    DateTime       @default(now()) @db.DateTime(0)
   bookList     BookList[]
