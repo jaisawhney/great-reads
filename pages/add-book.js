@@ -123,20 +123,17 @@ export default function AddBook(props) {
           />
         </div>
 
-        <h1 className={classNames("text-2xl w-full text-center mb-5")}>Search the library!</h1>
-
         {/* search bar */}
         <form
           onSubmit={handleSubmit}
           className={classNames(
-            "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between",
-            "md:mb-6 md:w-[300px]"
+            "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between mb-5"
           )}>
           <input
             className="w-full px-2 py-1"
             name="bookName"
             type="text"
-            placeholder="Book Title"
+            placeholder="Book Title, Author, Genre, etc."
             defaultValue={queryBookTitle}
             required
           />
@@ -155,7 +152,7 @@ export default function AddBook(props) {
         </div>
         {/* pagination */}
         {/* <p>Results</p> */}
-        <div className="flex flex-row space-x-3 mb-5 mt-7">
+        <div className="flex flex-row space-x-3 mb-5 mt-7 justify-center">
           {[...Array(pageCount)].map((option, index) => (
             <p
               className={page === index + 1 ? "underline" : null}
