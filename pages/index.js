@@ -26,8 +26,9 @@ export default function Home() {
       <main className="pt-0 px-0">
         {/* -------------- RETURNING USER HOMEPAGE ----------------- */}
 
-        <section className={classNames("home-section mt-3 md:mt-5", "bg-neutral-600/30")}>
-          <img className={classNames("md:-mx-6 md:max-w-fit")} src="/images/cozy-reading.png" />
+        <section
+          className={classNames("home-section reverse-wrap mt-3 md:mt-5", "bg-neutral-600/30")}>
+          <img className={classNames("md:-ml-24 md:max-w-fit")} src="/images/cozy-reading.png" />
           <div className="flex flex-col items-center">
             <h1 className="text-4xl md:w-full mb-3 mt-2 text-center font-semibold">
               Hi again, username!
@@ -81,7 +82,7 @@ export default function Home() {
           <img src="/images/park-reading.png" className="max-w-[40vw] min-w-[300px]" />
         </section>
 
-        <section className={classNames("home-section", "")}>
+        <section className={classNames("home-section reverse-wrap", "")}>
           <img src="/images/bookshelves.png" className="max-w-[40vw] min-w-[300px]" />
           <div className="flex flex-col items-center space-y-3 md:HERE!!">
             <p className="text-3xl md:text-4xl md:w-full text-left font-semibold">
@@ -103,7 +104,7 @@ export default function Home() {
           <img src="/images/share-opinion.png" className="max-w-[40vw] min-w-[300px]" />
         </section>
 
-        <section className={classNames("home-section", "")}>
+        <section className={classNames("home-section reverse-wrap", "")}>
           <img src="/images/following.png" className="max-w-[40vw] min-w-[300px]" />
           <div className="flex flex-col items-center space-y-2 md:space-y-4">
             <p className="text-3xl md:text-4xl md:w-full text-left font-semibold">Hey Friend! </p>

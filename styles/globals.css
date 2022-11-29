@@ -37,8 +37,12 @@ body {
 }
 
 .home-section {
-  @apply w-full flex rounded-sm flex-col items-center py-4 bg-neutral-900/80  mt-3 rounded-lg shadow-xl justify-evenly;
-  @apply md:flex-row-reverse flex-col md:px-7 md:mb-5;
+  @apply w-full flex rounded-sm flex-col items-center py-9 bg-neutral-900/80  mt-3 rounded-lg shadow-xl justify-evenly;
+  @apply md:flex-row flex-col md:px-7 md:mb-5 md:p-4;
+}
+
+.reverse-wrap {
+  @apply md:flex-row flex-col-reverse;
 }
 
 button {
