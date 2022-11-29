@@ -26,11 +26,15 @@ export default function ProfileContent(props) {
 
   return (
     <main className={classNames("flex flex-col space-y-6", "md:my-9")}>
-      <div className={classNames("bg-neutral-900 w-full rounded-lg pt-3", "md:p-7 md:rounded-xl")}>
+      <div
+        className={classNames(
+          "bg-neutral-900 w-fit rounded-lg pt-3",
+          "md:p-7 md:rounded-xl md:mx-auto"
+        )}>
         {/* Profile detail */}
         <div
           className={classNames(
-            "flex flex-row items-center w-full space-x-3  px-3 mb-5",
+            "flex flex-row items-center w-full space-x-3 px-3 mb-5",
             "md:space-x-6 md:px-0"
           )}>
           {/* profile picture is tied to auth0 not our db */}
