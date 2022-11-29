@@ -38,7 +38,9 @@ export default function ProfileContent(props) {
             "md:space-x-6 md:px-0"
           )}>
           {/* profile picture is tied to auth0 not our db */}
-          <Image src="/images/default.gif" alt="default" width={100} height={100} />
+          <div className={classNames("flex flex-col space-y-1", "md:space-y-2")}>
+            <Image src="/images/default.gif" alt="default" width={100} height={100} />
+          </div>
 
           {/* profile info */}
           <div className={classNames("flex flex-col space-y-1", "md:space-y-2")}>
@@ -60,7 +62,7 @@ export default function ProfileContent(props) {
 
               {/* Follow/Unfollow Button */}
               {props.user.internalId != props.currentUser.id && (
-                <div className={classNames("flex flex-col items-center text-white/70", "")}>
+                <div className={classNames("text-white/70", "")}>
                   <button
                     type="button"
                     onClick={isFollowing ? unfollowUser : followUser}
