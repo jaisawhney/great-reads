@@ -1,21 +1,25 @@
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
 import UserList from "../components/UserList";
+import { useRouter } from "next/router";
 
 export default withPageAuthRequired(userList);
 
-// ------- TO DO ---------- //
-// is this meant for users or for us in development
-// how do users find and follow people?
+function userList() {
+  const { user } = useUser();
 
-function userList(props) {
+  const router = useRouter();
+  const searchParam = router.query.search;
+
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [filter, setFilter] = useState();
 
   useEffect(() => {
     async function runGet() {
-      const response = await fetch("/api/users").then((response) => response.json());
+      const response = await fetch(`/api/users?search=${searchParam}`).then((response) =>
+        response.json()
+      );
       setUsers(response);
       setFilteredUsers(response);
     }
@@ -30,7 +34,6 @@ function userList(props) {
   function updateFilter(e) {
     e.preventDefault();
 
-    // Escape string before .search
     const escapedString = e.target.value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     setFilter(escapedString);
   }
@@ -46,7 +49,7 @@ function userList(props) {
           placeholder="Filter by user"
           onChange={updateFilter}
         />
-        <UserList users={filteredUsers} />
+        <UserList users={filteredUsers} user={user} />
       </div>
     </main>
   );
