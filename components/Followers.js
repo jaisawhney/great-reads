@@ -32,7 +32,7 @@ export default function Followers(props) {
     <>
       {pageResults.map((user) => (
         <div className="p-2 border-b-2 border-slate-600">
-          <a href={user.id}>{user.email}</a>
+          <a href={user.id}>{user.username}</a>
         </div>
       ))}
       <div className="flex flex-row space-x-3 mb-5 mt-7">

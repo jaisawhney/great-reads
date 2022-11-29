@@ -1,4 +1,5 @@
 import { handleAuth, handleCallback } from "@auth0/nextjs-auth0";
+import { uniqueUsername } from "../../../lib/internalTools.js";
 import prisma from "../../../lib/prisma";
 
 // The below runs after the auth callback
@@ -14,6 +15,7 @@ const afterCallback = async (req, res, session) => {
     create: {
       auth0Id: user.sub,
       email: user.email,
+      username: await uniqueUsername(),
       bookList: {
         create: [
           { title: "Reading", description: "Books you are reading" },
