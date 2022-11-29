@@ -47,16 +47,9 @@ export default function ProfileContent(props) {
               {props.currentUser.username}
             </h1>{" "}
             {/* profile numbers */}
-            <div className={classNames("flex flex-row space-x-4", "")}>
-              {/* follower count */}
-              <div className={classNames("flex flex-row items-center text-white/70", "")}>
-                <h3 className={classNames("text-sm", "")}>{props.followers.length} Followers</h3>{" "}
-              </div>
-
-              {/* following count */}
-              <div className={classNames("flex flex-col items-center text-white/70", "")}>
-                <h3 className={classNames("text-sm", "")}>{props.following.length} Following</h3>{" "}
-              </div>
+            <div className={classNames("flex flex-row space-x-4 items-center", "")}>
+              <h3 className={classNames("text-sm", "")}>{props.followers.length} Followers</h3>
+              <h3 className={classNames("text-sm", "")}>{props.following.length} Following</h3>
 
               {/* Follow/Unfollow Button */}
               {props.user.internalId != props.currentUser.id && (
