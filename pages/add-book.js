@@ -35,7 +35,9 @@ export default function AddBook(props) {
   const [userShelves, setUserShelves] = useState([]);
 
   async function getShelves() {
-    const shelves = await fetch(`/api/users/${user.sub}/booklists`).then((res) => res.json());
+    const shelves = await fetch(`/api/users/${user.internalId}/booklists`).then((res) =>
+      res.json()
+    );
     setUserShelves(shelves);
   }
 

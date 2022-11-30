@@ -1,38 +1,45 @@
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
 import UserList from "../components/UserList";
+import { useRouter } from "next/router";
+import classNames from "classnames";
 
 export default withPageAuthRequired(userList);
 
-// ------- TO DO ---------- //
-// is this meant for users or for us in development
-// how do users find and follow people?
+function userList() {
+  const { user } = useUser();
 
-function userList(props) {
+  const router = useRouter();
+  const searchParam = router.query.search;
+
   const [users, setUsers] = useState([]);
-  const [filteredUsers, setFilteredUsers] = useState([]);
-  const [filter, setFilter] = useState();
+  const [usersFollowing, setFollowing] = useState([]);
+
+  // Get the current user's followers
+  async function getFollowing() {
+    const response = await fetch(`/api/users/${user.internalId}/following`).then((res) =>
+      res.json()
+    );
+    setFollowing(response);
+  }
+
+  // Search for the users that can be followed
+  async function getUsers() {
+    const url = "/api/users" + (searchParam ? `?search=${searchParam}` : "");
+    const response = await fetch(url).then((response) => response.json());
+    setUsers(response);
+  }
 
   useEffect(() => {
-    async function runGet() {
-      const response = await fetch("/api/users").then((response) => response.json());
-      setUsers(response);
-      setFilteredUsers(response);
-    }
+    getFollowing().catch(console.error);
+    getUsers().catch(console.error);
+  }, [searchParam]);
 
-    runGet().catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    setFilteredUsers(users.filter((user) => user.email.search(filter) !== -1));
-  }, [filter]);
-
-  function updateFilter(e) {
+  // Update the search param
+  function searchSubmit(e) {
     e.preventDefault();
-
-    // Escape string before .search
-    const escapedString = e.target.value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    setFilter(escapedString);
+    const username = e.target.elements.username.value;
+    router.push(`/user-list?search=${username}`);
   }
 
   return (
@@ -40,13 +47,28 @@ function userList(props) {
       <div className="flex flex-col p-2 space-y-2">
         <p className="text-3xl">All users</p>
 
-        <input
-          className="w-full px-2 py-1 border bg-slate-100 text-black"
-          type="text"
-          placeholder="Filter by user"
-          onChange={updateFilter}
+        <form
+          onSubmit={searchSubmit}
+          className={classNames(
+            "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between"
+          )}>
+          <input
+            className={classNames("w-full px-2 py-1 border text-black")}
+            name="username"
+            type="text"
+            placeholder="Search for a friend"
+            required
+          />
+          <button className={classNames("mx-1")} type="submit">
+            Submit
+          </button>
+        </form>
+        <UserList
+          users={users}
+          usersFollowing={usersFollowing}
+          refreshFollowing={getFollowing}
+          user={user}
         />
-        <UserList users={filteredUsers} />
       </div>
     </main>
   );

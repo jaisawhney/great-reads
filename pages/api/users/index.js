@@ -1,10 +1,17 @@
 import prisma from "../../../lib/prisma";
-import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 import { uniqueUsername } from "../../../lib/internalTools.js";
 
 export default withApiAuthRequired(async (req, res) => {
   if (req.method === "GET") {
-    const getUser = await prisma.User.findMany({});
+    // Retrieve all users or return users by username
+    const getUser = await prisma.User.findMany({
+      where: {
+        username: {
+          search: req.query.search ? `"${req.query.search}"` : undefined,
+        },
+      },
+    });
     res.status(200).json(getUser);
   } else {
     req.body = JSON.parse(req.body);
