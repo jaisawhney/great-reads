@@ -4,10 +4,11 @@ import { uniqueUsername } from "../../../lib/internalTools.js";
 
 export default withApiAuthRequired(async (req, res) => {
   if (req.method === "GET") {
+    // Retrieve all users or return users by username
     const getUser = await prisma.User.findMany({
       where: {
         username: {
-          search: `"${req.query.search}"` || undefined,
+          search: req.query.search ? `"${req.query.search}"` : undefined,
         },
       },
     });
