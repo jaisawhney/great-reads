@@ -17,7 +17,7 @@ export default function SearchBar() {
       onSubmit={searchSubmit}
       className={classNames(
         "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between",
-        "md:mb-6 md:w-[300px]"
+        "md:w-[300px]"
       )}>
       <input
         className={classNames("w-full px-2 py-1")}

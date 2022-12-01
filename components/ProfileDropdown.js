@@ -9,7 +9,7 @@ export default function ProfileDropdown(props) {
     <div className="w-fit flex flex-col items-end">
       {!props.userId && (
         <a href="api/auth/login">
-          <ProfileIcon />
+          <p>Join</p>
         </a>
       )}
 
