@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 // Set an environment variable for the database url
@@ -35,11 +36,11 @@ model User {
   bookList     BookList[]
   Review       Review[]
   BookProgress BookProgress[]
-
   followers    Follows[]      @relation("following")
   following    Follows[]      @relation("follower")
-
   Comments     Comment[]
+
+  @@fulltext([username])
 }
 
 model Comment {

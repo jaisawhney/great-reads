@@ -14,7 +14,7 @@ export default function ProfileTabs(props) {
   const tabContentStyle = "rounded-sm flex flex-col w-full divider";
 
   return (
-    <Tabs.Root classNames={classNames("", "")} defaultValue="shelves" orientation="vertical">
+    <Tabs.Root defaultValue="shelves" orientation="vertical">
       {/* tab nav labels */}
       <Tabs.List
         className={classNames("flex flex-row w-full justify-between flex-wrap", "md:flex-nowrap")}
@@ -51,7 +51,11 @@ export default function ProfileTabs(props) {
           <Followers followers={props.followers} />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="following">
-          <Following following={props.following} />
+          <Following
+            following={props.following}
+            user={props.user}
+            currentUser={props.currentUser}
+          />
         </Tabs.Content>
         <Tabs.Content className={tabContentStyle} value="reviews">
           <ReviewsTab />

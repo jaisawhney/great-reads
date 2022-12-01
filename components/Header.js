@@ -14,7 +14,7 @@ export default function Header(props) {
   return (
     // TOPBAR
     <div className={classnames("bg-teal-900 w-full text-stone-100 flex justify-center py-1")}>
-      <div className="max-w-[1200px] w-full md:px-6 px-5">
+      <div className="page-wrapper">
         <div className="flex flex-row items-center justify-between">
           {/* TITLE */}
           <div>
