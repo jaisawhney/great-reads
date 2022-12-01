@@ -1,4 +1,5 @@
 import ShelfListItem from "./ShelfListItem";
+import NewShelfForm from "./NewShelfForm";
 import { useEffect, useState } from "react";
 import PlusIcon from "./icons/PlusIcon";
 import { useRouter } from "next/router";
@@ -7,6 +8,7 @@ export default function ShelvesTab(props) {
   const router = useRouter();
   const profileUser = router.query.userId;
   const [shelves, setShelves] = useState([]);
+  const [isActive, setIsActive] = useState(false);
 
   // Get the existing shelves
   async function getShelves() {
