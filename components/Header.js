@@ -9,7 +9,8 @@ import ProfileDropdown from "./ProfileDropdown";
 import { userAgent } from "next/server";
 
 export default function Header(props) {
-  const navItem = "hover:bg-teal-200/50 p-2 rounded-sm transition-all duration-200";
+  const navItem =
+    "hover:bg-teal-200/50 active:bg-teal-200/50 p-2 rounded-sm transition-all duration-200 block md:hidden";
 
   return (
     // TOPBAR
@@ -30,42 +31,19 @@ export default function Header(props) {
           <div>
             <ul
               className={classnames(
-                "text-sm flex flex-row wrap space-x-2 text-center items-center md:space-x-10"
+                "text-sm flex flex-row wrap space-x-2 text-center items-center justify-center md:space-x-10"
               )}>
-              {/* <li> <Link href="/my-books">Books</Link> </li> */}
-              <li className={navItem}>
+              <div className={navItem}>
                 <Link href="/add-book">
                   <a>
                     <SearchIcon />
                   </a>
                 </Link>
-              </li>
-
-              {/* <li className={navItem}>
-                <Link href="/my-friends">
-                  <a>
-                    <FriendsIcon />
-                  </a>
-                </Link>
-              </li> */}
-
-              {/* {props.userId && (
-                <li className={navItem}>
-                  <Link href={"/users/" + props.userId}>
-                    <a>
-                      <ProfileIcon />
-                    </a>
-                  </Link>
-                </li>
-              )}
-
-              {props.userId && (
-                <li className={navItem}>
-                  <LogoutButton />
-                </li>
-              )} */}
-
-              <ProfileDropdown userId={props.userId} />
+              </div>
+              <div className="md:block hidden flex items-center">
+                <SearchBar />
+              </div>
+              <ProfileDropdown userId={props.userId} navItem={navItem} />
             </ul>
           </div>
         </div>

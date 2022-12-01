@@ -25,11 +25,11 @@ export default function ProfileContent(props) {
   const isFollowing = [...props.followers.map((u) => u.id)].includes(props.user.internalId);
 
   return (
-    <main className={classNames("flex flex-col space-y-6", "md:my-9")}>
+    <div className={classNames("flex flex-col space-y-6", "")}>
       <div
         className={classNames(
-          "bg-neutral-900 w-fit rounded-lg pt-3",
-          "md:p-7 md:rounded-xl md:mx-auto"
+          "bg-neutral-900 w-full mt-4 rounded-lg pt-3",
+          "md:p-7 md:rounded-xl md:mx-auto md:w-fit"
         )}>
         {/* Profile detail */}
         <div
@@ -47,16 +47,9 @@ export default function ProfileContent(props) {
               {props.currentUser.username}
             </h1>{" "}
             {/* profile numbers */}
-            <div className={classNames("flex flex-row space-x-4", "")}>
-              {/* follower count */}
-              <div className={classNames("flex flex-row items-center text-white/70", "")}>
-                <h3 className={classNames("text-sm", "")}>{props.followers.length} Followers</h3>{" "}
-              </div>
-
-              {/* following count */}
-              <div className={classNames("flex flex-col items-center text-white/70", "")}>
-                <h3 className={classNames("text-sm", "")}>{props.following.length} Following</h3>{" "}
-              </div>
+            <div className={classNames("flex flex-row space-x-4 items-center", "")}>
+              <h3 className={classNames("text-sm", "")}>{props.followers.length} Followers</h3>
+              <h3 className={classNames("text-sm", "")}>{props.following.length} Following</h3>
 
               {/* Follow/Unfollow Button */}
               {props.user.internalId != props.currentUser.id && (
@@ -80,6 +73,6 @@ export default function ProfileContent(props) {
         />
         {/* End of profile */}
       </div>
-    </main>
+    </div>
   );
 }
