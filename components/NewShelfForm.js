@@ -1,21 +1,8 @@
 import classNames from "classnames";
-import { useEffect, useState } from "react";
 import CloseIcon from "./icons/CloseIcon";
 
-export default function NewShelfForm({ user, onClose }) {
-  const [shelves, setShelves] = useState([]);
-
+export default function NewShelfForm({ closeModal, shelves, setShelves }) {
   const inputStyles = "px-2 py-1 rounded mt-9 text-neutral-900 mx-6";
-
-  // Get the existing shelves
-  async function getShelves() {
-    // const shelves = await fetch(`/api/users/${user.sub}/booklists`).then((res) => res.json());
-    setShelves(shelves);
-  }
-
-  useEffect(() => {
-    getShelves();
-  }, []);
 
   function createShelf(e) {
     e.preventDefault();
@@ -23,6 +10,10 @@ export default function NewShelfForm({ user, onClose }) {
     const description = e.target.elements.shelfDescription?.value;
     if (!title || !description) return;
 
+    // Close the modal
+    closeModal();
+
+    // Create the shelf
     fetch(`/api/booklists`, {
       method: "POST",
       body: JSON.stringify({
@@ -31,20 +22,22 @@ export default function NewShelfForm({ user, onClose }) {
       }),
     }).then(async (res) => {
       const createdShelf = await res.json();
-      /*TODO: Do something*/
-      if (!res.ok) return alert("bad");
+      if (!res.ok) return alert("There was a problem while creating the book");
 
       // Update the state
       setShelves([...shelves, createdShelf]);
     });
-    e.target.reset();
   }
 
   return (
-    <div className="bg-black/70 backdrop-blur-sm fixed w-full h-full top-0 left-0 flex justify-center items-center">
-      <div className="absolute bg-neutral-700 rounded-2xl relative w-full max-w-[500px] mx-5">
+    <div
+      onClick={closeModal}
+      className="z-0 bg-black/70 backdrop-blur-sm fixed w-full h-full top-0 left-0 flex justify-center items-center">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="absolute bg-neutral-700 rounded-2xl relative w-full max-w-[500px] mx-5">
         <button
-          onClick={onClose}
+          onClick={closeModal}
           className="absolute right-3 top-3 transition-colors ease-in duration-100 text-neutral-50 hover:text-neutral-500">
           <CloseIcon />
         </button>
@@ -62,7 +55,6 @@ export default function NewShelfForm({ user, onClose }) {
           <textarea
             className={inputStyles}
             name="shelfDescription"
-            type="text"
             placeholder="Description"
             required
           />
