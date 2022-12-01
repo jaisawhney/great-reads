@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     const userShelves = await prisma.BookList.findMany({
       where: {
         User: {
-          auth0Id: userId,
+          id: parseInt(userId),
         },
       },
       include: {
