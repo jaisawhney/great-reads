@@ -23,12 +23,12 @@ export default function ShelfBook(props) {
         </div>
 
         {/* stars */}
-        <div className={classNames("flex flex-col items-end ml-auto", "")}>
+        {/* <div className={classNames("flex flex-col items-end ml-auto", "")}>
           <div className={classNames("flex flex-row w-24", "")}>
             <BookStars averageRating={rating.average} />
           </div>
           <p className="text-xs text-white/50">{rating.count} ratings</p>
-        </div>
+        </div> */}
       </div>
     </Link>
   );

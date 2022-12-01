@@ -5,7 +5,7 @@ import CloseIcon from "./icons/CloseIcon";
 export default function NewShelfForm({ user, onClose }) {
   const [shelves, setShelves] = useState([]);
 
-  const inputStyles = "px-2 py-1 rounded mt-5 mx-9 text-neutral-900";
+  const inputStyles = "px-2 py-1 rounded mt-9 text-neutral-900 mx-6";
 
   // Get the existing shelves
   async function getShelves() {
@@ -42,7 +42,7 @@ export default function NewShelfForm({ user, onClose }) {
 
   return (
     <div className="bg-black/70 backdrop-blur-sm fixed w-full h-full top-0 left-0 flex justify-center items-center">
-      <div className="absolute bg-neutral-700 rounded-2xl relative">
+      <div className="absolute bg-neutral-700 rounded-2xl relative w-full max-w-[500px] mx-5">
         <button
           onClick={onClose}
           className="absolute right-3 top-3 transition-colors ease-in duration-100 text-neutral-50 hover:text-neutral-500">
@@ -59,7 +59,7 @@ export default function NewShelfForm({ user, onClose }) {
             placeholder="Title"
             required
           />
-          <input
+          <textarea
             className={inputStyles}
             name="shelfDescription"
             type="text"

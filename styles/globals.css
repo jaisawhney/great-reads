@@ -45,6 +45,10 @@ body {
   @apply md:flex-row flex-col-reverse;
 }
 
+main {
+  @apply mt-4;
+}
+
 button {
   /* @apply ; */
 }

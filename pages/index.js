@@ -45,7 +45,7 @@ export default function Home() {
         </section>
 
         <section className={classNames("home-section", "")}>
-          <div className="flex flex-col items-center space-y-3 md:space-y-4">
+          <div className="flex flex-col items-center md:space-y-4">
             <p className="text-3xl md:w-full text-center px-3 md:mb-3">Browse Your Shelves. </p>
             <Link href="">
               <button

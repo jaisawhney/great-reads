@@ -51,7 +51,7 @@ function Profile(req, res) {
     );
   } else {
     return (
-      <main className={classNames("flex flex-col space-y-6", "md:my-9")}>
+      <main className={classNames("flex flex-col space-y-6", "")}>
         <div
           className={classNames("bg-neutral-900 w-full rounded-lg pt-3", "md:p-7 md:rounded-xl")}>
           <h3 className={classNames("text-xl", "md:text-3xl")}>User does not exist</h3>

@@ -9,7 +9,8 @@ import ProfileDropdown from "./ProfileDropdown";
 import { userAgent } from "next/server";
 
 export default function Header(props) {
-  const navItem = "hover:bg-teal-200/50 p-2 rounded-sm transition-all duration-200 block md:hidden";
+  const navItem =
+    "hover:bg-teal-200/50 active:bg-teal-200/50 p-2 rounded-sm transition-all duration-200 block md:hidden";
 
   return (
     // TOPBAR
@@ -42,7 +43,7 @@ export default function Header(props) {
               <div className="md:block hidden flex items-center">
                 <SearchBar />
               </div>
-              <ProfileDropdown userId={props.userId} />
+              <ProfileDropdown userId={props.userId} navItem={navItem} />
             </ul>
           </div>
         </div>

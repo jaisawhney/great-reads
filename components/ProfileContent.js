@@ -25,11 +25,11 @@ export default function ProfileContent(props) {
   const isFollowing = [...props.followers.map((u) => u.id)].includes(props.user.internalId);
 
   return (
-    <main className={classNames("flex flex-col space-y-6", "md:my-9")}>
+    <div className={classNames("flex flex-col space-y-6", "")}>
       <div
         className={classNames(
-          "bg-neutral-900 w-fit rounded-lg pt-3",
-          "md:p-7 md:rounded-xl md:mx-auto"
+          "bg-neutral-900 w-full mt-4 rounded-lg pt-3",
+          "md:p-7 md:rounded-xl md:mx-auto md:w-fit"
         )}>
         {/* Profile detail */}
         <div
@@ -68,6 +68,6 @@ export default function ProfileContent(props) {
         <ProfileTabs user={props.user} followers={props.followers} following={props.following} />
         {/* End of profile */}
       </div>
-    </main>
+    </div>
   );
 }
