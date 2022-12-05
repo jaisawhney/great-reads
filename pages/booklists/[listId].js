@@ -43,8 +43,11 @@ function ListId() {
           <p className={classNames("text-sm ml-4 pb-3", "md:mb-4 md:pb-0")}>{shelf.description}</p>
         </div>
       </div>
-      <div className={classNames("flex flex-col flex-wrap", "md:flex-row md:justify-start")}>
-        <main>
+      <div className={classNames("flex flex-col flex-wrap justify-center", "md:flex-row")}>
+        <main
+          className={classNames(
+            "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-1"
+          )}>
           {books.map((book) => {
             return <ShelfBook book={book} />;
           })}

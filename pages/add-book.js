@@ -35,7 +35,9 @@ export default function AddBook(props) {
   const [userShelves, setUserShelves] = useState([]);
 
   async function getShelves() {
-    const shelves = await fetch(`/api/users/${user.sub}/booklists`).then((res) => res.json());
+    const shelves = await fetch(`/api/users/${user.internalId}/booklists`).then((res) =>
+      res.json()
+    );
     setUserShelves(shelves);
   }
 
@@ -115,7 +117,7 @@ export default function AddBook(props) {
 
       <main className={classNames("items-center")}>
         {/* I don't know how we want to style this div */}
-        <div className={classNames("p-6")}>
+        <div className={classNames("mt-4 mb-5")}>
           <NotificationBar
             visibility={barVisibility}
             setVisibility={setBarVisibility}
