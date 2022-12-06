@@ -1,5 +1,5 @@
 import classNames from "classnames";
-
+import SubmitComment from "./icons/SubmitComment.js";
 export default function CommentForm(props) {
   function createComment(e) {
     e.preventDefault();
@@ -20,13 +20,20 @@ export default function CommentForm(props) {
   }
 
   return (
-    <form onSubmit={createComment}>
-      <label htmlFor="message" className="text-sm font-medium text-white/80 block mb-2">
-        Leave a comment
-      </label>
-      <input className={classNames("text-sm text-black p-1 block")} type="text" name="comment" />
+    <form
+      className={classNames(
+        "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between",
+        ""
+      )}>
+      <input
+        className={classNames("w-full px-2 py-1")}
+        name="comment"
+        type="text"
+        placeholder="Comment on this book here"
+        required
+      />
       <button className={classNames("button")} type="submit">
-        Submit
+        <SubmitComment />
       </button>
     </form>
   );

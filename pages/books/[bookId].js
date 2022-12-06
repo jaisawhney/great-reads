@@ -34,15 +34,19 @@ function Book() {
           <BackArrow />
         </div>
       </Link>
-      <div className={classNames("flex flex-row w-full text-white py-4 px-3", "md:px-6")}>
-        <div>
-          <img src={cover} className={classNames("w-20")} />
+      <div
+        className={classNames(
+          "flex flex-row w-full text-white py-4 px-3 justify-evenly",
+          "md:px-6"
+        )}>
+        <div classname="flex flex-rox justify-center">
+          <img src={cover} className={classNames("w-100")} />
         </div>
 
         <div className={classNames("flex flex-col mx-2", "md:mx-4")}>
           <div className={classNames("flex flex-col text-left max-w-48")}>
-            <h1>{book.title}</h1>
-            <h2 className="text-xs text-white/70">By {book.author}</h2>
+            <h1 className="sm:text-3xl md:text-5xl xl:text-6xl">{book.title}</h1>
+            <h2 className="text-xs md:text-xl text-white/70">By {book.author}</h2>
           </div>
         </div>
       </div>
@@ -50,7 +54,6 @@ function Book() {
       {/* Comments */}
       <div className={classNames("flex flex-col w-full text-white py-4 px-3", "md:px-6")}>
         <div className={classNames("border-b")}>
-          <h1>Comments</h1>
           <CommentForm book={book} refreshBook={getBook} />
         </div>
         <div>
