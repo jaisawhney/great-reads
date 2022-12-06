@@ -28,6 +28,7 @@ const afterCallback = async (req, res, session) => {
   });
 
   user.internalId = prismaUser.id;
+  user.username = prismaUser.username;
   return session;
 };
 
