@@ -16,11 +16,11 @@ export default function SearchBar() {
     <form
       onSubmit={searchSubmit}
       className={classNames(
-        "border rounded shadow-sm bg-neutral-100 text-neutral-900 flex w-full flex-row justify-between",
-        "md:w-[300px]"
+        "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between",
+        "md:mb-6 md:w-[300px]"
       )}>
       <input
-        className={classNames("w-full px-1 py-0.5")}
+        className={classNames("w-full px-2 py-1")}
         name="bookName"
         type="text"
         placeholder="Book Title"

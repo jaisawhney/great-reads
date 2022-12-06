@@ -11,13 +11,13 @@ export default function SearchResult(props) {
 
   return (
     <Link href="">
-      <div className="flex flex-col max-w-56 max-h-fit bg-zinc-700/40 rounded-sm items-center text-white rounded-sm">
+      <div className="flex flex-col w-56 max-h-fit bg-zinc-700/40 rounded-sm items-center text-white rounded-sm">
         {/* book cover, column 1 */}
         <div className={classNames("flex items-start pb-3 mt-8")}>
           <img src={cover} className={classNames("max-h-64 w-100")} />
         </div>
         <div className={classNames("max-h-32 text-left w-36 pb-0 justify-self-end")}>
-          <h1 className="text-md truncate text-ellipsis overflow-hidden">{title}</h1>
+          <h1 className="text-md text-ellipsis overflow-hidden">{title}</h1>
 
           <h2 className="text-sm text-slate-400 text-ellipsis hover:text-clip">
             {author_name.join(", ")}

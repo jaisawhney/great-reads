@@ -7,7 +7,7 @@
 }
 
 .page-wrapper {
-  @apply px-4;
+  @apply px-2;
   @apply lg:max-w-7xl w-full mx-auto;
 }
 
@@ -43,10 +43,6 @@ body {
 
 .reverse-wrap {
   @apply md:flex-row flex-col-reverse;
-}
-
-main {
-  @apply mt-4;
 }
 
 button {

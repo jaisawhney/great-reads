@@ -8,7 +8,7 @@ export default function ShelfBook(props) {
 
   return (
     <Link href={`/books/${id}`}>
-      <div className="flex flex-row w-full bg-zinc-700/60 py-4 text-white rounded-sm border-t-2 border-zinc-200/20 max-w-[800px] px-3 md:px-6 cursor-pointer">
+      <div className="flex flex-row w-full bg-zinc-700/60 py-4 text-white rounded-sm border-t-2 border-zinc-200/20 max-w-[800px] px-3 md:px-6 cursor-pointer my-[4px]">
         {/* book cover */}
         <div>
           <img src={cover} className={classNames("w-12", "md:w-28")} />
@@ -23,8 +23,8 @@ export default function ShelfBook(props) {
         </div>
 
         {/* stars */}
-        <div className={classNames("flex flex-col items-end ", "ml-auto")}>
-          <div className={classNames("flex flex-row max-w-16", "")}>
+        <div className={classNames("flex flex-col items-end ml-auto", "")}>
+          <div className={classNames("flex flex-row w-24", "")}>
             <BookStars averageRating={rating.average} />
           </div>
           <p className="text-xs text-white/50">{rating.count} ratings</p>

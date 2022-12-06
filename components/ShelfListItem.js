@@ -5,7 +5,7 @@ export default function ShelfListItem(props) {
   return (
     <div
       className={classNames(
-        "text-md py-2 border-b-2 divider px-3 text-neutral-50 hover:bg-teal-400/20 transition-colors ease-in duration-100",
+        "text-md py-2 border-b-2 divider px-3 text-white/80 hover:bg-teal-400/20 smooth",
         ""
       )}>
       <Link href={`/booklists/${props.shelf.id}`}>

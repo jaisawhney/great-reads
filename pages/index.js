@@ -35,6 +35,21 @@ export default function Home(props) {
                 Hi again, <span className="text-teal-900">{props.user.username}</span>!
               </h1>
               <div
+              className={classNames(
+                "flex flex-col text-center space-y-2 w-full text-left mt-7 mb-3",
+                "md:mt-12 items-center"
+              )}>
+              <p className="text-xl text-neutral-400 mb-2">Need Another Book?</p>
+              <SearchBar />
+            </div>
+          </div>
+        </section>
+
+        <section className={classNames("home-section", "")}>
+          <div className="flex flex-col items-center space-y-3 md:space-y-4">
+            <p className="text-3xl md:w-full text-center px-3 md:mb-3">Browse Your Shelves. </p>
+            <Link href="">
+              <button
                 className={classNames(
                   "flex flex-col text-center space-y-2 w-full text-left mt-7 mb-3",
                   "md:mt-12 items-center"
