@@ -12,7 +12,7 @@ Great Reads is a one stop shop for everything reading related:
 
 ---
 
-Enjoy the current iteration of Great Reads [Here!](https://great-reads-qacg-lartg.vercel.app/)
+Enjoy the current iteration of Great Reads [Here!](https://great-reads-wheat.vercel.app/)
 
 ## Project timeline
 
