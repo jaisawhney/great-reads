@@ -1,9 +1,11 @@
 import classNames from "classnames";
 import SubmitComment from "./icons/SubmitComment.js";
+
 export default function CommentForm(props) {
   function createComment(e) {
     e.preventDefault();
-    const comment = e.target.elements.comment?.value;
+    console.log(e.target.elements);
+    const comment = e.target.elements?.comment?.value;
     if (!comment) return;
 
     fetch(`/api/comments`, {
@@ -21,12 +23,12 @@ export default function CommentForm(props) {
 
   return (
     <form
+      onSubmit={createComment}
       className={classNames(
-        "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between",
-        ""
+        "border rounded shadow-sm bg-white text-black flex w-full flex-row justify-between"
       )}>
       <input
-        className={classNames("w-full px-2 py-1")}
+        className={classNames("w-full px-2 py-1 text-sm")}
         name="comment"
         type="text"
         placeholder="Comment on this book here"

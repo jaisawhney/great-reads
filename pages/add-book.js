@@ -116,8 +116,7 @@ export default function AddBook(props) {
       </Head>
 
       <main className={classNames("items-center")}>
-        {/* I don't know how we want to style this div */}
-        <div className={classNames("p-6")}>
+        <div className={classNames("py-6")}>
           <NotificationBar
             visibility={barVisibility}
             setVisibility={setBarVisibility}

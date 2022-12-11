@@ -61,12 +61,12 @@ export default function ProfileContent(props) {
               </div>
 
               {/* Follow/Unfollow Button */}
-              {props.user.internalId != props.currentUser.id && (
-                <div className={classNames("text-white/70", "")}>
+              {props.user.internalId !== props.currentUser.id && (
+                <div className={classNames("flex flex-col items-center text-white/70", "")}>
                   <button
                     type="button"
                     onClick={isFollowing ? unfollowUser : followUser}
-                    className={classNames("button")}>
+                    className={classNames("text-sm underline hover:text-white/90")}>
                     {isFollowing ? "Unfollow" : "Follow"}
                   </button>
                 </div>

@@ -1,10 +1,10 @@
 import ShelfBook from "../../components/ShelfBook";
 import classNames from "classnames";
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import BackArrow from "../../components/icons/BackArrow";
+import BackButton from "../../components/BackButton";
+
 export default withPageAuthRequired(ListId);
 
 function ListId() {
@@ -30,13 +30,9 @@ function ListId() {
   }, []);
 
   return (
-    <main className="">
+    <main>
+      <BackButton />
       <div className={classNames("flex flex-row")}>
-        <Link href="/my-profile">
-          <div className={classNames("pt-6")}>
-            <BackArrow />
-          </div>
-        </Link>
         {/* shelf title */}
         <div className={classNames("flex flex-col")}>
           <h1 className={classNames("text-lg ml-4 pt-3", "md:pb-0 md:pt-8")}>{shelf.title}</h1>

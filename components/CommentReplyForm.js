@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import SubmitComment from "./icons/SubmitComment";
 
 export default function CommentReplyForm(props) {
   function createReply(e) {
@@ -21,15 +22,20 @@ export default function CommentReplyForm(props) {
   }
 
   return (
-    <form onSubmit={createReply}>
+    <form
+      onSubmit={createReply}
+      className={classNames(
+        "border rounded shadow-sm bg-white text-black flex w-fit flex-row justify-between"
+      )}>
       <input
-        className={classNames("text-black p-1")}
-        type="text"
+        className={classNames("px-2 text-sm")}
         name="comment"
+        type="text"
         placeholder="Your reply..."
+        required
       />
       <button className={classNames("button")} type="submit">
-        Submit
+        <SubmitComment className={classNames("h-50")} />
       </button>
     </form>
   );
