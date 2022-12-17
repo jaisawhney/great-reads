@@ -27,7 +27,6 @@ Enjoy the current iteration of Great Reads [Here!](https://great-reads-demo.verc
 
 - Book reviews
 - Daily reading goals
-- Fix mobile
 
 ---
 
@@ -42,6 +41,8 @@ npm install
 ```
 
 Make sure you have MySQL installed and running on port 3306!
+
+Sign up and create an [Auth0](https://auth0.com/docs/get-started/auth0-overview/create-applications) application
 
 ### Add Environment Variables:
 
